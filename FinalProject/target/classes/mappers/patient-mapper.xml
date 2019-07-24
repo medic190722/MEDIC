@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="patient">
+
+	<resultMap id="resultPatient" type="Patient">
+		<result property="p_phone" column="p_phone" typeHandler="strArrPhoneTypeHandler"/>		
+	</resultMap>
+		
+	<insert id="insertOutPatient" parameterType="Patient">
+		INSERT INTO PATIENT VALUES (
+			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 
+			#{p_rrn}, #{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, 'N',
+			NULL, NULL, NULL, SYSDATE, NULL) 
+	</insert>
+	
+</mapper>

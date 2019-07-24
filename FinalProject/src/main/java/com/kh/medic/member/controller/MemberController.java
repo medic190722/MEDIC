@@ -29,8 +29,9 @@ public class MemberController {
 		
 		return "pages/member/register";
 	}
+
 	
-	@RequestMapping("/pages/member/memberEnrollEnd.do")
+	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member member, Model model) {
 		
 		// 암호화 로직 - spring security
@@ -50,10 +51,20 @@ public class MemberController {
 		
 		/**************************/
 		
-		
+		// 1. 비즈니스 로직 실행
 		int result = memberService.insertMember(member);
+		 
+		// 2. 실행 결과에 따른 화면 처리
+		String loc = "/";
+		String msg = "";
 		
-		return "redirect:/";
+		if(result > 0) msg = "회원가입 성공!";
+		else msg = "회원가입 실패!";
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "pages/common/msg";
 	}
 	
 	@RequestMapping(value="/member/memberLogin.do", method=RequestMethod.POST)
@@ -65,13 +76,13 @@ public class MemberController {
 		// model + url 주소를 반환하는  view
 		ModelAndView mv = new ModelAndView();
 		
-		
 		try {
 			// 1. 업무 로직 구현
 			Member m = memberService.selectMember(empNo);
+			System.out.println("로그인 확인 : " + m);
 			
 			// 2. 반환할 화면 url 처리
-			String loc = "/index.jsp";
+			String loc = "/index.do";
 			String msg = "";
 			
 			if(m == null) {
@@ -82,13 +93,14 @@ public class MemberController {
 				if(bcryptPasswordEncoder.matches(empPwd, m.getEmpPwd())) {
 					msg = "로그인 성공!";
 					mv.addObject("member", m);
+					mv.addObject("loc", loc);
 				}else {
 					msg = "비밀번호가 일치하지 않습니다.";
 				}
 			}
 			
 			// 기존에 request 객체에 저장했던 것들을 mv에 key / value로 저장한다.
-			mv.addObject("loc", loc);
+		
 			mv.addObject("msg", msg);
 			
 			// 화면전달을 위한 viewName 등록하기
@@ -103,5 +115,11 @@ public class MemberController {
 			}
 			return mv;
 	
+	}
+	
+	@RequestMapping("/index.do")
+	public String mainGo() {
+		
+		return "index";
 	}
 }

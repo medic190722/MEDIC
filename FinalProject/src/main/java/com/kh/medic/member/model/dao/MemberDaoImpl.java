@@ -14,8 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("member.insertMember", member);
 	}
 
 	@Override

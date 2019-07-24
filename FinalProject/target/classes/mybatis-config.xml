@@ -8,15 +8,15 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="com.kh.medic.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayTypeHandler"
-					alias="strArrTypeHandler"/> 
+		<typeAlias type="com.kh.medic.patient.model.vo.Patient" alias="Patient" />
+		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayTypeHandler" alias="strArrTypeHandler" />
+		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayPhoneTypeHandler" alias="strArrPhoneTypeHandler" />
 	</typeAliases>
 	
-	<!-- 어느 부분의 typeHandler를 적용할 것인지 패키지 영역을 설정한다. -->
+	<!-- 어느 부분에 typeHandler를 적용할 것인지 패키지 영역을 설정한다.  -->
 	<typeHandlers>
-		<package name="com.kh.medic.common.typeHandler"/>
-	</typeHandlers> 
+		<package name="com.kh.medic.common.typeHandler" />
+	</typeHandlers>
 </configuration>
 
 

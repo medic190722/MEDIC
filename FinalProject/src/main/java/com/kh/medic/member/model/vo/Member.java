@@ -49,6 +49,21 @@ public class Member implements Serializable {
 
 
 
+	public Member(String empPwd, String empName, String empAddress, String empEmail, String empRrn, String deptCode,
+			String jobCode, int salary) {
+		super();
+		this.empPwd = empPwd;
+		this.empName = empName;
+		this.empAddress = empAddress;
+		this.empEmail = empEmail;
+		this.empRrn = empRrn;
+		this.deptCode = deptCode;
+		this.jobCode = jobCode;
+		this.salary = salary;
+	}
+
+
+
 	public int getEmpNo() {
 		return empNo;
 	}
