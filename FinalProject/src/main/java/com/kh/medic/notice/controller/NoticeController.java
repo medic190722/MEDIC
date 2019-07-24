@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.medic.notice.service.NoticeService;
+import com.kh.medic.notice.model.service.NoticeService;
 import com.kh.medic.common.util.Utils;
 
 @Controller
@@ -42,4 +42,5 @@ public class NoticeController {
 			 .addAttribute("pageBar", pageBar);
 		
 		return "notice/noticeList";
+	}
 }

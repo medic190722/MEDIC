@@ -58,13 +58,13 @@
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
 
-    <form action="../../index.html" method="post">
+    <form action="${pageContext.request.contextPath}/member/memberEnrollEnd.do" method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="이름">
+        <input type="text" class="form-control" name="empName" placeholder="이름">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
         <div class="form-group has-feedback">
-        <input type="password" id="userPwd1" class="form-control" placeholder="비밀번호">
+        <input type="password" id="userPwd1" name="empPwd" class="form-control" placeholder="비밀번호">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -72,24 +72,28 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
         <label id="pwdResult"></label>
       </div>
+       <div class="form-group has-feedback">
+        <input type="text" id="rrn" name="empRrn" class="form-control" placeholder="주민등록번호">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="이메일">
+        <input type="email" name="empEmail"class="form-control" placeholder="이메일">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
     
        <!-- select -->
          <div class="form-group">
            <label>부서</label>
-           <select class="form-control dept">
+           <select class="form-control dept" name="deptCode" id="deptCode">
              <option value="총무과">총무과</option>
              <option value="원무과">원무과</option>
              <option value="의사">의사</option>
              <option value="간호사">간호사</option>
            </select>
          </div>
-    	  <div class="form-group job1" id="job1" style="display:block;">
+    	  <div class="form-group job1" id="job1"  style="display:block;">
            <label>직급</label>
-           <select class="form-control">
+           <select class="form-control" name="jobCode">
              <option value="부장">부장</option>
              <option value="차장">차장</option>
              <option value="과장">과장</option>
@@ -99,7 +103,7 @@
          </div>
           <div class="form-group job2" id="job2" style="display:none;">
            <label>직급</label>
-           <select class="form-control">
+           <select class="form-control" name="jobCode">
              <option value="부장">부장</option>
              <option value="차장">차장</option>
              <option value="과장">과장</option>
@@ -110,7 +114,7 @@
          
          <div class="form-group job3" id="job3" style="display:none;">
            <label>직급</label>
-           <select class="form-control">
+           <select class="form-control" name="jobCode">
              <option value="교수">교수</option>
              <option value="부교수">부교수</option>
              <option value="조교수">조교수</option>	
@@ -121,7 +125,7 @@
          </div>
          <div class="form-group job4" id="job4" style="display:none;">
            <label>직급</label>
-           <select class="form-control">
+           <select class="form-control" name="jobCode">
              <option value="최고 책임자">최고 책임자</option>
              <option value="간호과장">간호과장</option>
              <option value="수간호사">수간호사</option>
@@ -136,15 +140,15 @@
         <span class="form-control-feedback">만원</span>
       </div> -->
       <!-- Date -->
-      <div class="form-group">
+     <!--  <div class="form-group">
         <label>입사일:</label>
         <div class="input-group date">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
-          <input type="text" class="form-control pull-right" id="datepicker">
+          <input type="text" class="form-control pull-right" id="datepicker" name="hireDate">
         </div>
-        </div>
+        </div> -->
       <div class="row">
         <div class="col-xs-12"  style="line-height: 60px;">
           <button type="submit" class="btn btn-primary btn-block btn-flat">회원가입</button>
@@ -216,7 +220,7 @@
     $('.select2').select2()
 
     //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy ', { 'placeholder': 'dd/mm/yyyy' })
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     //Datemask2 mm/dd/yyyy
     $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
     //Money Euro
@@ -297,6 +301,34 @@
             $(this).select();
         }
     });
+    
+
+    function autoHypenPhone(str){
+               str = str.replace(/[^0-9]/g, '');
+               var tmp = '';
+               if( str.length < 6){
+                   return str;
+               }else if(str.length < 6){
+                   tmp += str.substr(0, 6);
+                   tmp += '-';
+                   tmp += str.substr(6);
+                   return tmp;
+               }else{              
+                   tmp += str.substr(0, 6);
+                   tmp += '-';
+                   tmp += str.substr(6, 7);
+                   return tmp;
+               }
+               return str;
+           }
+
+   var residentRegistrationNumber = document.getElementById('rrn');
+   residentRegistrationNumber.onkeyup = function(event){
+           event = event || window.event;
+           var _val = this.value.trim();
+           this.value = autoHypenPhone(_val) ;
+   }
+         
     
   })
 </script>

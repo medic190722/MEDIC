@@ -9,6 +9,8 @@
 
 	<typeAliases>
 		<typeAlias type="com.kh.medic.patient.model.vo.Patient" alias="Patient" />
+		<typeAlias type="com.kh.medic.member.model.vo.Member" alias="Member" />
+		<typeAlias type="com.kh.medic.notice.model.vo.Notice" alias="Notice" />
 		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayTypeHandler" alias="strArrTypeHandler" />
 		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayPhoneTypeHandler" alias="strArrPhoneTypeHandler" />
 	</typeAliases>

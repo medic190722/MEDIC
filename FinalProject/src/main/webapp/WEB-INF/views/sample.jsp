@@ -10,11 +10,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Medic</title>
   <!-- 위치 바꾸면 import url 주소 변경해줘야함 -->
-  <c:import url="views/common/header.jsp"/>
+  <c:import url="common/header.jsp"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <c:import url="views/common/menubar.jsp"/>
+  <c:import url="common/menubar.jsp"/>
   <div class="content-wrapper">
     <section class="content-header">
       <h1>페이지 이름</h1>
@@ -40,9 +40,9 @@
       </div>
     </section>
   </div>
- <c:import url="views/common/footer.jsp"/>
- <c:import url="views/common/sidebar.jsp"/>
+ <c:import url="common/footer.jsp"/>
+ <c:import url="common/sidebar.jsp"/>
 </div>
-<c:import url="views/common/scripts.jsp"/>
+<c:import url="common/scripts.jsp"/>
 </body>
 </html>

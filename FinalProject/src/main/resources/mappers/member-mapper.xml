@@ -3,17 +3,31 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-
-	<resultMap id="resultMember" type="member">
-		<result property="hobby" column="hobby"
-				typeHandler="strArrTypeHandler" />
+	<resultMap id="memberSelect" type="Member">
+		<result property="empNo" column="emp_no" />
+		<result property="empPwd" column="emp_pwd" />
+		<result property="empName" column="emp_name" />
+		<result property="empAddress" column="emp_address" />
+		<result property="empEmail" column="emp_email" />
+		<result property="empRrn" column="e_rrn" />
+		<result property="deptCode" column="dept_code" />
+		<result property="jobCode" column="job_code" />
+		<result property="salary" column="salary" />
+		<result property="hireDate" column="hire_date" />
+		<result property="entDate" column="ent_date" />
+		<result property="entYn" column="ent_yn" />
 	</resultMap>
 	
-	<select id="selectMember" parameterType="string" resultType="Member">
-		SELECT * FROM MEMBER WHERE EMP_NO = #{empNo}
+	<select id="selectMember" parameterType="_int" resultMap="memberSelect">
+		SELECT * FROM EMPLOYEE WHERE EMP_NO = #{empNo}
 	</select>
 	
-
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd},#{empName},
+		#{empAddress},#{empEmail}, #{empRrn}, 
+		(SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
+		(SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},DEFAULT,#{entDate},DEFAULT)
+	</insert>
 	
 	
 

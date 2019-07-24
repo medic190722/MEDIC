@@ -9,11 +9,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Medic</title>
-  <c:import url="views/common/header.jsp"/>
+  <c:import url="common/header.jsp"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <c:import url="views/common/menubar.jsp"/>
+  <c:import url="common/menubar.jsp"/>
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
@@ -231,11 +231,11 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- <c:import url="views/common/footer.jsp"/>
- <c:import url="views/common/sidebar.jsp"/>
+ <c:import url="common/footer.jsp"/>
+ <c:import url="common/sidebar.jsp"/>
 </div>
 <!-- ./wrapper -->
-<c:import url="views/common/scripts.jsp"/>
+<c:import url="common/scripts.jsp"/>
 
 <script>
 $(function () {
