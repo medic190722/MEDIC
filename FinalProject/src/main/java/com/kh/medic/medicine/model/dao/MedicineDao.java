@@ -18,6 +18,8 @@ public interface MedicineDao {
 	int updateMedicine(MedicineVo medicine);
 	
 	int deleteMedicine(String medCode);
+
+	
 	
 	
 	

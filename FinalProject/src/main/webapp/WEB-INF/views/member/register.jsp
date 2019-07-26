@@ -10,6 +10,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Medic</title>
 <c:import url="../common/header.jsp" />
+<style>
+	tr{
+		height: 60px;
+		
+	}
+	
+	th{	
+		text-align: right;
+		width: 100px;
+	
+	}
+	td{
+		width:300px;
+ 	}
+	
+	td input{
+		margin: 0 20px;
+	}
+	td select{
+		margin: 0 20px;
+	}
+	.date{
+		margin-left: 20px;
+	}
+</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -55,14 +80,16 @@
 								method="post">
 								<section>
 									<div style="text-align: center;">
-										<table style="board: 1px solid #000 !important; text-align: center !important;">
+										<table
+											style="board: 1px solid #000 !important; text-align: center !important; margin: 0 auto;">
 											<thead>
-												<th>이름</th>
-												<td><input type="text" class="form-control"
-													name="empName" placeholder="이름"></td>
-												<th>부서</th>
+												<th>이름  </th>
 												<td>
-													<div class="form-group">
+														<input type="text" class="form-control" name="empName"
+															placeholder="이름">
+													</td>
+												<th>부서  </th>
+												<td>									
 
 														<select class="form-control dept" name="deptCode"
 															id="deptCode">
@@ -71,10 +98,12 @@
 															<option value="의사">의사</option>
 															<option value="간호사">간호사</option>
 														</select>
-													</div>
+													
 												</td>
+												
 											</thead>
 											<tbody>
+												<input type="password" name="empPwd" value="null" style="display:none;"/>
 												<tr>
 													<th>이메일</th>
 													<td><input type="email" name="empEmail"
@@ -83,7 +112,7 @@
 													</td>
 													<th>직급</th>
 													<td>
-														<div class="form-group" id="job1" style="display: block;">
+														<div class="" id="job1" style="display: block;">
 
 															<select class="form-control job1">
 																<option value="부장">부장</option>
@@ -93,7 +122,7 @@
 																<option value="사원">사원</option>
 															</select>
 														</div>
-														<div class="form-group" id="job2" style="display: none;">
+														<div class="" id="job2" style="display: none;">
 
 															<select class="form-control job2">
 																<option value="부장">부장</option>
@@ -104,7 +133,7 @@
 															</select>
 														</div>
 
-														<div class="form-group" id="job3" style="display: none;">
+														<div class="" id="job3" style="display: none;">
 
 															<select class="form-control job3">
 																<option value="교수">교수</option>
@@ -115,7 +144,7 @@
 																<option value="인턴">인턴</option>
 															</select>
 														</div>
-														<div class="form-group" id="job4" style="display: none;">
+														<div class="" id="job4" style="display: none;">
 
 															<select class="form-control job4">
 																<option value="최고 책임자">최고 책임자</option>
@@ -128,15 +157,21 @@
 														</div>
 													</td>
 												</tr>
-
+											
 
 												<tr>
 													<th>주민등록번호</th>
-													<td><input type="text" id="rrn" name="empRrn"
-														class="form-control" placeholder="주민등록번호"></td>
+
+													<td>
+														
+															<input type="text" id="rrn" name="empRrn"
+																class="form-control" placeholder="주민등록번호">
+														
+													</td>
 													<th>급여</th>
-													<td><input type="number" class="form-control"
+													<td><input type="number" class="form-control" name="salary"
 														placeholder="급여"></td>
+
 												</tr>
 
 												<tr>
@@ -145,24 +180,18 @@
 														name="empAddress" placeholder="주소"></td>
 													<th>입사일</th>
 													<td>
-														<div class="input-group date">
-															<div class="input-group-addon">
-																<i class="fa fa-calendar"></i>
-																
-															</div>
-															<input type="text" class="form-control pull-right" id="datepicker" name="hireDate">
-
-														</div>
+														<input type="date" class="form-control"
+														name="hireDate" placeholder="입사일  yyyy/mm/dd">
 													</td>
 												</tr>
 
 											</tbody>
 
 										</table>
-										<div class="col-xs-12" style="line-height: 60px;">
-											<button type="submit"
-												class="btn btn-primary btn-block btn-flat">회원등록</button>
-										</div>
+
+										<button type="submit" class="btn btn-primary"
+											style="margin-top: 10px; width:100px;">회원등록</button>
+
 									</div>
 								</section>
 							</form>

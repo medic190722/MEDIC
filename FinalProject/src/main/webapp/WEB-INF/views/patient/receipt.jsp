@@ -33,8 +33,7 @@
 			<div style="text-align: center;">	      
 	      	<div class="has-feedback" style="width:400px; display:inline-block">
 	       	<input type="search" class="form-control input-sm" id="p_name" name="p_name" onkeyup="enterkey();"/>
-	       	<span class="glyphicon glyphicon-search form-control-feedback" ></span> </div>    
-	       <!-- 	<button id="reReceipt" type="submit" class="btn btn-primary" onclick="search();">환자검색</button>  -->      	
+	       	<span class="glyphicon glyphicon-search form-control-feedback" ></span> </div>          	
 	       	<button id="firstOutReceipt"type="submit" class="btn btn-primary" onclick="Enroll();" style="background:#697282; border-color:#333;">환자등록</button>    	
 	     </div>
 	      
@@ -44,8 +43,8 @@
 	      			<th style="text-align:center">환자이름</th>
 	      			<th style="text-align:center">전화번호</th>
 	      			<th style="text-align:center">주민등록번호</th>
-	      			<th></th>
-	      			<th></th>
+	      			<th style="width:240px; text-align:center">접수</th>
+	      			<th style="width:131px; text-align:center">정보수정</th>
 	      		</tr>
 	      		<c:forEach items="${patientList}" var="p">	      			
 	      			<tr id="${p.p_no}" style="background: #fff;">
@@ -53,11 +52,13 @@
 	      				<td id="${p.p_phone}">${p.p_phone[0]}</td>
 	      				<td id="${p.p_rrn}">${p.p_rrn}</td>
 	      				<td> 
-	      					<input type="submit" class="btn btn-primary btn-sm" id="outEnrollPatient" value="외래접수" />
+	      					<input type="submit" class="btn btn-primary btn-sm" id="outEnrollPatient" value="외래접수" 
+	      						onclick="location.href='${pageContext.request.contextPath}/patient/outPatientReceipt.do?p_no=${p.p_no}'"/>
 	      					<input type="submit" class="btn btn-primary btn-sm" id="inEnrollPatient" value="입원접수" />
 	      				</td>
 	      				<td>
-	      					<input type="submit" class="btn btn-primary btn-sm"  id="updatePatient" value="정보수정" >
+	      					<input type="submit" class="btn btn-primary btn-sm"  id="updatePatient" value="정보수정"
+	      						onclick="location.href='${pageContext.request.contextPath}/patient/updatePatientView.do?p_no=${p.p_no}'" />
 	      				</td>
 	      			</tr>
 	      		</c:forEach>

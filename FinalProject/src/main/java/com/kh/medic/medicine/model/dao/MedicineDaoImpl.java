@@ -32,8 +32,8 @@ public class MedicineDaoImpl implements MedicineDao {
 
 	@Override
 	public int insertMedicine(MedicineVo medicine) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("medicine.insertMedicine",medicine);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class MedicineDaoImpl implements MedicineDao {
 
 	@Override
 	public int updateMedicine(MedicineVo medicine) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.update("medicine.updateMedicine",medicine);
 	}
 
 	@Override
 	public int deleteMedicine(String medCode) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.delete("medicine.deleteMedicine",medCode);
 	}
 
 }

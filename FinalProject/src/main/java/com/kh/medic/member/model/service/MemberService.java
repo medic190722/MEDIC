@@ -40,4 +40,11 @@ public interface MemberService {
 	 * @return
 	 */
 	int checkIdDuplicate(int empNo);
+	
+	/**
+	 * 회원비밀번호자동업데이트
+	 * @param empNo
+	 * @return
+	 */
+	int updatePassword(Member member);
 }

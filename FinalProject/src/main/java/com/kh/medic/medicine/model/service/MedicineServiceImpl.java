@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.medic.medicine.model.MedicineException;
 import com.kh.medic.medicine.model.dao.MedicineDao;
 import com.kh.medic.medicine.model.vo.MedicineVo;
 
@@ -29,8 +30,14 @@ public class MedicineServiceImpl implements MedicineService {
 
 	@Override
 	public int insertMedicine(MedicineVo medicine) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		
+		result=medicineDao.insertMedicine(medicine);
+		if(result==0) {
+			throw new MedicineException();
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -41,14 +48,14 @@ public class MedicineServiceImpl implements MedicineService {
 
 	@Override
 	public int updateMedicine(MedicineVo medicine) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return medicineDao.updateMedicine(medicine);
 	}
 
 	@Override
 	public int deleteMedicine(String medCode) {
-		// TODO Auto-generated method stub
-		return 0;
+			
+		return medicineDao.deleteMedicine(medCode);
 	}
 
 }

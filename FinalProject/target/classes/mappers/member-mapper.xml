@@ -23,13 +23,15 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd},#{empName},
+		INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd} ,#{empName},
 		#{empAddress},#{empEmail}, #{empRrn}, 
 		(SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
 		(SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},DEFAULT,#{entDate},DEFAULT)   
 	</insert>
 	
-	
+	<update id="updatePassword" parameterType="member">
+		UPDATE EMPLOYEE SET EMP_PWD = (SELECT SUBSTR(E_RRN,1,6) FROM EMPLOYEE WHERE EMP_NO=#{empNo}) WHERE EMP_NO = #{empNo}
+	</update>
 	
 
 </mapper>

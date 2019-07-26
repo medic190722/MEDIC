@@ -20,26 +20,26 @@ input#btn-add {
 </style>
 <script>
 	function insert() {
-		location.href = "${pageContext.request.contextPath}/medicine/medicineForm.do";
+		location.href = "${pageContext.request.contextPath}/equipment/equipmentForm.do";
 	}
 
-	function deleteMedicine(medCode) {
-		console.log(medCode);
+	function deleteEquipment(eqCode) {
+		console.log(eqCode);
 		location.href = "${pageContext.request.contextPath}"
-				+ "/medicine/deleteMedicine.do?medCode=" + medCode;
+				+ "/equipment/deleteEquipment.do?eqCode=" + eqCode;
 	};
 
-	function updateMedicine(medCode) {
+	function updateEquipment(eqCode) {
 		$('tr').click(
 				function() {
 
-					var medCount = $(this).children('td').children(
-							"[name=medCount]").val();
+					var eqCount = $(this).children('td').children(
+							"[name=eqCount]").val();
 
-					console.log(medCount);
+					console.log(eqCount);
 					location.href = "${pageContext.request.contextPath}"
-							+ "/medicine/updateMedicine.do?medCode=" + medCode
-							+ "&medCount=" + medCount;
+							+ "/equipment/updateEquipment.do?eqCode=" + eqCode
+							+ "&eqCount=" + eqCount;
 				});
 	};
 </script>
@@ -81,24 +81,28 @@ input#btn-add {
 								style="width: 1200px; text-align: center; margin: 0 auto;">
 								<thead>
 									<tr style="background: #fdf;">
-										<th style="text-align: center">약품 코드</th>
-										<th style="text-align: center">약품 명</th>
-										<th style="text-align: center">재고 수량</th>
+										<th style="text-align: center">장비 코드</th>
+										<th style="text-align: center">장비명</th>
+										<th style="text-align: center">수량</th>
+										<th style="text-align: center">구입 날짜</th>
+										<th style="text-align: center">고장 여부</th>
 										<th style="text-align: center">수정 / 삭제</th>
 
 									</tr>
-									<c:forEach items="${list}" var="m">
-										<tr id="${m.medCode}" style="background: #fff;">
-											<td>${m.medCode}</td>
-											<td>${m.medName}</td>
+									<c:forEach items="${list}" var="e">
+										<tr id="${e.eqCode}" style="background: #fff;">
+											<td>${e.eqCode}</td>
+											<td>${e.eqName}</td>
 											<td><input type="number" name="medCount"
-												value="${m.medCount}"></td>
+												value="${e.eqCount}"></td>
+											<td>${e.eqDate}</td>
+											<td>${e.eqBrokenYn}</td>
 											<td>
 												<button type="button"
-													onclick="updateMedicine('${m.medCode}');"
+													onclick="updateEquipment('${e.eqCode}');"
 													class="btn btn-outline-info">수정</button>
 												<button type="button"
-													onclick="deleteMedicine('${m.medCode}');"
+													onclick="deleteEquipment('${e.eqCode}');"
 													class="btn btn-outline-info">삭제</button>
 											</td>
 

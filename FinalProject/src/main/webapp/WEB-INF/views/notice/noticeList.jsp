@@ -10,63 +10,50 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Medic</title>
   <!-- 위치 바꾸면 import url 주소 변경해줘야함 -->
-  <c:import url="views/common/header.jsp"/>
+  <c:import url="../common/header.jsp"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <c:import url="views/common/menubar.jsp"/>
+  <c:import url="../common/menubar.jsp"/>
   <div class="content-wrapper">
     <section class="content-header">
-      <h1>페이지 이름</h1>
+      <h1>공지사항</h1>
       <ol class="breadcrumb">
         <li><a href="/medic/common/main.do"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">페이지명</li>
+        <li class="active">공지사항</li>
       </ol>
     </section>
     <section class="content">
       <div class="row">
-      	<!-- left Section -->
-        <section class="col-lg-7 connectedSortable">
-						--- 여기에 작성1 left section --- 섹션 2개로 나뉘어져있는데 col 크기 조절 or 섹션 하나
-						삭제하여 만들어도 될거같음
-						<!-- Default box -->
-						<div class="box">
-							<div class="box-header with-border">
-								<h3 class="box-title">Title</h3>
-
-								<div class="box-tools pull-right">
-									<button type="button" class="btn btn-box-tool"
-										data-widget="collapse" data-toggle="tooltip" title="Collapse">
-										<i class="fa fa-minus"></i>
-									</button>
-									<button type="button" class="btn btn-box-tool"
-										data-widget="remove" data-toggle="tooltip" title="Remove">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</div>
-							<div class="box-body">Start creating your amazing
-								application!</div>
-							<!-- /.box-body -->
-							<div class="box-footer">Footer</div>
-							<!-- /.box-footer-->
-						</div>
-						<!-- /.box -->
-
-
-					</section>
-        <!-- right Section -->
-        <section class="col-lg-5 connectedSortable">
-		--- 여기에 작성2 right section ---
-
-
-        </section>
+        <section class="col-lg-12">
+				<p>총 ${totalContents}건의 게시물이 있습니다.</p>
+				<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="fn_goNoticeForm();"/>
+				<table id="tbl-board" class="table table-striped table-hover">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>작성일</th>
+					</tr>
+					<c:forEach items="${list}" var="n"> 
+					<tr id="${n.nno}" style="cursor: pointer;">
+						<td>${n.nno}</td>
+						<td>${n.ntitle}</td>
+						<td>${n.nwriter}</td>
+						<td>${b.readCount}</td>
+						<td>${n.ndate}</td>
+					</tr>
+					</c:forEach>
+				</table>
+				<c:out value="${pageBar}" escapeXml="false"/>
+		</section>
       </div>
     </section>
   </div>
- <c:import url="views/common/footer.jsp"/>
- <c:import url="views/common/sidebar.jsp"/>
+ <c:import url="../common/footer.jsp"/>
+ <c:import url="../common/sidebar.jsp"/>
 </div>
-<c:import url="views/common/scripts.jsp"/>
+<c:import url="../common/scripts.jsp"/>
 </body>
 </html>

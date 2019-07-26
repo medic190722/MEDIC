@@ -40,4 +40,10 @@ public class MemberDaoImpl implements MemberDao {
 		return 0;
 	}
 
+	@Override
+	public int updatePassword(Member member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("member.updatePassword", member);
+	}
+
 }

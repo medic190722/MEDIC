@@ -110,8 +110,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 의약품 관리</a></li>
-           <li><a href="#"><i class="fa fa-circle-o"></i> 의학 장비 관리</a></li>
+           <li><a href="${pageContext.request.contextPath }/medicine/medicineList.do"><i class="fa fa-circle-o"></i> 의약품 관리</a></li>
+           <li><a href="${pageContext.request.contextPath }/equipment/equipmentList.do"><i class="fa fa-circle-o"></i> 의학 장비 관리</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 병원 소모품 관리</a></li>
           </ul>
         </li>
@@ -253,7 +253,7 @@
           </a>
           </li>
           <li>
-          <a href="#">
+          <a href="${pageContext.request.contextPath}/notice/noticeList.do">
              <i class="fa fa-desktop"></i>
             <span>공지사항</span>
           </a>

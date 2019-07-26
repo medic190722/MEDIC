@@ -25,7 +25,7 @@ public interface PatientService {
 	 * @param patient
 	 * @return
 	 */
-	int updateOutPatient(Patient patient);
+	int updateOutPatient(int p_no);
 	
 	/**
 	 * 재진 환자 접수용 메소드(입원)
@@ -34,5 +34,18 @@ public interface PatientService {
 	 */
 	int updateInPatient(Patient patient);
 	
+	/**
+	 * 정보 수정 환자 내용 조회
+	 * @param p_no
+	 * @return
+	 */
+	Patient selectUpdatePatient(int p_no);
+
+	/**
+	 * 환자 정보 수정용 메소드
+	 * @param p_no
+	 * @return
+	 */
+	int updatePatient(int p_no);
 	
 }

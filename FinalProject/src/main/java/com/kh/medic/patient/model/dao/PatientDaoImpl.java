@@ -25,12 +25,23 @@ public class PatientDaoImpl implements PatientDao {
 	}
 
 	@Override
-	public int updateOutPatient(Patient patient) {
-		return sqlSession.update("patient.outPatientReceipt", patient);
+	public int updateOutPatient(int p_no) {
+		return sqlSession.update("patient.outPatientReceipt", p_no);
 	}
 
 	@Override
 	public int updateInPatient(Patient patient) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public Patient selectUpdatePatient(int p_no) {
+		return sqlSession.selectOne("patient.selectUpdatePatient", p_no);
+	}
+
+	@Override
+	public int updatePatient(int p_no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

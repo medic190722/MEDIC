@@ -25,8 +25,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public int updateOutPatient(Patient patient) {
-		return patientDao.updateOutPatient(patient);
+	public int updateOutPatient(int p_no) {
+		return patientDao.updateOutPatient(p_no);
 	}
 
 	@Override
@@ -34,5 +34,17 @@ public class PatientServiceImpl implements PatientService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public Patient selectUpdatePatient(int p_no) {
+		return patientDao.selectUpdatePatient(p_no);
+	}
+
+	@Override
+	public int updatePatient(int p_no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

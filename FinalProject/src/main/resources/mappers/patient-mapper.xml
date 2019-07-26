@@ -12,6 +12,10 @@
 		SELECT * FROM PATIENT WHERE P_NAME = #{p_name}
 	</select>
 		
+	<select id="selectUpdatePatient" parameterType="_int" resultMap="resultPatient">
+		SELECT * FROM PATIENT WHERE P_NO = #{p_no}
+	</select>
+		
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
 			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 
@@ -19,8 +23,8 @@
 			NULL, NULL, #{p_rrn}, SYSDATE, SYSDATE) 
 	</insert>
 	
-	<update id="outPatientReceipt" parameterType="Patient">
-		UPDATE PATIENT SET P_LASTDATE = SYSDATE
+	<update id="outPatientReceipt" parameterType="_int">
+		UPDATE PATIENT SET P_LASTDATE = SYSDATE WHERE P_NO=#{p_no} 
 	</update>
 	
 	

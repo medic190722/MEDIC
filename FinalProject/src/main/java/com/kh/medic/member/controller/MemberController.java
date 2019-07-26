@@ -39,33 +39,41 @@ public class MemberController {
 		// - bcrypt 방식
 		
 		System.out.println("member 확인 : " + member);
+
 		
-		/**************************/
-		// 이전 비밀번호
+		member.setEmpPwd(member.getEmpRrn().substring(0,6));
+		System.out.println("비밀번호 변경 확인 : " + member.getEmpPwd());
+		
 		String rawPassword = member.getEmpPwd();
 		System.out.println("암호화 전 :" + rawPassword);
-		
 		member.setEmpPwd(bcryptPasswordEncoder.encode(rawPassword));
-		
 		System.out.println("암호화 후 :" + member.getEmpPwd());
-		
-		/**************************/
-		
 		// 1. 비즈니스 로직 실행
 		int result = memberService.insertMember(member);
-		 
+		
+		
 		// 2. 실행 결과에 따른 화면 처리
 		String loc = "/";
 		String msg = "";
 		
-		if(result > 0) msg = "회원가입 성공!";
-		else msg = "회원가입 실패!";
+		if(result > 0 ) { msg = "회원가입 성공!";
+			
+			
+			/*
+			 * if(result1>0) { System.out.println("수정된 비밀번호 : " + member.getEmpPwd()); }
+			 */
+			
+			
+			
+		}else msg = "회원가입 실패!";
 		
 		model.addAttribute("loc", loc);
 		model.addAttribute("msg", msg);
 		
 		return "common/msg";
 	}
+
+	
 	
 	@RequestMapping(value="/member/memberLogin.do", method=RequestMethod.POST)
 	public ModelAndView memberLogin(
@@ -122,4 +130,7 @@ public class MemberController {
 		
 		return "index";
 	}
+	
+	
+	
 }

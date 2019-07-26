@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="equipment">
+	<resultMap type="equipment" id="equipmentMap">
+		<result property="eqCode" column="eq_code"/>
+		<result property="eqName" column="eq_name"/>
+		<result property="eqCount" column="eq_count"/>
+		<result property="eqDate" column="eq_date"/>
+		<result property="eqBrokenYn" column="eq_broken_yn"/>
+	</resultMap>
+	
+	
+		
+	<select id="selectEquipmentList" resultMap="equipmentMap">
+		SELECT * FROM EQUIPMENT
+	</select>
+	
+	
+	<select id="selectOneEquipment" parameterType="string" resultMap="equipmentMap">
+		SELECT * FROM EQUIPMENT WHERE EQ_CODE=#{eqCode}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

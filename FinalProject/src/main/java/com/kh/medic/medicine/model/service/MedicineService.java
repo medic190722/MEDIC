@@ -50,6 +50,8 @@ public interface MedicineService {
 	 * @return
 	 */
 	int deleteMedicine(String medCode);
+
+	
 	
 	
 	

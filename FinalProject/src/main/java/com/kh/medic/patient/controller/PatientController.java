@@ -76,11 +76,11 @@ public class PatientController {
 	}
 	
 	@RequestMapping("/patient/outPatientReceipt.do")
-	public String outPatientReceipt(Patient patient, Model model) {
+	public String outPatientReceipt(@RequestParam int p_no, Model model) {
 		
-		System.out.println("외래 접수 환자 정보 확인 : " + patient);
+		System.out.println("외래 접수  환자 번호 : " + p_no);
 		
-		int result = patientService.updateOutPatient(patient);
+		int result = patientService.updateOutPatient(p_no);
 		
 		String loc="/";
 		String msg="";
@@ -94,7 +94,46 @@ public class PatientController {
 		return "common/msg";		
 	}
 	
+	@RequestMapping("/patient/updatePatientView1.do")
+	public String updatePatientView1(@RequestParam int p_no, Model model) {
+		
+
+		Patient patient = new Patient();
+		
+		patient = patientService.selectUpdatePatient(p_no);
+
+		model.addAttribute("patient", patient);
+		
+		return "patient/updatePatientView";
+	}
 	
-	/* @RequestMapping("/patient/updatePatientReceipt.do") */
+	@RequestMapping("/patient/updatePatientView.do")
+	public String updatePatientView(@RequestParam int p_no, Model model) {
+		
+		System.out.println("수정할 환자 번호 : " + p_no);
+		
+		Patient patient = new Patient();
+		
+		patient = patientService.selectUpdatePatient(p_no);
+		
+		String msg = "";
+		String loc = "/";
+		
+		if(patient != null) {
+			msg = "환자 정보 불러오기 성공!";
+			loc = "/patient/updatePatientView1.do?p_no="+p_no;
+		} else {
+			loc = "/";
+			msg = "환자 정보 불러오기 실패!";
+		}
+		
+		model.addAttribute("patient", patient);
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+		
+	}
+	
 	
 }
