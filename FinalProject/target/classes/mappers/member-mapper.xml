@@ -26,8 +26,9 @@
 		INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd},#{empName},
 		#{empAddress},#{empEmail}, #{empRrn}, 
 		(SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
-		(SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},DEFAULT,#{entDate},DEFAULT)
+		(SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},DEFAULT,#{entDate},DEFAULT)   
 	</insert>
+	
 	
 	
 

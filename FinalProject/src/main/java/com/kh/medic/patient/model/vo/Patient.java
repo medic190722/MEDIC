@@ -191,6 +191,10 @@ public class Patient implements Serializable{
 	public void setP_lastdate(Date p_lastdate) {
 		this.p_lastdate = p_lastdate;
 	}
+	
+	/*
+	 * public String getPP_phone() { return Arrays.toString(p_phone); }
+	 */
 
 	@Override
 	public String toString() {

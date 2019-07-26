@@ -8,32 +8,17 @@ import com.kh.medic.patient.model.vo.Patient;
 public interface PatientService {
 	
 	/**
-	 * 초진 환자 접수용 메소드(외래)
+	 * 환자등록용 메소드
 	 * @param patient
 	 * @return
 	 */
-	int insertOutPatient(Patient patient);
-	
-	/**
-	 * 초진 환자 접수용 메소드(입원)
-	 * @param patient
-	 * @return
-	 */
-	int insertInpatient(Patient patient);
-	
-	/**
-	 * 환자 한 명 조회용 메소드
-	 * @param p_name
-	 * @param p_rrn
-	 * @return
-	 */
-	Patient selectPatient(String p_name, String p_rrn);
+	int insertPatient(Patient patient);
 	
 	/**
 	 * 환자 조회용 메소드
 	 * @return
 	 */
-	List<Patient> selectPatientList();
+	List<Patient> selectPatientList(String p_name);
 	
 	/**
 	 * 재진 환자 접수용 메소드(외래)

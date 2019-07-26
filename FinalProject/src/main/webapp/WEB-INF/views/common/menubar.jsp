@@ -25,14 +25,14 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">사원명</span>
+              <span class="hidden-xs">${member.empName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                  	이름 - 직급
+                   ${member.empName} - ${member.jobCode}
                   <small>Member since 입사일</small>
                 </p>
               </li>
@@ -65,7 +65,7 @@
           <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>사원명</p>
+          <p>${member.empName}</p>
           <i class="fa fa-circle text-success"></i> Online
         </div>
       </div>
@@ -83,7 +83,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 회원가입</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/register.do"><i class="fa fa-circle-o"></i> 회원가입</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 회원탈퇴</a></li>
           </ul>
@@ -156,11 +156,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li  class="treeview"><a href="#"><i class="fa fa-angle-left pull-right"></i> 접수</a>
-            	<ul class="treeview-menu">
-            		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 입원접수</i></a></li>
-            		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 외래접수</i></a></li>
-            	</ul>
+            <li><a href="${pageContext.request.contextPath}/patient/patientReceipt.do"><i class="fa fa-circle-o"></i> 접수</a>
+            	<%-- <ul class="treeview-menu">
+            		<li style="color:#fff;"><a href="${pageContext.request.contextPath}/patient/inPatientReceipt.do"><i class="fa fa-circle-o"> 입원접수</i></a></li>
+            		<li style="color:#fff;"><a href="${pageContext.request.contextPath}/patient/outPatientReceipt.do"><i class="fa fa-circle-o"> 외래접수</i></a></li>
+            	</ul> --%>
             </li>
             <li  class="treeview"><a href="#"><i class="fa fa-angle-left pull-right"></i> 수납</a>
             	<ul class="treeview-menu">

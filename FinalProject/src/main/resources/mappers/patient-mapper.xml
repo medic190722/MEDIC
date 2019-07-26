@@ -7,12 +7,21 @@
 	<resultMap id="resultPatient" type="Patient">
 		<result property="p_phone" column="p_phone" typeHandler="strArrPhoneTypeHandler"/>		
 	</resultMap>
+	
+	<select id="selectPatientList" parameterType="string" resultMap="resultPatient">
+		SELECT * FROM PATIENT WHERE P_NAME = #{p_name}
+	</select>
 		
-	<insert id="insertOutPatient" parameterType="Patient">
+	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
 			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 
-			#{p_rrn}, #{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, 'N',
-			NULL, NULL, NULL, SYSDATE, NULL) 
+			#{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, NULL,
+			NULL, NULL, #{p_rrn}, SYSDATE, SYSDATE) 
 	</insert>
+	
+	<update id="outPatientReceipt" parameterType="Patient">
+		UPDATE PATIENT SET P_LASTDATE = SYSDATE
+	</update>
+	
 	
 </mapper>

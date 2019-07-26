@@ -62,7 +62,7 @@
   <div class="register-box-body" style="width:500px;">
     <p class="login-box-msg">Receipt a new patient</p>
 
-    <form action="${pageContext.request.contextPath}/patient/firstOutPatientReceipt.do" method="post">
+    <form action="${pageContext.request.contextPath}/patient/firstInPatientReceipt.do" method="post">
       <div class="form-group has-feedback">
       	<div style="display:inline-block; width:100px; text-align:center"><label for="">환자 이름 </label></div>     
       	<div style="display:inline-block"><input type="text" id="p_name" name="p_name"required></div>
@@ -123,6 +123,26 @@
       </div>
       </div>
       </div>
+       <div class="form-group has-feedback">
+      	<div style="display:inline-block; width:100px; text-align:center"><label for="">입원실</label></div>
+      	<div style="display:inline-block">
+      	    <input type="number" id="ward_code" name="ward_code" class="form-check-input"/>
+      	    <!-- 병실정보를 조회하여 select-> option값으로 병실 선택하게 만들기 -->
+        </div>
+      </div>
+      <div class="form-group has-feedback" style="display : inline-block;">
+      <div style="display:inline-block; width:100px; text-align:center">
+        <label>입원일</label></div>
+        <div class="input-group date" style="display:inline-block">
+          <div class="input-group-addon" style="display:inline-block; width:30px;" >
+            <i class="fa fa-calendar"></i>
+          </div>
+          <div style="dispaly:inline-block;">
+          <input type="text" class="form-control pull-right" id="datepicker">
+          </div>
+          </div>
+        
+        </div>
     
      
       <div class="row">
@@ -190,6 +210,41 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy ', { 'placeholder': 'yyyy/mm/dd' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'yyyy/mm/dd' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'YYYY/MM/DD hh:mm A' }})
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })    
+    
     function autoHypenResidentRegistrationNumber(str){
         str = str.replace(/[^0-9]/g, '');
         var tmp = '';

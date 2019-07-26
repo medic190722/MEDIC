@@ -15,32 +15,18 @@ public class PatientDaoImpl implements PatientDao {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int insertOutPatient(Patient patient) {
-		return sqlSession.insert("patient.insertOutPatient", patient);
+	public int insertPatient(Patient patient) {
+		return sqlSession.insert("patient.insertPatient", patient);
 	}
 
 	@Override
-	public int insertInpatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Patient selectPatient(String p_name, String p_rrn) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Patient> selectPatientList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Patient> selectPatientList(String p_name) {
+		return sqlSession.selectList("patient.selectPatientList", p_name);
 	}
 
 	@Override
 	public int updateOutPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("patient.outPatientReceipt", patient);
 	}
 
 	@Override

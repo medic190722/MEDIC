@@ -15,32 +15,18 @@ public class PatientServiceImpl implements PatientService {
 	PatientDao patientDao;
 	
 	@Override
-	public int insertOutPatient(Patient patient) {
-		return patientDao.insertOutPatient(patient);
+	public int insertPatient(Patient patient) {
+		return patientDao.insertPatient(patient);
 	}
 
 	@Override
-	public int insertInpatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Patient selectPatient(String p_name, String p_rrn) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Patient> selectPatientList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Patient> selectPatientList(String p_name) {
+		return patientDao.selectPatientList(p_name);
 	}
 
 	@Override
 	public int updateOutPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		return patientDao.updateOutPatient(patient);
 	}
 
 	@Override

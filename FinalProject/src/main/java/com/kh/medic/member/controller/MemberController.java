@@ -24,10 +24,10 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	@RequestMapping("/pages/member/register.do")
+	@RequestMapping("/member/register.do")
 	public String memberEnroll() {
 		
-		return "pages/member/register";
+		return "/member/register";
 	}
 
 	
@@ -64,7 +64,7 @@ public class MemberController {
 		model.addAttribute("loc", loc);
 		model.addAttribute("msg", msg);
 		
-		return "pages/common/msg";
+		return "common/msg";
 	}
 	
 	@RequestMapping(value="/member/memberLogin.do", method=RequestMethod.POST)
@@ -104,7 +104,7 @@ public class MemberController {
 			mv.addObject("msg", msg);
 			
 			// 화면전달을 위한 viewName 등록하기
-			mv.setViewName("/pages/common/msg");
+			mv.setViewName("common/msg");
 			
 			}catch(Exception e) {
 				throw new MemberException("로그인 에러 :" + e.getMessage());

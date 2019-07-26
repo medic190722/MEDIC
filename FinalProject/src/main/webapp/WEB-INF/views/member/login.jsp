@@ -62,7 +62,7 @@
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">로그인</button>
-           <button class="btn btn-block btn-default btn-flat" type="button" onclick="location.href='${pageContext.request.contextPath}/pages/member/register.do'">회원가입</button>
+           <button class="btn btn-block btn-default btn-flat" type="button" onclick="location.href='${pageContext.request.contextPath}/member/register.do'">회원가입</button>
         </div>
         <!-- /.col -->
         
