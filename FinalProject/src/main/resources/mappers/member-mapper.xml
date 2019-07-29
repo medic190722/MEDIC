@@ -3,35 +3,46 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<resultMap id="memberSelect" type="Member">
-		<result property="empNo" column="emp_no" />
-		<result property="empPwd" column="emp_pwd" />
-		<result property="empName" column="emp_name" />
-		<result property="empAddress" column="emp_address" />
-		<result property="empEmail" column="emp_email" />
-		<result property="empRrn" column="e_rrn" />
-		<result property="deptCode" column="dept_code" />
-		<result property="jobCode" column="job_code" />
-		<result property="salary" column="salary" />
-		<result property="hireDate" column="hire_date" />
-		<result property="entDate" column="ent_date" />
-		<result property="entYn" column="ent_yn" />
-	</resultMap>
-	
-	<select id="selectMember" parameterType="_int" resultMap="memberSelect">
-		SELECT * FROM EMPLOYEE WHERE EMP_NO = #{empNo}
-	</select>
-	
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd} ,#{empName},
-		#{empAddress},#{empEmail}, #{empRrn}, 
-		(SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
-		(SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},DEFAULT,#{entDate},DEFAULT)   
-	</insert>
-	
-	<update id="updatePassword" parameterType="member">
-		UPDATE EMPLOYEE SET EMP_PWD = (SELECT SUBSTR(E_RRN,1,6) FROM EMPLOYEE WHERE EMP_NO=#{empNo}) WHERE EMP_NO = #{empNo}
-	</update>
-	
+   <resultMap id="memberSelect" type="Member">
+      <result property="empNo" column="emp_no" />
+      <result property="empNo1" column="emp_no" />
+      <result property="empPwd" column="emp_pwd" />
+      <result property="empName" column="emp_name" />
+      <result property="empAddress" column="emp_address" />
+      <result property="empEmail" column="emp_email" />
+      <result property="empPhone" column="emp_phone" />
+      <result property="empRrn" column="e_rrn" />
+      <result property="deptCode" column="dept_code" />
+      <result property="jobCode" column="job_code" />
+      <result property="salary" column="salary" />
+      <result property="hireDate" column="hire_date" />
+      <result property="entDate" column="ent_date" />
+      <result property="entYn" column="ent_yn" />
+   </resultMap>
+   
+   <select id="selectMember" parameterType="_int" resultMap="memberSelect">
+      SELECT * FROM EMPLOYEE WHERE EMP_NO = #{empNo}
+   </select>
+   
+   <insert id="insertMember" parameterType="member">
+      INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd} ,#{empName},
+      #{empAddress},#{empEmail}, #{empPhone}, #{empRrn}, 
+      (SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
+      (SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},#{hireDate},#{entDate},DEFAULT)   
+   </insert>
+   
+   <update id="updatePassword" parameterType="member">
+      UPDATE EMPLOYEE SET EMP_PWD = (SELECT SUBSTR(E_RRN,1,6) FROM EMPLOYEE WHERE EMP_NO=#{empNo}) WHERE EMP_NO = #{empNo}
+   </update>
+   
+   <update id="updateMember" parameterType="member">
+      UPDATE EMPLOYEE SET
+      EMP_PWD = #{password},
+      EMP_EMAIL = #{email},      
+      PHONE = #{phone},
+      ADDRESS = #{address},
+      WHERE EMP_NO = #{userId}
+      
+   </update>
 
 </mapper>

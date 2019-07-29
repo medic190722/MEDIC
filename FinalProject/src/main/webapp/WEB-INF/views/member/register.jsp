@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,62 +11,62 @@
 <title>Medic</title>
 <c:import url="../common/header.jsp" />
 <style>
-	tr{
-		height: 60px;
-		
-	}
-	
-	th{	
-		text-align: right;
-		width: 100px;
-	
-	}
-	td{
-		width:300px;
- 	}
-	
-	td input{
-		margin: 0 20px;
-	}
-	td select{
-		margin: 0 20px;
-	}
-	.date{
-		margin-left: 20px;
-	}
+   tr{
+      height: 60px;
+      
+   }
+   
+   th{   
+      text-align: right;
+      width: 100px;
+   
+   }
+   td{
+      width:300px;
+    }
+   
+   td input{
+      margin: 0 20px;
+   }
+   td select{
+      margin: 0 20px;
+   }
+   .date{
+      margin-left: 20px;
+   }
 </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-	<div class="wrapper">
-		<c:import url="../common/menubar.jsp" />
-		<div class="content-wrapper">
-			<section class="content-header">
-				<h1>Medic</h1>
-				<ol class="breadcrumb">
-					<li><a href="/medic/common/main.do"><i
-							class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Main</li>
-				</ol>
-			</section>
-			<!-- Main content -->
-			<section class="content">
-				<!-- Main row -->
-				<div class="">
-					<div class="">
+   <div class="wrapper">
+      <c:import url="../common/menubar.jsp" />
+      <div class="content-wrapper">
+         <section class="content-header">
+            <h1>Medic</h1>
+            <ol class="breadcrumb">
+               <li><a href="/medic/common/main.do"><i
+                     class="fa fa-dashboard"></i> Home</a></li>
+               <li class="active">Main</li>
+            </ol>
+         </section>
+         <!-- Main content -->
+         <section class="content">
+            <!-- Main row -->
+            <div class="">
+               <div class="">
 
-						<div class="">
-							<p class="login-box-msg">Register a new membership</p>
-
-
+                  <div class="">
+                     <p class="login-box-msg">사원을 등록해 주세요</p>
 
 
-							<!-- <div class="form-group has-feedback">
-     	 <label>급여</label>
-        <input type="number" class="form-control" placeholder="급여">	
+
+
+                     <!-- <div class="form-group has-feedback">
+         <label>급여</label>
+        <input type="number" class="form-control" placeholder="급여">   
         <span class="form-control-feedback">만원</span>
       </div> -->
-							<!-- Date -->
-							<!--  <div class="form-group">
+                     <!-- Date -->
+                     <!--  <div class="form-group">
         <label>입사일:</label>
         <div class="input-group date">
           <div class="input-group-addon">
@@ -75,149 +75,159 @@
           <input type="text" class="form-control pull-right" id="datepicker" name="hireDate">
         </div>
         </div> -->
-							<form
-								action="${pageContext.request.contextPath}/member/memberEnrollEnd.do"
-								method="post">
-								<section>
-									<div style="text-align: center;">
-										<table
-											style="board: 1px solid #000 !important; text-align: center !important; margin: 0 auto;">
-											<thead>
-												<th>이름  </th>
-												<td>
-														<input type="text" class="form-control" name="empName"
-															placeholder="이름">
-													</td>
-												<th>부서  </th>
-												<td>									
+                     <form
+                        action="${pageContext.request.contextPath}/member/memberEnrollEnd.do"
+                        method="post">
+                        <section>
+                           <div style="text-align: center;">
+                              <table
+                                 style="board: 1px solid #000 !important; text-align: center !important; margin: 0 auto;">
+                                 <thead>
+                                    <th>이름  </th>
+                                    <td>
+                                          <input type="text" class="form-control" name="empName"
+                                             placeholder="이름">
+                                       </td>
+                                    <th>부서  </th>
+                                    <td>                           
 
-														<select class="form-control dept" name="deptCode"
-															id="deptCode">
-															<option value="총무과">총무과</option>
-															<option value="원무과">원무과</option>
-															<option value="의사">의사</option>
-															<option value="간호사">간호사</option>
-														</select>
-													
-												</td>
-												
-											</thead>
-											<tbody>
-												<input type="password" name="empPwd" value="null" style="display:none;"/>
-												<tr>
-													<th>이메일</th>
-													<td><input type="email" name="empEmail"
-														class="form-control" placeholder="이메일"> <span
-														class="glyphicon glyphicon-envelope form-control-feedback"></span>
-													</td>
-													<th>직급</th>
-													<td>
-														<div class="" id="job1" style="display: block;">
+                                          <select class="form-control dept" name="deptCode"
+                                             id="deptCode">
+                                             <option value="총무과">총무과</option>
+                                             <option value="원무과">원무과</option>
+                                             <option value="의사">의사</option>
+                                             <option value="간호사">간호사</option>
+                                          </select>
+                                       
+                                    </td>
+                                    
+                                 </thead>
+                                 <tbody>
+                                    <input type="password" name="empPwd" value="null" style="display:none;"/>
+                                    <tr>
+                                       <th>이메일</th>  
+                                       <td><input type="email" name="empEmail"
+                                          class="form-control" placeholder="이메일"> <span
+                                          class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                       </td>
+                                       <th>직급</th>
+                                       <td>
+                                          <div class="" id="job1" style="display: block;">
 
-															<select class="form-control job1">
-																<option value="부장">부장</option>
-																<option value="차장">차장</option>
-																<option value="과장">과장</option>
-																<option value="대리">대리</option>
-																<option value="사원">사원</option>
-															</select>
-														</div>
-														<div class="" id="job2" style="display: none;">
+                                             <select class="form-control job1">
+                                                <option value="부장" selected>부장</option>
+                                                <option value="차장">차장</option>
+                                                <option value="과장">과장</option>
+                                                <option value="대리">대리</option>
+                                                <option value="사원">사원</option>
+                                                
+                                             </select>
+                                             <div name="sendData1" style="display:none;" id="dataSelect"><input type="hidden" name="jobCode" value="부장"></div>
+                                          </div>
+                                          <div class="" id="job2" style="display: none;">
 
-															<select class="form-control job2">
-																<option value="부장">부장</option>
-																<option value="차장">차장</option>
-																<option value="과장">과장</option>
-																<option value="대리">대리</option>
-																<option value="사원">사원</option>
-															</select>
-														</div>
+                                             <select class="form-control job2">
+                                                <option value="부장">부장</option>
+                                                <option value="차장">차장</option>
+                                                <option value="과장">과장</option>
+                                                <option value="대리">대리</option>
+                                                <option value="사원">사원</option>
+                                             </select>
+                                          </div>
 
-														<div class="" id="job3" style="display: none;">
+                                          <div class="" id="job3" style="display: none;">
 
-															<select class="form-control job3">
-																<option value="교수">교수</option>
-																<option value="부교수">부교수</option>
-																<option value="조교수">조교수</option>
-																<option value="전임의">전임의</option>
-																<option value="레지던트">레지던트</option>
-																<option value="인턴">인턴</option>
-															</select>
-														</div>
-														<div class="" id="job4" style="display: none;">
+                                             <select class="form-control job3">
+                                                <option value="교수">교수</option>
+                                                <option value="부교수">부교수</option>
+                                                <option value="조교수">조교수</option>
+                                                <option value="전임의">전임의</option>
+                                                <option value="레지던트">레지던트</option>
+                                                <option value="인턴">인턴</option>
+                                             </select>
+                                          </div>
+                                          <div class="" id="job4" style="display: none;">
 
-															<select class="form-control job4">
-																<option value="최고 책임자">최고 책임자</option>
-																<option value="간호과장">간호과장</option>
-																<option value="수간호사">수간호사</option>
-																<option value="책임간호사">책임간호사</option>
-																<option value="주임간호사">주임간호사</option>
-																<option value="평간호사">평간호사</option>
-															</select>
-														</div>
-													</td>
-												</tr>
-											
+                                             <select class="form-control job4">
+                                                <option value="최고 책임자">최고 책임자</option>
+                                                <option value="간호과장">간호과장</option>
+                                                <option value="수간호사">수간호사</option>
+                                                <option value="책임간호사">책임간호사</option>
+                                                <option value="주임간호사">주임간호사</option>
+                                                <option value="평간호사">평간호사</option>
+                                             </select>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 
 
-												<tr>
-													<th>주민등록번호</th>
+                                    <tr>
+                                       <th>주민등록번호</th>
 
-													<td>
-														
-															<input type="text" id="rrn" name="empRrn"
-																class="form-control" placeholder="주민등록번호">
-														
-													</td>
-													<th>급여</th>
-													<td><input type="number" class="form-control" name="salary"
-														placeholder="급여"></td>
+                                       <td>
+                                          
+                                             <input type="text" id="rrn" name="empRrn"
+                                                class="form-control" placeholder="주민등록번호">
+                                          
+                                       </td>
+                                       <th>입사일</th>
+                                       <td>
+                                          <input type="date" class="form-control" id="currnetDate"
+                                          name="hireDate">
+                                       </td>
 
-												</tr>
+                                    </tr>
 
-												<tr>
-													<th>주소</th>
-													<td><input type="text" class="form-control"
-														name="empAddress" placeholder="주소"></td>
-													<th>입사일</th>
-													<td>
-														<input type="date" class="form-control"
-														name="hireDate" placeholder="입사일  yyyy/mm/dd">
-													</td>
-												</tr>
+                                    <tr>
+                                       <th>주소</th>
+                                       <td><input type="text" class="form-control"
+                                          name="empAddress" placeholder="주소"></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                       <th>연락처</th>
+                                       <td><input type="text" class="form-control"
+                                          name="empPhone" placeholder="연락처"></td>
+                                       
+                                    </tr>
 
-											</tbody>
+                                 </tbody>
 
-										</table>
+                              </table>
 
-										<button type="submit" class="btn btn-primary"
-											style="margin-top: 10px; width:100px;">회원등록</button>
+                              <button type="submit" class="btn btn-primary"
+                                 style="margin-top: 10px; width:100px;">회원등록</button>
 
-									</div>
-								</section>
-							</form>
-							<!-- /.col -->
+                           </div>
+                        </section>
+                     </form>
+                     <!-- /.col -->
 
-							<!-- /.col -->
-						</div>
+                     <!-- /.col -->
+                  </div>
 
 
-					</div>
-				</div>
-		</div>
-		<!-- /.row (main row) -->
+               </div>
+            </div>
+      </div>
+      <!-- /.row (main row) -->
 
-		</section>
+      </section>
 
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
-	<c:import url="../common/footer.jsp" />
-	<c:import url="../common/sidebar.jsp" />
+      <!-- /.content -->
+   </div>
+   <!-- /.content-wrapper -->
+   <c:import url="../common/footer.jsp" />
+   <c:import url="../common/sidebar.jsp" />
 
-	<!-- ./wrapper -->
-	<c:import url="../common/scripts.jsp" />
-
-	<script>
+   <!-- ./wrapper -->
+   <c:import url="../common/scripts.jsp" />
+   
+   <script>
+     document.getElementById('currnetDate').value= new Date().toISOString().slice(0, 10);
+   </script>
+   
+   <script>
 $(function () {
 
     /* initialize the external events
@@ -384,36 +394,36 @@ $(function () {
     
 
     $('.dept').click(function(){
-		var display = $('.dept option:selected').val();	
-		if(display == "총무과"){
-			$('#job1').css('display','block');
-		}else{
-			$('#job1').css('display','none');
-		}
+      var display = $('.dept option:selected').val();   
+      if(display == "총무과"){
+         $('#job1').css('display','block');
+      }else{
+         $('#job1').css('display','none');
+      }
     })
     $('.dept').click(function(){
-		var display = $('.dept option:selected').val();	
-		if(display == "원무과"){
-			$('#job2').css('display','block');
-		}else{
-			$('#job2').css('display','none');
-		}
+      var display = $('.dept option:selected').val();   
+      if(display == "원무과"){
+         $('#job2').css('display','block');
+      }else{
+         $('#job2').css('display','none');
+      }
     })
     $('.dept').click(function(){
-		var display = $('.dept option:selected').val();	
-		if(display == "의사"){
-			$('#job3').css('display','block');
-		}else{
-			$('#job3').css('display','none');
-		}
+      var display = $('.dept option:selected').val();   
+      if(display == "의사"){
+         $('#job3').css('display','block');
+      }else{
+         $('#job3').css('display','none');
+      }
     })
     $('.dept').click(function(){
-		var display = $('.dept option:selected').val();	
-		if(display == "간호사"){
-			$('#job4').css('display','block');
-		}else{
-			$('#job4').css('display','none');
-		}
+      var display = $('.dept option:selected').val();   
+      if(display == "간호사"){
+         $('#job4').css('display','block');
+      }else{
+         $('#job4').css('display','none');
+      }
     })
 
     
@@ -457,61 +467,67 @@ $(function () {
            this.value = autoHypenPhone(_val) ;
    }
    
+
    $('.job1').click(function(){
-	   console.log($(this).val());
-	   
-	  if($(this).find('[name=sendData]') != null ){
-		  $(this).find('[name=sendData]').remove();
-	  } 
-	   
-	  var $td = $('<td name="sendData" style="display:none;" >');
-	  
-	  $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	  
-	  $(this).append($td);
+      console.log($(this).val());
+      
+      $('#dataSelect').remove();
+      
+     if($(this).find('[name=sendData]') != null ){
+        $(this).find('[name=sendData]').remove();
+     } 
+      
+     var $td = $('<td name="sendData" style="display:none;" >');
+     
+     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
+     
+     $(this).append($td);
    });
     
    $('.job2').click(function(){
-	   console.log($(this).val());
-	   
-	  if($(this).find('[name=sendData]') != null ){
-		  $(this).find('[name=sendData]').remove();
-	  } 
-	   
-	  var $td = $('<td name="sendData" style="display:none;" >');
-	  
-	  $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	  
-	  $(this).append($td);
+      console.log($(this).val());
+      
+     if($(this).find('[name=sendData]') != null ){
+        $(this).find('[name=sendData]').remove();
+     } 
+      
+     var $td = $('<td name="sendData" style="display:none;" >');
+     
+     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
+     
+     $(this).append($td);
    });
    $('.job3').click(function(){
-	   console.log($(this).val());
-	   
-	  if($(this).find('[name=sendData]') != null ){
-		  $(this).find('[name=sendData]').remove();
-	  } 
-	   
-	  var $td = $('<td name="sendData" style="display:none;" >');
-	  
-	  $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	  
-	  $(this).append($td);
+      console.log($(this).val());
+      
+     if($(this).find('[name=sendData]') != null ){
+        $(this).find('[name=sendData]').remove();
+     } 
+      
+     var $td = $('<td name="sendData" style="display:none;" >');
+     
+     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
+     
+     $(this).append($td);
    });
    $('.job4').click(function(){
-	   console.log($(this).val());
-	   
-	  if($(this).find('[name=sendData]') != null ){
-		  $(this).find('[name=sendData]').remove();
-	  } 
-	   
-	  var $td = $('<td name="sendData" style="display:none;" >');
-	  
-	  $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	  
-	  $(this).append($td);
+      console.log($(this).val());
+      
+     if($(this).find('[name=sendData]') != null ){
+        $(this).find('[name=sendData]').remove();
+     } 
+      
+     var $td = $('<td name="sendData" style="display:none;" >');
+     
+     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
+     
+     $(this).append($td);
    });
+   
+   
     
   });
+  
 </script>
 </body>
 </html>

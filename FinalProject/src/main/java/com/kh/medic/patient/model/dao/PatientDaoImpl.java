@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.medic.patient.model.vo.Patient;
+import com.kh.medic.patient.model.vo.Ward;
 
 @Repository
 public class PatientDaoImpl implements PatientDao {
@@ -41,9 +42,13 @@ public class PatientDaoImpl implements PatientDao {
 	}
 
 	@Override
-	public int updatePatient(int p_no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePatient(Patient patient) {
+		return sqlSession.update("patient.updatePatient", patient);
+	}
+
+	@Override
+	public List<Ward> selectWardList() {
+		return sqlSession.selectList("patient.selectWardList");
 	}
 
 }

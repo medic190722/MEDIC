@@ -84,7 +84,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/member/register.do"><i class="fa fa-circle-o"></i> 회원가입</a></li>
-           <li><a href="#"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
+           <li><a href="${pageContext.request.contextPath}/member/updateMember.do"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 회원탈퇴</a></li>
           </ul>
         </li>
@@ -97,7 +97,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 월급 인상 및 삭감</a></li>
+            <li><a href="${pageContext.request.contextPath}/empsal/empsalList.do"><i class="fa fa-circle-o"></i> 월급 인상 및 삭감</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 통계</a></li>
           </ul>
         </li>
@@ -124,7 +124,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 휴가 및 병가 승인 여부</a></li>
+            <li><a href="${pageContext.request.contextPath }/vacation/vacationList.do"><i class="fa fa-circle-o"></i> 휴가 및 병가 승인 여부</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -162,11 +162,11 @@
             		<li style="color:#fff;"><a href="${pageContext.request.contextPath}/patient/outPatientReceipt.do"><i class="fa fa-circle-o"> 외래접수</i></a></li>
             	</ul> --%>
             </li>
-            <li  class="treeview"><a href="#"><i class="fa fa-angle-left pull-right"></i> 수납</a>
-            	<ul class="treeview-menu">
+            <li  class="treeview"><a href="#"><i class="fa fa-circle-o"></i> 수납</a>
+            	<!-- <ul class="treeview-menu">
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 입원수납</i></a></li>
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 외래수납</i></a></li>
-            	</ul>
+            	</ul> -->
             </li>
           </ul>
         </li>
@@ -179,11 +179,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li  class="treeview"><a href="#"><i class="fa fa-angle-left pull-right"></i> 입원실 관리</a>
-            	<ul class="treeview-menu">
+            <li><a href="${pageContext.request.contextPath}/patient/wardList.do"><i class="fa fa-circle-o"></i> 입원실 관리</a>
+            	<!-- <ul class="treeview-menu">
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 입원실 정보</i></a></li>
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 입원실 사용 일정</i></a></li>
-            	</ul>
+            	</ul> -->
             </li>
           </ul>
         </li>
@@ -195,7 +195,7 @@
         
         <!-- 의사 -->
           <li>
-          <a href="#">
+          <a href="${pageContext.request.contextPath}/doctor/prescription.do">
              <i class="fa fa-medkit"></i>
             <span>처방전 작성</span>
           </a>

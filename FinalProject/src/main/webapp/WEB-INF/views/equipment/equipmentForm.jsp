@@ -35,12 +35,12 @@
 		
 		<div class="searchPatient"
 							style="margin: 0 auto; margin-top: 20px;">
-			<form name="MedicineFrm" action="${pageContext.request.contextPath}/medicine/medicineFormEnd.do" method="post">
+			<form name="MedicineFrm" action="${pageContext.request.contextPath}/equipment/equipmentFormEnd.do" method="post">
 				<input type="text" class="form-control" placeholder="장비 코드" name="eqCode" id="eqCode" required>
 				<input type="text" class="form-control" placeholder="장비 명" name="eqName" id="eqName" required>
 				<input type="number" class="form-control" placeholder="수량" name="eqCount" id="eqCount" required>
-				<input type="text" class="form-control" placeholder="구입날짜" name="eqDate" id="eqDate" required>
-				<input type="text" class="form-control" placeholder="고장여부" name="eqBrokenYn" id="eqBrokenYn" required>
+				<input type="text" class="form-control" placeholder="구입날짜(ex : 2019-01-01)" name="eqDate" id="eqDate" required>
+	
 				<%-- <input type="text" class="form-control" name="boardWriter" value="${member.userId}" readonly required> --%>
 				
 			    

@@ -33,13 +33,13 @@ input#btn-add {
 		$('tr').click(
 				function() {
 
-					var eqCount = $(this).children('td').children(
-							"[name=eqCount]").val();
+					var eqCount = $(this).children('td').children("[name=eqCount]").val();
+					var eqBrokenYn=$(this).children('td').children("[name=eqBrokenYn]").val();
 
 					console.log(eqCount);
 					location.href = "${pageContext.request.contextPath}"
 							+ "/equipment/updateEquipment.do?eqCode=" + eqCode
-							+ "&eqCount=" + eqCount;
+							+ "&eqCount=" + eqCount + "&eqBrokenYn="+eqBrokenYn;
 				});
 	};
 </script>
@@ -93,10 +93,10 @@ input#btn-add {
 										<tr id="${e.eqCode}" style="background: #fff;">
 											<td>${e.eqCode}</td>
 											<td>${e.eqName}</td>
-											<td><input type="number" name="medCount"
+											<td><input type="number" name="eqCount"
 												value="${e.eqCount}"></td>
 											<td>${e.eqDate}</td>
-											<td>${e.eqBrokenYn}</td>
+											<td><input type="text" name="eqBrokenYn" value="${e.eqBrokenYn}"></td>
 											<td>
 												<button type="button"
 													onclick="updateEquipment('${e.eqCode}');"

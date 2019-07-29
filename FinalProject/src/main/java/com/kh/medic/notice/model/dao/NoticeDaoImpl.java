@@ -46,7 +46,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public int deleteBoard(int nno) {
+	public int deleteNotice(int nno) {
 		return sqlSession.delete("notice.deleteNotice", nno);
 	}
 

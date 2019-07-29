@@ -14,12 +14,31 @@
 	</resultMap>
 	
 	<select id="selectNoticeList" parameterType="string" resultMap="noticeSelect">
-		SELECT * FROM NOTICE WHERE N_NO = #{nno}
+		SELECT * FROM NOTICE ORDER BY N_DATE DESC
 	</select>
 	
 		<select id="selectNoticeTotalContents" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
+	
+	<select id="selectOneNotice" parameterType="_int" resultType="notice">
+		SELECT * FROM NOTICE WHERE N_NO = #{nno}
+	</select>
+	
+	<insert id="insertNotice">
+	 	INSERT INTO NOTICE VALUES(SEQ_N_NO.NEXTVAL, #{ntitle}, #{ncontent}, #{nwriter}, DEFAULT, DEFAULT )
+	</insert>
+	
+	<update id="updateNotice" parameterType="notice">
+		UPDATE NOTICE SET
+			N_TITLE = #{ntitle},
+			N_CONTENT= #{ncontent}	
+		WHERE N_NO = #{nno}
+	</update>
+	
+	<delete id="deleteNotice" >
+		DELETE FROM NOTICE WHERE N_NO = #{nno}
+	</delete>
 	
 
 </mapper>

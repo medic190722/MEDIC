@@ -22,6 +22,19 @@
 		SELECT * FROM EQUIPMENT WHERE EQ_CODE=#{eqCode}
 	</select>
 	
+	<insert id="insertEquipment">
+		INSERT INTO EQUIPMENT VALUES(#{eqCode},#{eqName},#{eqCount},#{eqDate},DEFAULT)
+	</insert>
+	
+	<update id="updateEquipment">
+		UPDATE EQUIPMENT SET EQ_COUNT=#{eqCount} , EQ_BROKEN_YN=#{eqBrokenYn} 
+		WHERE EQ_CODE=#{eqCode}
+	</update>
+	
+	<delete id="deleteEquipment" parameterType="string">
+		DELETE FROM EQUIPMENT WHERE EQ_CODE=#{eqCode}
+	</delete>
+	
 </mapper>
 
 

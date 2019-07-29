@@ -53,7 +53,7 @@
 	      				<td id="${p.p_rrn}">${p.p_rrn}</td>
 	      				<td> 
 	      					<input type="submit" class="btn btn-primary btn-sm" id="outEnrollPatient" value="외래접수" 
-	      						onclick="location.href='${pageContext.request.contextPath}/patient/outPatientReceipt.do?p_no=${p.p_no}'"/>
+	      						onclick="location.href='${pageContext.request.contextPath}/patient/outPatientReceipt.do?p_name=${p.p_name}&p_no=${p.p_no}'"/>
 	      					<input type="submit" class="btn btn-primary btn-sm" id="inEnrollPatient" value="입원접수" />
 	      				</td>
 	      				<td>

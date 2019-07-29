@@ -18,6 +18,6 @@ public interface EquipmentDao {
 	
 	int updateEquipment(EquipmentVo equipment);
 	
-	int deleteEquipment(String edCode);
+	int deleteEquipment(String eqCode);
 	
 }

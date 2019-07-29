@@ -91,9 +91,9 @@
         	<option value="064">064</option>
         </select>
         <label for="">-</label>
-        <input type="text" id="p_phone2" name="p_phone" class="" placeholder="" style="width:100px; text-align:center;">
+        <input type="text" id="p_phone2" name="p_phone" class="" placeholder="" style="width:100px; text-align:center;" maxlength="4">
         <label for="">-</label>
-        <input type="text" id="p_phone2" name="p_phone" class="" placeholder="" style="width:100px;text-align:center;">
+        <input type="text" id="p_phone3" name="p_phone" class="" placeholder="" style="width:100px;text-align:center;" maxlength="4">
       </div>
       </div>
       </div>

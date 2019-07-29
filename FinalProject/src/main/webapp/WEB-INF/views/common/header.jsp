@@ -35,6 +35,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/dist/js/pages/dashboard.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/dist/js/pages/dashboard2.js"></script>
 	 --%>
+  	<!-- jQuery 3.4.1 -->
+	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+  
 	
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

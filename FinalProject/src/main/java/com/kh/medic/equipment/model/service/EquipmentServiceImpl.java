@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.medic.equipment.model.EquipmentException;
 import com.kh.medic.equipment.model.dao.EquipmentDao;
 import com.kh.medic.equipment.model.vo.EquipmentVo;
 
@@ -31,8 +32,15 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	@Override
 	public int insertEquipment(EquipmentVo equipment) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int result=0;
+		
+		result=equipmentDao.insertEquipment(equipment);
+		
+		if(result==0) {
+			throw new EquipmentException();
+		}
+		return result;
 	}
 
 	@Override
@@ -43,14 +51,14 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	@Override
 	public int updateEquipment(EquipmentVo equipment) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return equipmentDao.updateEquipment(equipment);
 	}
 
 	@Override
 	public int deleteEquipment(String edCode) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return equipmentDao.deleteEquipment(edCode);
 	}
 
 }

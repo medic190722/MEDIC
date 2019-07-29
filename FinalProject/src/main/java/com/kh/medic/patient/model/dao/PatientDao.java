@@ -3,6 +3,7 @@ package com.kh.medic.patient.model.dao;
 import java.util.List;
 
 import com.kh.medic.patient.model.vo.Patient;
+import com.kh.medic.patient.model.vo.Ward;
 
 public interface PatientDao {
 
@@ -21,7 +22,7 @@ public interface PatientDao {
 	
 	/**
 	 * 재진 환자 접수용 메소드(외래)
-	 * @param patient
+	 * @param p_no
 	 * @return
 	 */
 	int updateOutPatient(int p_no);
@@ -45,6 +46,12 @@ public interface PatientDao {
 	 * @param p_no
 	 * @return
 	 */
-	int updatePatient(int p_no);
+	int updatePatient(Patient patient);
+
+	/**
+	 * 병실 조회용 메소드
+	 * @return
+	 */
+	List<Ward> selectWardList();
 	
 }

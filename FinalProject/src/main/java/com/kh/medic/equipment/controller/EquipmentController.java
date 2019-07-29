@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.medic.common.util.Utils;
 import com.kh.medic.equipment.model.service.EquipmentService;
+import com.kh.medic.equipment.model.vo.EquipmentVo;
 
 @Controller
 public class EquipmentController {
@@ -50,6 +51,48 @@ public class EquipmentController {
 	@RequestMapping("/equipment/equipmentForm.do")
 	public void equipmentForm() {
 		
+	}
+	
+	@RequestMapping("/equipment/equipmentFormEnd.do")
+	public String insertEquipment(EquipmentVo equipment,Model model) {
+		int result;
+
+		System.out.println("ddd"+equipment);
+		System.out.println("ccc"+equipment.getEqCode());
+		
+		result=equipmentService.insertEquipment(equipment);
+
+		String loc="/equipment/equipmentList.do";
+		String msg="";
+		
+		if(result>0 ) {
+			msg="추가 완료";
+		} else {
+			msg="추가 실패";
+		}
+		
+		model.addAttribute("loc",loc).addAttribute("msg",msg);
+		return "common/msg";
+	
+	}
+	
+	@RequestMapping("/equipment/updateEquipment.do")
+	public String equipmentUpdate(EquipmentVo equipment) {
+		int result=equipmentService.updateEquipment(equipment);
+		
+		return "redirect:/equipment/equipmentList.do";
+	}
+	
+	@RequestMapping("/equipment/deleteEquipment.do")
+	public String deleteEquipment(EquipmentVo equipment) {
+		
+		System.out.println("q1"+equipment);
+		String eqCode=equipment.getEqCode();
+		System.out.println("q2"+equipment);
+		
+		int result=equipmentService.deleteEquipment(eqCode);
+		
+		return "redirect:/equipment/equipmentList.do";
 	}
 	
 	

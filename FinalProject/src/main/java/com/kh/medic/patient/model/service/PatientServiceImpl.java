@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.medic.patient.model.dao.PatientDao;
 import com.kh.medic.patient.model.vo.Patient;
+import com.kh.medic.patient.model.vo.Ward;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -41,9 +42,13 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public int updatePatient(int p_no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePatient(Patient patient) {
+		return patientDao.updatePatient(patient);
+	}
+
+	@Override
+	public List<Ward> selectWardList() {
+		return patientDao.selectWardList();
 	}
 
 

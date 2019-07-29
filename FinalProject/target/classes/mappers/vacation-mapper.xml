@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vacation">
+	<resultMap type="vacation" id="vacationMap">
+		<result property="vCode" column="v_code" />
+		<result property="vDate" column="v_date" />
+		<result property="vContent" column="v_Content" />
+		<result property="empNo" column="emp_no" />
+		<result property="empName" column="emp_name" />
+		<result property="vYn" column="v_yn" />
+	</resultMap>
+
+
+
+	<select id="selectVacationList" resultMap="vacationMap">
+		SELECT V.*,E.EMP_NAME
+		FROM VACATION V,EMPLOYEE E
+		WHERE V.EMP_NO=E.EMP_NO
+	</select>
+
+	<select id="selectOneVacation" parameterType="string"
+		resultMap="vacationMap">
+		SELECT V.*,E.EMP_NAME 
+		FROM VACATION V, EMPLOYEE E
+		WHERE V.EMP_NO=E.EMP_NO
+		AND V.V_CODE=#{vCode}
+	</select>
+
+	<select id="selectVacationTotalContents" resultType="_int">
+		SELECT
+		COUNT(*) FROM VACATION
+	</select>
+	
+	<update id="updateVacationYes">
+		UPDATE VACATION SET V_YN='Y'
+		WHERE V_CODE=#{vCode}
+	</update>
+	
+	<update id="updateVacationNo">
+		UPDATE VACATION SET V_YN='N'
+		WHERE V_CODE=#{vCode}
+	</update>
+	
+	<delete id="deleteVacation">
+		DELETE FROM VACATION WHERE V_CODE=#{vCode}
+	</delete>
+	
+	<insert id="insertVacation">
+		INSERT INTO VACATION 
+		VALUES(#{vCode},#{vDate},#{vContent},#{empNo},DEFAULT)
+	</insert>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

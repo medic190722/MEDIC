@@ -41,8 +41,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int deleteBoard(int nno) {
-		return nDao.deleteBoard(nno);
+	public int deleteNotice(int nno) {
+		return nDao.deleteNotice(nno);
 	}
 
 }

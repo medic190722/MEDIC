@@ -48,6 +48,6 @@ public interface NoticeService {
 	 * @param nno
 	 * @return
 	 */
-	int deleteBoard(int nno);
+	int deleteNotice(int nno);
 	
 }

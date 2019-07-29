@@ -15,6 +15,14 @@
 	<select id="selectUpdatePatient" parameterType="_int" resultMap="resultPatient">
 		SELECT * FROM PATIENT WHERE P_NO = #{p_no}
 	</select>
+	
+	<select id="selectWardList" resultType="Ward">
+		SELECT W.*, COUNT(P.WARD_CODE) CUR_CAPACITY
+			FROM PATIENT P
+			RIGHT JOIN WARD W ON(W.WARD_CODE = P.WARD_CODE)
+			GROUP BY P.WARD_CODE, W.WARD_CODE, W.CAPACITY
+			ORDER BY W.WARD_CODE
+	</select>
 		
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
@@ -25,6 +33,14 @@
 	
 	<update id="outPatientReceipt" parameterType="_int">
 		UPDATE PATIENT SET P_LASTDATE = SYSDATE WHERE P_NO=#{p_no} 
+	</update>
+	
+	<update id="updatePatient" parameterType="Patient">
+		UPDATE PATIENT SET 
+			P_NAME = #{p_name}, P_AGE = #{p_age}, P_GENDER = #{p_gender}, 
+			P_ADDRESS = #{p_address}, P_PHONE = #{p_phone, typeHandler=strArrPhoneTypeHandler}, 
+			P_RRN = #{p_rrn} WHERE P_NO = #{p_no}
+		
 	</update>
 	
 	

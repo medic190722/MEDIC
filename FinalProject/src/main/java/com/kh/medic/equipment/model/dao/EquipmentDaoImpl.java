@@ -33,8 +33,8 @@ public class EquipmentDaoImpl implements EquipmentDao {
 
 	@Override
 	public int insertEquipment(EquipmentVo equipment) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.insert("equipment.insertEquipment",equipment);
 	}
 
 	@Override
@@ -45,14 +45,14 @@ public class EquipmentDaoImpl implements EquipmentDao {
 
 	@Override
 	public int updateEquipment(EquipmentVo equipment) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.update("equipment.updateEquipment",equipment);
 	}
 
 	@Override
-	public int deleteEquipment(String edCode) {
+	public int deleteEquipment(String eqCode) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("equipment.deleteEquipment",eqCode);
 	}
 
 }
