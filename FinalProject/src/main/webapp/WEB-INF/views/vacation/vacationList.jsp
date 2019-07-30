@@ -39,10 +39,8 @@
 				})
 				.click(
 						function() {
-							// var vCode=$(this).parent().children("[name=vCode]").val();
 							var vCode = $(this).parent().children().eq(0)
 									.text();
-							// var p_no=$(this).parent().children().eq(5).find('input[name=p_no]').val();
 
 							console.log(vCode);
 
@@ -50,6 +48,24 @@
 									+ vCode;
 						});
 	});
+
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
+
+	function search() {
+		var vName = $(vNameId).val();
+		console.log(vName);
+		location.href="${pageContext.request.contextPath}/vacation/searchVacation.do?vName="+vName
+	}
+	
+	function clickOn() {
+		var vName = $(vNameId).val();
+		console.log(vName);
+		location.href="${pageContext.request.contextPath}/vacation/searchVacation.do?vName="+vName
+	}
 </script>
 
 
@@ -80,7 +96,17 @@
 
 					<div class="container">
 
-						<div style="text-align: right;">
+						<div style="text-align: center;">
+							<div class="has-feedback"
+								style="width: 400px; display: inline-block">
+								<input type="search" class="form-control input-sm" id="vNameId"
+									name="vNameId" onkeyup="enterkey();" value="" placeholder="작성자명"/>
+							</div>
+							
+							<button id="firstOutReceipt" type="submit"
+								class="btn btn-primary" onclick="clickOn();"
+								style="background: #697282; border-color: #333;">검 색</button>
+							
 							<button id="firstOutReceipt" type="submit"
 								class="btn btn-primary" onclick="insert();"
 								style="background: #697282; border-color: #333;">휴가 등록</button>
@@ -93,7 +119,7 @@
 							<table class="table table-striped table-hover" id="listArea"
 								style="width: 1200px; text-align: center; margin: 0 auto;">
 								<thead>
-									<tr style="background: #fdf;">
+									<tr style="background: #4BA0BE;">
 										<th style="text-align: center">휴가 코드</th>
 										<th style="text-align: center">작성인</th>
 										<th style="text-align: center">날짜</th>

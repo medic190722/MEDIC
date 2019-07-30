@@ -9,6 +9,8 @@ public interface VacationService {
 
 	List<Map<String,String>> selectVacationList(int cPage, int limit);
 	
+	List<Map<String,String>> selectVacationListSearch(int cPage, int limit,String vName);
+	
 	int selectVacationTotalContents();
 	
 	int insertVacation(VacationVo vacation);

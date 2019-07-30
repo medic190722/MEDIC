@@ -34,9 +34,11 @@
         <section class="col-lg-12">
 		<div id="notice-container">
 			<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" value="${notice.ntitle}" required>
+			
 			<input type="text" class="form-control" name="nwriter" value="${notice.nwriter}" readonly required>
 		
 		    <textarea class="form-control" name="ncontent" placeholder="내용" required>${notice.ncontent }</textarea>
+		    
 		    <br>
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">리스트로</button>
 		    <c:if test="${member.empNo == 1000}">

@@ -23,11 +23,17 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 		return equipmentDao.selectEquipmentList(cPage, limit);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectEquipmentListSearch(int cPage, int limit,String eqName) {
+
+		return equipmentDao.selectEquipmentListSearch(cPage, limit,eqName);
+	}
 
 	@Override
 	public int selectEquipmentTotalContents() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return equipmentDao.selectEquipmentTotalContents();
 	}
 
 	@Override

@@ -20,6 +20,12 @@ public class EmpsalServiceImpl implements EmpsalService {
 
 		return empsalDao.selectEmpsalList(cPage, limit);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectEmpsalListSearch(int cPage, int limit,String empName) {
+
+		return empsalDao.selectEmpsalListSearch(cPage, limit,empName);
+	}
 
 	@Override
 	public int selectEmpsalTotalContents() {
@@ -29,14 +35,14 @@ public class EmpsalServiceImpl implements EmpsalService {
 
 	@Override
 	public EmpsalVo selectOneEmpsal(String empNo) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return empsalDao.selectOneEmpsal(empNo);
 	}
 
 	@Override
-	public int updateEmpsal(EmpsalVo empsal) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateEmpsal(int empNo,int salary) {
+
+		return empsalDao.updateEmpsal(empNo,salary);
 	}
 
 }

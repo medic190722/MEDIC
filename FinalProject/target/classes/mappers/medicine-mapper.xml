@@ -15,6 +15,11 @@
 		SELECT * FROM MEDICINE
 	</select>
 	
+	<select id="selectMedicineListSearch" resultMap="medicineMap" parameterType="string">
+		SELECT * FROM MEDICINE
+		WHERE MED_NAME=#{medName}
+	</select>
+	
 	<select id="selectOneMedicine" parameterType="string" resultMap="medicineMap">
 		SELECT * FROM MEDICINE WHERE MED_CODE=#{medCode}	
 	</select>

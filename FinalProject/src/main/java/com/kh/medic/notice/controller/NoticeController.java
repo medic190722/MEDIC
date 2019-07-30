@@ -11,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.medic.common.util.Utils;
 import com.kh.medic.notice.model.service.NoticeService;
 import com.kh.medic.notice.model.vo.Notice;
-import com.kh.medic.common.util.Utils;
 
 @Controller
 public class NoticeController {
@@ -85,7 +85,6 @@ public class NoticeController {
 	public String selectOneNotice(
 			@RequestParam int nno, Model model
 			) {
-
  			model.addAttribute("notice", nService.selectOneNotice(nno));
 
  		return "notice/noticeView";

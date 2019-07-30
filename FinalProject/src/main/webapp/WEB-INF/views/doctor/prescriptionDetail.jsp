@@ -22,38 +22,62 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-info" style="width:600px; margin:0 auto; margin-top:50px;">
-						<div class="box-header with-border" style="text-align:center;">
-							<h3 class="box-title">환자 정보 입력</h3>
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title">처방전</h3>
 						</div>
-						<!-- /.box-header -->
-						<!-- form start -->
-						<form class="form-horizontal" action="${pageContext.request.contextPath}/doctor/prescriptionDetail.do">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="pNo" class="col-sm-2 control-label">환자 번호</label>
-									<div class="col-sm-10">
-										<select class="form-control" id="pNo" name="pNo">
-											<option>-----</option>
-											<c:forEach var="p" items="${ pList }">
-												<option value="${p.p_name}">${ p.p_no }</option>
-											</c:forEach>
-										</select>
-									</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-xs-3">
+									<label for="mCode">진료 코드</label>
+									<input type="number" class="form-control" id="mCode">
 								</div>
-								<div class="form-group">
-									<label for="pName" class="col-sm-2 control-label">환자 이름</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="pName" name="pName">
+								<div class="col-xs-4">
+									<label for="empName">담당 의사</label>
+									<input type="text" class="form-control" id="empName">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-3">
+									<label for="pNo">환자 번호</label>
+									<input type="number" class="form-control" id="pNo" value="${ pNo }">
+								</div>
+								<div class="col-xs-4">
+									<label for="pName">환자 이름</label>
+									<input type="text" class="form-control" id="pName" value="${ pName }">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-3">
+									<label for="mDate">진료일</label>
+									<div class="input-group date">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="text" class="form-control pull-right" id="datepicker">
+									</div>
+										<!-- /.input group -->
+								</div>
+								<div class="col-xs-4">
+									<div class="form-group">
+										<label>
+											입원 여부
+											<div class="iradio_flat-green checked" aria-checked="true" aria-disabled="false" style="position: relative;">
+												<input type="radio" name="r3" class="flat-red" checked="" style="position: absolute; opacity: 0;">
+												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+											</div>
+										</label>
+										<label>
+											<div class="iradio_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
+												<input type="radio" name="r3" class="flat-red" style="position: absolute; opacity: 0;">
+												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+											</div>
+										</label>
 									</div>
 								</div>
 							</div>
-							<!-- /.box-body -->
-							<div class="box-footer">
-								<button type="submit" class="btn btn-info pull-right">작성하기</button>
-							</div>
-							<!-- /.box-footer -->
-						</form>
+						</div>
+						<!-- /.box-body -->
 					</div>
 				</div>
 				<!-- /.row (main row) -->

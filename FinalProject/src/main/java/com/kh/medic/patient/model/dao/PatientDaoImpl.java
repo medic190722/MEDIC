@@ -32,12 +32,11 @@ public class PatientDaoImpl implements PatientDao {
 
 	@Override
 	public int updateInPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("patient.inPatientReceipt", patient);
 	}
 	
 	@Override
-	public Patient selectUpdatePatient(int p_no) {
+	public Patient selectPatient(int p_no) {
 		return sqlSession.selectOne("patient.selectUpdatePatient", p_no);
 	}
 
@@ -49,6 +48,11 @@ public class PatientDaoImpl implements PatientDao {
 	@Override
 	public List<Ward> selectWardList() {
 		return sqlSession.selectList("patient.selectWardList");
+	}
+
+	@Override
+	public List<Ward> selectWard() {
+		return sqlSession.selectList("patient.selectWard");
 	}
 
 }

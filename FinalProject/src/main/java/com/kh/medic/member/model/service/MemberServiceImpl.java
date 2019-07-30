@@ -1,5 +1,8 @@
 package com.kh.medic.member.model.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +28,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return memberDao.updateMember(member);
 	}
 
 	@Override
@@ -45,6 +48,24 @@ public class MemberServiceImpl implements MemberService {
 	public int updatePassword(Member member) {
 		// TODO Auto-generated method stub
 		return memberDao.updatePassword(member);
+	}
+
+	@Override
+	public List<Map<String, String>> selectMemberList(int cPage, int limit) {
+		// TODO Auto-generated method stub
+		return memberDao.selectMemberList(cPage, limit);
+	}
+
+	@Override
+	public int selectMemberTotalContents() {
+		// TODO Auto-generated method stub
+		return memberDao.selectMemberTotalContents();
+	}
+
+	@Override
+	public List<Member> selectSearchMember(String e_name) {
+		// TODO Auto-generated method stub
+		return memberDao.selectSearchMember(e_name);
 	}
 	
 	

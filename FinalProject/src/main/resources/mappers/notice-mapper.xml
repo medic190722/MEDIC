@@ -21,7 +21,7 @@
 		SELECT COUNT(*) FROM NOTICE
 	</select>
 	
-	<select id="selectOneNotice" parameterType="_int" resultType="notice">
+	<select id="selectOneNotice" parameterType="_int" resultMap="noticeSelect">
 		SELECT * FROM NOTICE WHERE N_NO = #{nno}
 	</select>
 	

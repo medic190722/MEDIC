@@ -1,5 +1,8 @@
 package com.kh.medic.member.model.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kh.medic.member.model.vo.Member;
 
 public interface MemberService {
@@ -47,4 +50,10 @@ public interface MemberService {
 	 * @return
 	 */
 	int updatePassword(Member member);
+	
+	List<Map<String,String>> selectMemberList(int cPage,int limit);
+	
+	public int selectMemberTotalContents();
+	List<Member> selectSearchMember(String e_name);
+	
 }

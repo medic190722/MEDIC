@@ -5,7 +5,6 @@
 <mapper namespace="member">
    <resultMap id="memberSelect" type="Member">
       <result property="empNo" column="emp_no" />
-      <result property="empNo1" column="emp_no" />
       <result property="empPwd" column="emp_pwd" />
       <result property="empName" column="emp_name" />
       <result property="empAddress" column="emp_address" />
@@ -18,10 +17,16 @@
       <result property="hireDate" column="hire_date" />
       <result property="entDate" column="ent_date" />
       <result property="entYn" column="ent_yn" />
+      <result property="deptTitle" column="dept_title"/>
+	  <result property="jobTitle" column="job_title"/>
    </resultMap>
    
    <select id="selectMember" parameterType="_int" resultMap="memberSelect">
-      SELECT * FROM EMPLOYEE WHERE EMP_NO = #{empNo}
+      SELECT E.*, DEPT_TITLE, JOB_TITLE 
+		FROM EMPLOYEE E 
+		JOIN DEPARTMENT D ON(E.DEPT_CODE = D.DEPT_CODE) 
+		JOIN JOB J ON(E.JOB_CODE = J.JOB_CODE) 
+		WHERE EMP_NO  = #{empNo}
    </select>
    
    <insert id="insertMember" parameterType="member">
@@ -37,12 +42,36 @@
    
    <update id="updateMember" parameterType="member">
       UPDATE EMPLOYEE SET
-      EMP_PWD = #{password},
-      EMP_EMAIL = #{email},      
-      PHONE = #{phone},
-      ADDRESS = #{address},
-      WHERE EMP_NO = #{userId}
-      
+      EMP_PWD = #{empPwd},
+      EMP_EMAIL = #{empEmail},      
+      EMP_PHONE = #{empPhone},
+      EMP_ADDRESS = #{empAddress},
+      DEPT_CODE = #{deptCode},
+      JOB_CODE = #{jobCode},
+      HIRE_DATE = #{hireDate},
+      ENT_DATE = #{entDate},
+      ENT_YN = #{entYn},
+      WHERE EMP_NO = #{empNo}      
    </update>
-
+	
+	<select id="selectMemberList" resultMap="memberSelect">
+		SELECT E.*, D.DEPT_TITLE,J.JOB_TITLE
+		FROM EMPLOYEE E,JOB J, DEPARTMENT D
+		WHERE E.DEPT_CODE=D.DEPT_CODE
+		AND E.JOB_CODE=J.JOB_CODE
+	</select>
+	
+	<select id="selectMemberTotalContents" resultType="_int">
+		SELECT
+		COUNT(*) FROM EMPLOYEE
+	</select>
+	
+	<select id="selectSearchMember" parameterType="string" resultMap="memberSelect">
+		SELECT E.*, DEPT_TITLE, JOB_TITLE 
+		FROM EMPLOYEE E 
+		JOIN DEPARTMENT D ON(E.DEPT_CODE = D.DEPT_CODE) 
+		JOIN JOB J ON(E.JOB_CODE = J.JOB_CODE) 
+		WHERE EMP_NAME  = #{empName}
+	</select>
+	
 </mapper>

@@ -1,13 +1,11 @@
-package com.kh.medic.doctor.model.service;
+package com.kh.medic.doctor.model.dao;
 
 import java.util.List;
 
 import com.kh.medic.patient.model.vo.Patient;
 
-public interface DoctorService {
+public interface DoctorDao {
 	
 	public List<Patient> patientList();
-	
-	
-	
+
 }

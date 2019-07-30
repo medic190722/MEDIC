@@ -24,11 +24,18 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
 		return sqlSession.selectList("equipment.selectEquipmentList",null,rows);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectEquipmentListSearch(int cPage, int limit,String eqName) {
+
+		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
+		return sqlSession.selectList("equipment.selectEquipmentListSearch",eqName,rows);
+	}
 
 	@Override
 	public int selectEquipmentTotalContents() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.selectOne("equipment.selectEquipmentTotalContents");
 	}
 
 	@Override

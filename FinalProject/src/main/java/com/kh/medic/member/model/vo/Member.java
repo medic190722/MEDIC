@@ -17,15 +17,14 @@ public class Member implements Serializable {
    private String empEmail;
    private String empRrn;
    private String empPhone;
-
-
-
    private String deptCode;
    private String jobCode;
    private int salary;
    private Date hireDate;
    private Date entDate;
    private String entYn;
+   private String deptTitle;
+   private String jobTitle;
    
    public Member() {
       super();
@@ -62,7 +61,34 @@ public class Member implements Serializable {
 
 
 
-   public Member(String empPwd, String empName, String empAddress, String empEmail, String empRrn, String deptCode,
+   public Member(int empNo, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
+		String empPhone, String deptCode, String jobCode, int salary, Date hireDate, Date entDate, String entYn,
+		String deptTitle, String jobTitle) {
+	super();
+	this.empNo = empNo;
+	this.empPwd = empPwd;
+	this.empName = empName;
+	this.empAddress = empAddress;
+	this.empEmail = empEmail;
+	this.empRrn = empRrn;
+	this.empPhone = empPhone;
+	this.deptCode = deptCode;
+	this.jobCode = jobCode;
+	this.salary = salary;
+	this.hireDate = hireDate;
+	this.entDate = entDate;
+	this.entYn = entYn;
+	this.deptTitle = deptTitle;
+	this.jobTitle = jobTitle;
+}
+
+
+
+
+
+
+
+public Member(String empPwd, String empName, String empAddress, String empEmail, String empRrn, String deptCode,
          String jobCode, int salary) {
       super();
       this.empPwd = empPwd;
@@ -97,7 +123,47 @@ public class Member implements Serializable {
 
 
 
-   public String getEmpPhone() {
+   public String getDeptTitle() {
+	return deptTitle;
+}
+
+
+
+
+
+
+
+public void setDeptTitle(String deptTitle) {
+	this.deptTitle = deptTitle;
+}
+
+
+
+
+
+
+
+public String getJobTitle() {
+	return jobTitle;
+}
+
+
+
+
+
+
+
+public void setJobTitle(String jobTitle) {
+	this.jobTitle = jobTitle;
+}
+
+
+
+
+
+
+
+public String getEmpPhone() {
       return empPhone;
    }
 
@@ -209,12 +275,12 @@ public class Member implements Serializable {
 
 
    @Override
-   public String toString() {
-      return "Member [empNo=" + empNo + ", empPwd=" + empPwd + ", empName=" + empName + ", empAddress=" + empAddress
-            + ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone + ", deptCode=" + deptCode
-            + ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate + ", entDate=" + entDate
-            + ", entYn=" + entYn + "]";
-   }
+public String toString() {
+	return "Member [empNo=" + empNo + ", empPwd=" + empPwd + ", empName=" + empName + ", empAddress=" + empAddress
+			+ ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone + ", deptCode=" + deptCode
+			+ ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate + ", entDate=" + entDate
+			+ ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle + "]";
+}
    
    
 

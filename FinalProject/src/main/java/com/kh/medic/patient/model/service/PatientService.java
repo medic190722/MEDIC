@@ -36,11 +36,11 @@ public interface PatientService {
 	int updateInPatient(Patient patient);
 	
 	/**
-	 * 정보 수정 환자 내용 조회
+	 * 환자 한 명 조회
 	 * @param p_no
 	 * @return
 	 */
-	Patient selectUpdatePatient(int p_no);
+	Patient selectPatient(int p_no);
 
 	/**
 	 * 환자 정보 수정용 메소드
@@ -50,9 +50,15 @@ public interface PatientService {
 	int updatePatient(Patient patient);
 
 	/**
-	 * 병실 조회용 메소드
+	 * 병실 조회용 메소드(수용인원)
 	 * @return
 	 */
 	List<Ward> selectWardList();
+	
+	/**
+	 * 병실 조회용 메소드(수용가능인원)
+	 * @return
+	 */
+	List<Ward> selectWard();
 	
 }

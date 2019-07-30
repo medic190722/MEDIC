@@ -17,9 +17,19 @@
 		SELECT * FROM EQUIPMENT
 	</select>
 	
+	<select id="selectEquipmentListSearch" resultMap="equipmentMap" parameterType="string">
+		SELECT * FROM EQUIPMENT
+		WHERE EQ_NAME=#{eqName}
+	</select>
+	
 	
 	<select id="selectOneEquipment" parameterType="string" resultMap="equipmentMap">
 		SELECT * FROM EQUIPMENT WHERE EQ_CODE=#{eqCode}
+	</select>
+	
+	<select id="selectEquipmentTotalContents" resultType="_int">
+		SELECT 
+		COUNT(*) FROM EQUIPMENT
 	</select>
 	
 	<insert id="insertEquipment">

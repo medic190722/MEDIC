@@ -76,7 +76,7 @@ public class PatientController {
 	@RequestMapping("/patient/outPatientReceipt.do")
 	public String outPatientReceipt(@RequestParam int p_no,@RequestParam String p_name, Model model) {
 		
-		System.out.println("외래 접수  환자 이름: " + p_name + "외래 접수 환자 번호 : " + p_no);
+		System.out.println("외래 접수  환자 이름: " + p_name + ", 외래 접수 환자 번호 : " + p_no);
 		
 		int result = patientService.updateOutPatient(p_no);
 		
@@ -126,14 +126,14 @@ public class PatientController {
 	
 		 Patient patient = new Patient();
 	 
-		 patient = patientService.selectUpdatePatient(p_no);
+		 patient = patientService.selectPatient(p_no);
 		 
 		 String loc = "";
 		 
 		 if(patient != null) { 
 			 loc = "patient/updatePatientView";
 		 } else {
-			 loc = "/patient/receipt";
+			 loc = "patient/receipt";
 		 }
 	
 		 model.addAttribute("patient", patient); 
@@ -143,7 +143,7 @@ public class PatientController {
 	 }
 	 
 	 // 환자 정보 업데이트
-	 @RequestMapping("patient/updatePatient.do")
+	 @RequestMapping("/patient/updatePatient.do")
 	 public String updatePatient(Patient patient, Model model) {
 		 
 		 int result = patientService.updatePatient(patient);
@@ -167,7 +167,8 @@ public class PatientController {
 		 
 	 }
 	
-	 @RequestMapping("patient/wardList.do")
+	 // 병실 전체 조회
+	 @RequestMapping("/patient/wardList.do")
 	 public String wardList(Model model) {
 		
 		 List<Ward> wardList = new ArrayList<>();
@@ -183,6 +184,54 @@ public class PatientController {
 			model.addAttribute("wardList", wardList);
 			
 			return "patient/wardList";
+		 
+	 }
+	 
+	 // 입원할 환자의 이름과 번호를 받아 정보를 불러와 페이지로 보내기
+	 @RequestMapping("/patient/inPatient.do")
+	 public String inPatientEnroll(@RequestParam String p_name, @RequestParam int p_no, Model model) {
+		 
+		 Patient patient = new Patient();
+		 
+		 patient = patientService.selectPatient(p_no);
+		 List<Ward> wardList = new ArrayList<>();
+		 
+		 wardList = patientService.selectWard();
+		 String loc = "/";
+		 
+		 if(patient != null) {
+			 loc = "patient/inPatientReceipt";
+		 } else {
+			 loc = "patient/searchPatient.do?p_name="+p_name;
+		 }
+		 
+		 model.addAttribute("patient", patient);
+		 model.addAttribute("wardList", wardList);
+		 
+		 return loc;
+		 
+	 }
+	 
+	 @RequestMapping("/patient/inPatientReceipt.do")
+	 public String inPatientReceipt(Patient patient, Model model) {
+		 
+		 int result = patientService.updateInPatient(patient);
+		 
+		 String msg = "";
+		 String loc = "/";
+		 
+		 if(result > 0) {
+			 msg = "입원 접수 성공!";
+			 loc = "/patient/patientReceipt.do";
+		 } else {
+			 msg = "입원 접수 실패!";
+			 loc = "/patient/searchPatient.do?p_name="+patient.getP_name();
+		 }
+		 
+		 model.addAttribute("msg", msg);
+		 model.addAttribute("loc", loc);
+		 
+		 return "common/msg";
 		 
 	 }
 	 

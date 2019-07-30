@@ -19,6 +19,15 @@
 		FROM VACATION V,EMPLOYEE E
 		WHERE V.EMP_NO=E.EMP_NO
 	</select>
+	
+	
+	<select id="selectVacationListSearch" resultMap="vacationMap" parameterType="string">
+		SELECT V.*,E.EMP_NAME
+		FROM VACATION V,EMPLOYEE E
+		WHERE V.EMP_NO=E.EMP_NO	
+		AND E.EMP_NAME=#{vName}
+	</select>
+
 
 	<select id="selectOneVacation" parameterType="string"
 		resultMap="vacationMap">

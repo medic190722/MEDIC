@@ -29,14 +29,32 @@
       <!-- Main row -->
       <div class="row">
        
-       <div style="text-align: center;">	      
+       <!-- <div style="text-align: center;">	      
 	      	<div class="has-feedback" style="width:400px; display:inline-block">
 	       	<input type="search" class="form-control input-sm" id="p_name" name="p_name" onkeyup="enterkey();"/>
 	       	<span class="glyphicon glyphicon-search form-control-feedback" ></span> </div>          	
 	       	<button id="firstOutReceipt"type="submit" class="btn btn-primary" onclick="Enroll();" style="background:#697282; border-color:#333;">환자등록</button>    	
-	     </div>
+	     </div> -->
 	      
-	      <div class="searchPatient" style="margin:0 auto; margin-top:20px;">
+	      
+	      
+	      <ul class="nav nav-tabs" style="margin: 0 auto; text-align: center;">
+  <li class="nav-item active">
+    <a class="nav-link" data-toggle="tab" href="#All_Ward">전체 병동</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#asd">3 병동</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#zxc">5 병동</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#zxc">6 병동</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active in" id="All_Ward">
+    <div class="searchPatient" style="margin:0 auto; margin-top:20px;">
 	      	<table class="table table-striped table-hover" style="width:800px; text-align:center; margin : 0 auto; ">
 	      		<tr>
 	      			<th style="text-align:center">병실</th>
@@ -59,6 +77,14 @@
 	      	</table>
 	      	
 	      </div>
+  </div>
+  <div class="tab-pane fade" id="asd">
+    <p>Nunc vitae turpis id nibh sodales commodo et non augue. Proin fringilla ex nunc. Integer tincidunt risus ut facilisis tristique.</p>
+  </div>
+  <div class="tab-pane fade" id="zxc">
+    <p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut mattis leo, vel fermentum tellus. Sed sagittis rhoncus venenatis. Quisque commodo consectetur faucibus. Aenean eget ultricies justo.</p>
+  </div>
+</div>
        
       </div>
       <!-- /.row (main row) -->

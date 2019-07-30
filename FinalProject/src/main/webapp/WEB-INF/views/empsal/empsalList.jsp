@@ -39,14 +39,36 @@
 				})
 				.click(
 						function() {
-							var empNo = $(this).parent().children().eq(0).text();
+							var empNo = $(this).parent().children().eq(0)
+									.text();
 
 							console.log(empNo);
 
-							//location.href = "${pageContext.request.contextPath}/empsal/empsalOne.do?empNo="+ empNo;
-							location.href = "${pageContext.request.contextPath}/empsal/empsalForm.do";
+							location.href = "${pageContext.request.contextPath}/empsal/empsalOne.do?empNo="
+									+ empNo;
+
 						});
 	});
+
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
+
+	function search() {
+		var empName = $(empNameId).val();
+		console.log(empName);
+		location.href = "${pageContext.request.contextPath}/empsal/searchEmpsal.do?empName="
+				+ empName
+	}
+
+	function clickOn() {
+		var empName = $(empNameId).val();
+		console.log(empName);
+		location.href = "${pageContext.request.contextPath}/empsal/searchEmpsal.do?empName="
+				+ empName
+	}
 </script>
 
 
@@ -77,6 +99,19 @@
 
 					<div class="container">
 
+						<div style="text-align: center;">
+							<div class="has-feedback"
+								style="width: 400px; display: inline-block">
+								<input type="search" class="form-control input-sm"
+									id="empNameId" name="empNameId" onkeyup="enterkey();" value=""
+									placeholder="성 명" />
+							</div>
+							<button id="firstOutReceipt" type="button"
+								class="btn btn-primary" onclick="clickOn();"
+								style="background: #697282; border-color: #333;">검색</button>
+
+						</div>
+
 
 						<div class="searchPatient"
 							style="margin: 0 auto; margin-top: 20px;">
@@ -84,12 +119,12 @@
 							<table class="table table-striped table-hover" id="listArea"
 								style="width: 1200px; text-align: center; margin: 0 auto;">
 								<thead>
-									<tr style="background: #fdf;">
+									<tr style="background: #4BA0BE;">
 										<th style="text-align: center">사번</th>
 										<th style="text-align: center">이름</th>
 										<th style="text-align: center">급여</th>
-										<th style="text-align: center">부서코드</th>
-										<th style="text-align: center">직급코드</th>
+										<th style="text-align: center">부서명</th>
+										<th style="text-align: center">직급명</th>
 
 									</tr>
 									<c:forEach items="${list}" var="e">

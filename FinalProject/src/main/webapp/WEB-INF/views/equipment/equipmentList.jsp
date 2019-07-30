@@ -33,15 +33,38 @@ input#btn-add {
 		$('tr').click(
 				function() {
 
-					var eqCount = $(this).children('td').children("[name=eqCount]").val();
-					var eqBrokenYn=$(this).children('td').children("[name=eqBrokenYn]").val();
+					var eqCount = $(this).children('td').children(
+							"[name=eqCount]").val();
+					var eqBrokenYn = $(this).children('td').children(
+							"[name=eqBrokenYn]").val();
 
 					console.log(eqCount);
 					location.href = "${pageContext.request.contextPath}"
 							+ "/equipment/updateEquipment.do?eqCode=" + eqCode
-							+ "&eqCount=" + eqCount + "&eqBrokenYn="+eqBrokenYn;
+							+ "&eqCount=" + eqCount + "&eqBrokenYn="
+							+ eqBrokenYn;
 				});
 	};
+
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
+
+	function search() {
+		var eqName = $(eqNameId).val();
+		console.log(eqName);
+		location.href = "${pageContext.request.contextPath}/equipment/searchEquipment.do?eqName="
+				+ eqName
+	}
+	
+	function clickOn() {
+		var eqName = $(eqNameId).val();
+		console.log(eqName);
+		location.href = "${pageContext.request.contextPath}/equipment/searchEquipment.do?eqName="
+				+ eqName
+	}
 </script>
 
 
@@ -68,10 +91,25 @@ input#btn-add {
 
 					<div class="container">
 
-						<div style="text-align: right;">
+						<div style="text-align: center;">
+							<div class="has-feedback"
+								style="width: 400px; display: inline-block">
+								<input type="search" class="form-control input-sm" id="eqNameId"
+									name="eqNameId" onkeyup="enterkey();" value=""
+									placeholder="장비명" />
+							</div>
 							<button id="firstOutReceipt" type="submit"
-								class="btn btn-primary" onclick="insert();"
-								style="background: #697282; border-color: #333;">약품 등록</button>
+								class="btn btn-primary" onclick="clickOn();"
+								style="background: #697282; border-color: #333;">검 색</button>
+
+
+
+
+							
+								<button id="firstOutReceipt" type="submit"
+									class="btn btn-primary" onclick="insert();"
+									style="background: #697282; border-color: #333;">장비 등록</button>
+							
 						</div>
 
 						<div class="searchPatient"
@@ -80,7 +118,7 @@ input#btn-add {
 							<table class="table table-striped table-hover"
 								style="width: 1200px; text-align: center; margin: 0 auto;">
 								<thead>
-									<tr style="background: #fdf;">
+									<tr style="background: #4BA0BE;">
 										<th style="text-align: center">장비 코드</th>
 										<th style="text-align: center">장비명</th>
 										<th style="text-align: center">수량</th>
@@ -96,7 +134,8 @@ input#btn-add {
 											<td><input type="number" name="eqCount"
 												value="${e.eqCount}"></td>
 											<td>${e.eqDate}</td>
-											<td><input type="text" name="eqBrokenYn" value="${e.eqBrokenYn}"></td>
+											<td><input type="text" name="eqBrokenYn"
+												value="${e.eqBrokenYn}"></td>
 											<td>
 												<button type="button"
 													onclick="updateEquipment('${e.eqCode}');"

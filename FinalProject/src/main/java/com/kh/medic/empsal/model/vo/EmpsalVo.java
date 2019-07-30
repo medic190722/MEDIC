@@ -2,6 +2,9 @@ package com.kh.medic.empsal.model.vo;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmpsalVo implements Serializable{
 	private int empNo;
 	private String empName;

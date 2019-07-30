@@ -1,5 +1,8 @@
 package com.kh.medic.member.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kh.medic.member.model.vo.Member;
 
 public interface MemberDao {
@@ -47,4 +50,10 @@ public interface MemberDao {
 	 * @return
 	 */
 	int updatePassword(Member member);
+	
+	
+	List<Map<String, String>> selectMemberList(int cPage, int limit);
+	int selectMemberTotalContents();
+	
+	List<Member> selectSearchMember(String e_name);
 }

@@ -9,6 +9,8 @@ public interface EquipmentService {
 
 	List<Map<String,String>> selectEquipmentList(int cPage,int limit);
 	
+	List<Map<String,String>> selectEquipmentListSearch(int cPage,int limit,String eqName);
+	
 	int selectEquipmentTotalContents();
 	
 	int insertEquipment(EquipmentVo equipment);

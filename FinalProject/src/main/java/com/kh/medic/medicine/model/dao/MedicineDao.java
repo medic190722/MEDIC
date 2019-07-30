@@ -9,6 +9,8 @@ public interface MedicineDao {
 
 	List<Map<String,String>> selectMedicineList(int cPage,int limit);
 	
+	List<Map<String,String>> selectMedicineListSearch(int cPage,int limit,String medName);
+	
 	int selectMedicineTotalContents();
 	
 	int insertMedicine(MedicineVo medicine);

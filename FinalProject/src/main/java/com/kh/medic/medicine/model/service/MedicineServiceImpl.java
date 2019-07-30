@@ -21,6 +21,12 @@ public class MedicineServiceImpl implements MedicineService {
 
 		return medicineDao.selectMedicineList(cPage, limit);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectMedicineListSearch(int cPage, int limit,String medName) {
+
+		return medicineDao.selectMedicineListSearch(cPage, limit,medName);
+	}
 
 	@Override
 	public int selectMedicineTotalContents() {

@@ -89,6 +89,25 @@ public class VacationController {
 		return "common/msg";
 	}
 	
+	@RequestMapping("/vacation/searchVacation.do")
+	public String selectVacationListSearch(@RequestParam(value="cPage",required=false, defaultValue="1") int cPage,
+			Model model,String vName) {
+		int limit = 10; // 한 페이지 당 게시글 수
+
+		// 1. 현재 페이지 게시글 목록 가져오기
+		ArrayList<Map<String, String>> list = new ArrayList<>(vacationService.selectVacationListSearch(cPage, limit,vName));
+
+		// 2. 전체 페이지 게시글 수 가져오기
+		int totalContents = vacationService.selectVacationTotalContents();
+
+		String pageBar = Utils.getPageBar(totalContents, cPage, limit, "vacationList.do");
+
+		model.addAttribute("list", list).addAttribute("totalContents", totalContents).addAttribute("numPerPage", limit)
+				.addAttribute("pageBar", pageBar);
+
+		return "vacation/vacationList";
+	}
+	
 	
 	
 	

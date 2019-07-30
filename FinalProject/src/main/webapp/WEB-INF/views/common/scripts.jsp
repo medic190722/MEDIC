@@ -44,3 +44,4 @@
 <!-- fullCalendar -->
 <script src="${pageContext.request.contextPath }/resources/bower_components/moment/moment.js"></script>
 <script src="${pageContext.request.contextPath }/resources/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/bower_components/fullcalendar/dist/locale-all.js"></script>

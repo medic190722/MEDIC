@@ -1,5 +1,9 @@
 package com.kh.medic.member.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -8,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.medic.member.model.service.MemberService;
 import com.kh.medic.member.model.vo.Member;
+import com.kh.medic.common.util.Utils;
 import com.kh.medic.member.model.exception.MemberException;
 
 @SessionAttributes(value= {"member"})
@@ -53,12 +59,12 @@ public class MemberController {
       
       
       // 2. 실행 결과에 따른 화면 처리
-      String loc = "/member/register.do";
+      String loc = "/";
       String msg = "";
       
       if(result > 0 ) { msg = "회원가입 성공!";
          
-         
+         loc="/member/register.do";
          /*
           * if(result1>0) { System.out.println("수정된 비밀번호 : " + member.getEmpPwd()); }
           */
@@ -137,6 +143,57 @@ public class MemberController {
       return "/member/updateMember";
    }
    
+   @RequestMapping("/member/memberView.do")
+	public ModelAndView memberView(@RequestParam int empNo) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("member", memberService.selectMember(empNo));
+		
+		mv.setViewName("member/memberView");
+		
+		return mv;
+	}
+	
+   @RequestMapping("/member/memberList.do")
+	public String selectMemberList(@RequestParam(value="cPage",required=false, defaultValue="1") int cPage,
+			Model model) {
+		
+		int limit=10;
+		
+		ArrayList<Map<String,String>> list=new ArrayList<>(memberService.selectMemberList(cPage, limit));
+		
+		int totalContents= memberService.selectMemberTotalContents();
+		
+		String pageBar= Utils.getPageBar(totalContents, cPage, limit, "memberList.do");
+		
+		model.addAttribute("list", list).addAttribute("totalContents", totalContents).addAttribute("numPerPage", limit)
+		.addAttribute("pageBar", pageBar);
+		
+		return "member/memberList";
+		
+		
+	}
    
+// 환자 접수를 위해 환자 이름으로 검색하여 환자 조회
+	@RequestMapping("/member/searchMember.do")
+	public String searchMember(@RequestParam String e_name, SessionStatus sessionStatus, Model model) {
+		
+		System.out.println(e_name);
+		
+		List<Member> memberList = new ArrayList<>();
+		
+		memberList = memberService.selectSearchMember(e_name);
+		
+		for(Member p : memberList) {
+			int i = 0;
+			System.out.println(i + "번째 " + p);
+			i++;
+		}
+		
+		model.addAttribute("list", memberList);
+		
+		return "member/memberList";
+		
+	}
    
 }

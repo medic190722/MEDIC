@@ -23,6 +23,13 @@ public class MedicineDaoImpl implements MedicineDao {
 		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
 		return sqlSession.selectList("medicine.selectMedicineList",null,rows);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectMedicineListSearch(int cPage, int limit,String medName) {
+
+		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
+		return sqlSession.selectList("medicine.selectMedicineListSearch",medName,rows);
+	}
 
 	@Override
 	public int selectMedicineTotalContents() {

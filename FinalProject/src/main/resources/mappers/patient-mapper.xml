@@ -23,6 +23,14 @@
 			GROUP BY P.WARD_CODE, W.WARD_CODE, W.CAPACITY
 			ORDER BY W.WARD_CODE
 	</select>
+	
+	<select id="selectWard" resultType="Ward">
+		SELECT W.*, W.CAPACITY-COUNT(P.WARD_CODE) AVAILABLE_CAPACITY
+			FROM PATIENT P
+			RIGHT JOIN WARD W ON(W.WARD_CODE = P.WARD_CODE)
+			GROUP BY P.WARD_CODE, W.WARD_CODE, W.CAPACITY
+			ORDER BY W.WARD_CODE
+	</select>
 		
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
@@ -41,6 +49,12 @@
 			P_ADDRESS = #{p_address}, P_PHONE = #{p_phone, typeHandler=strArrPhoneTypeHandler}, 
 			P_RRN = #{p_rrn} WHERE P_NO = #{p_no}
 		
+	</update>
+	
+	<update id="inPatientReceipt" parameterType="Patient">
+		UPDATE PATIENT SET
+			P_ADMISSION_DATE = #{p_admission_date}, WARD_CODE = #{ward_code} 
+		WHERE P_NO = #{p_no}
 	</update>
 	
 	

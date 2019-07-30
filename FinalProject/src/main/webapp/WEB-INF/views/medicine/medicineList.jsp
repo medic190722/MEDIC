@@ -42,6 +42,25 @@ input#btn-add {
 							+ "&medCount=" + medCount;
 				});
 	};
+	
+	
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
+
+	function search() {
+		var medName = $(medNameId).val();
+		console.log(medName);
+		location.href="${pageContext.request.contextPath}/medicine/searchMedicine.do?medName="+medName
+	}
+	
+	function clickOn() {
+		var medName = $(medNameId).val();
+		console.log(medName);
+		location.href="${pageContext.request.contextPath}/medicine/searchMedicine.do?medName="+medName
+	}
 </script>
 
 
@@ -68,7 +87,17 @@ input#btn-add {
 
 					<div class="container">
 
-						<div style="text-align: right;">
+						<div style="text-align: center;">
+							<div class="has-feedback"
+								style="width: 400px; display: inline-block">
+								<input type="search" class="form-control input-sm" id="medNameId"
+									name="medNameId" onkeyup="enterkey();" value=""
+									placeholder="약품명" />
+							</div>
+							<button id="firstOutReceipt" type="submit"
+								class="btn btn-primary" onclick="clickOn();"
+								style="background: #697282; border-color: #333;">검 색</button>
+								
 							<button id="firstOutReceipt" type="submit"
 								class="btn btn-primary" onclick="insert();"
 								style="background: #697282; border-color: #333;">약품 등록</button>
@@ -80,7 +109,7 @@ input#btn-add {
 							<table class="table table-striped table-hover"
 								style="width: 1200px; text-align: center; margin: 0 auto;">
 								<thead>
-									<tr style="background: #fdf;">
+									<tr style="background: #4BA0BE;">
 										<th style="text-align: center">약품 코드</th>
 										<th style="text-align: center">약품 명</th>
 										<th style="text-align: center">재고 수량</th>

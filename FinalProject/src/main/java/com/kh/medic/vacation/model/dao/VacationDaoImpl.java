@@ -24,6 +24,13 @@ public class VacationDaoImpl implements VacationDao {
 		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
 		return sqlSession.selectList("vacation.selectVacationList",null,rows);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectVacationListSearch(int cPage, int limit,String vName) {
+
+		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
+		return sqlSession.selectList("vacation.selectVacationListSearch",vName,rows);
+	}
 
 	@Override
 	public int selectVacationTotalContents() {

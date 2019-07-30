@@ -16,6 +16,8 @@ public interface MedicineService {
 	 */
 	List<Map<String,String>> selectMedicineList(int cPage,int limit);
 	
+	List<Map<String,String>> selectMedicineListSearch(int cPage,int limit,String medName);
+	
 	/**
 	 * 페이지처리를 위한 게시글 총 갯수
 	 * @return

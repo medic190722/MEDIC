@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.medic.vacation.model.vo.VacationVo" alias="vacation" />
 		<typeAlias type="com.kh.medic.empsal.model.vo.EmpsalVo" alias="empsal" />
 		<typeAlias type="com.kh.medic.equipment.model.vo.EquipmentVo" alias="equipment" />
+		<typeAlias type="com.kh.medic.doctor.model.vo.Medical" alias="Medical" />
 		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayTypeHandler" alias="strArrTypeHandler" />
 		<typeAlias type="com.kh.medic.common.typeHandler.StringArrayPhoneTypeHandler" alias="strArrPhoneTypeHandler" />
 	</typeAliases>

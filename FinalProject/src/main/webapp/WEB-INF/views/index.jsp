@@ -274,6 +274,7 @@ $(function () {
         m    = date.getMonth(),
         y    = date.getFullYear()
     $('#calendar').fullCalendar({
+      locale:'ko',
       header    : {
         left  : 'prev,next today',
         center: 'title',

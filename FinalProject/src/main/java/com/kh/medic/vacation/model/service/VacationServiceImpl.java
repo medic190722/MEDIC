@@ -21,6 +21,12 @@ public class VacationServiceImpl implements VacationService {
 
 		return vacationDao.selectVacationList(cPage, limit);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectVacationListSearch(int cPage, int limit,String vName) {
+
+		return vacationDao.selectVacationListSearch(cPage, limit,vName);
+	}
 
 	@Override
 	public int selectVacationTotalContents() {

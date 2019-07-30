@@ -32,7 +32,7 @@
               <li class="user-header">
                 <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                   ${member.empName} - ${member.jobCode}
+                   ${member.empName} - ${member.jobTitle}
                   <small>Member since 입사일</small>
                 </p>
               </li>

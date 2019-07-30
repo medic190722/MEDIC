@@ -36,6 +36,20 @@ td select {
 	margin-left: 20px;
 }
 </style>
+
+<script>
+	function sal(empNo) {
+		console.log(empNo);
+		var salary=$('tr').eq(2).children('td').children("[name=salary]").val();
+		console.log(salary);
+		location.href = "${pageContext.request.contextPath}/empsal/empsalSal.do?empNo="
+				+ empNo+"&salary="+salary;
+	}
+
+	function closeEmpsal() {
+		location.href = "${pageContext.request.contextPath}/empsal/empsalList.do"
+	}
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -71,48 +85,52 @@ td select {
 											<tr>
 												<th>사번</th>
 												<td><input type="text" class="form-control"
-													name="empName" placeholder="사번"></td>
+													name="empNo" value="${empsal.empNo}" readonly></td>
 											</tr>
 											<tr>
 												<th>이름</th>
 												<td><input type="text" class="form-control"
-													name="empName" placeholder="이름"></td>
+													name="empName" value="${empsal.empName}" readonly></td>
 											</tr>
 											<tr>
 
 												<th>급여</th>
 												<td><input type="text" class="form-control"
-													name="empName" placeholder="이름"></td>
+													name="salary" value="${empsal.salary}"></td>
 
 											</tr>
 											<tr>
 
 												<th>부서명</th>
 												<td><input type="text" class="form-control"
-													name="empName" placeholder="이름"></td>
+													name="deptTitle" value="${empsal.deptTitle}" readonly></td>
 
 											</tr>
 											<tr>
 
 												<th>직급명</th>
 												<td><input type="text" class="form-control"
-													name="empName" placeholder="이름"></td>
+													name="jobTitle" value="${empsal.jobTitle}" readonly></td>
 											</tr>
 
 										</thead>
 									</table>
 
-									<button type="submit" class="btn btn-primary"
-										style="margin-top: 10px; width: 100px;">금여 수정</button>
-									<button type="reset" class="btn btn-primary"
-										style="margin-top: 10px; width: 100px;">취소</button>
+
 
 								</div>
 							</section>
 						</form>
-						<!-- /.col -->
 
-						<!-- /.col -->
+						<div style="text-align: center;">
+						<br><br>
+							<button class="btn btn-primary" id="sal" type="button"
+								onclick="sal('${empsal.empNo}');"
+								style="background: #697282; border-color: #333;">승인</button>
+							<button class="btn btn-primary" id="closeEmpsal" type="button"
+								onclick="closeEmpsal();"
+								style="background: #697282; border-color: #333;">취소</button>
+						</div>
 					</div>
 
 

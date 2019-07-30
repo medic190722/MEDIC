@@ -86,7 +86,7 @@
                                     <th>이름  </th>
                                     <td>
                                           <input type="text" class="form-control" name="empName"
-                                             placeholder="이름">
+                                             placeholder="이름" value="${member.empName}">
                                        </td>
                                     <th>부서  </th>
                                     <td>                           

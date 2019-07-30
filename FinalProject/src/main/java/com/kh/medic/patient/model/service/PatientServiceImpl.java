@@ -32,13 +32,12 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public int updateInPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		return patientDao.updateInPatient(patient);
 	}
 	
 	@Override
-	public Patient selectUpdatePatient(int p_no) {
-		return patientDao.selectUpdatePatient(p_no);
+	public Patient selectPatient(int p_no) {
+		return patientDao.selectPatient(p_no);
 	}
 
 	@Override
@@ -49,6 +48,11 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public List<Ward> selectWardList() {
 		return patientDao.selectWardList();
+	}
+
+	@Override
+	public List<Ward> selectWard() {
+		return patientDao.selectWard();
 	}
 
 

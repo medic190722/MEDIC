@@ -19,11 +19,32 @@
 		WHERE E.DEPT_CODE=D.DEPT_CODE
 		AND E.JOB_CODE=J.JOB_CODE
 	</select>
+	
+	<select id="selectEmpsalListSearch" resultMap="empsalMap" parameterType="string">
+		SELECT E.*, D.DEPT_TITLE,J.JOB_TITLE
+		FROM EMPLOYEE E,JOB J, DEPARTMENT D
+		WHERE E.DEPT_CODE=D.DEPT_CODE
+		AND E.JOB_CODE=J.JOB_CODE
+		AND E.EMP_NAME=#{empName}
+	</select>
 		
 	<select id="selectEmpsalTotalContents" resultType="_int">
 		SELECT
 		COUNT(*) FROM EMPLOYEE
 	</select>
+	
+	<select id="selectOneEmpsal" parameterType="string" resultMap="empsalMap">
+		SELECT E.*, D.DEPT_TITLE,J.JOB_TITLE
+		FROM EMPLOYEE E,JOB J, DEPARTMENT D
+		WHERE E.DEPT_CODE=D.DEPT_CODE
+		AND E.JOB_CODE=J.JOB_CODE
+		AND EMP_NO=#{empNo}
+	</select>
+	
+	<update id="updateEmpsalSal" parameterType="empsal">
+		UPDATE EMPLOYEE SET SALARY=#{salary}
+		WHERE EMP_NO=#{empNo}
+	</update>
 
 	
 </mapper>
