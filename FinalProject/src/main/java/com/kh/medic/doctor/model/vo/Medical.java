@@ -17,12 +17,12 @@ public class Medical implements Serializable {
 	private String empNo;		// 의사 사번
 	private String empName;		// 담당 의사
 	private String mHistory;	// 처방 내역
-	private char pAdmissionYN;	// 입원 여부
+	private String pAdmissionYN;	// 입원 여부
 	
 	public Medical() {}
 	
 	public Medical(String mCode, int pNo, String pName, Date mDate, String empNo, String empName, String mHistory,
-			char pAdmissionYN) {
+			String pAdmissionYN) {
 		this.mCode = mCode;
 		this.pNo = pNo;
 		this.pName = pName;
@@ -95,11 +95,11 @@ public class Medical implements Serializable {
 		this.mHistory = mHistory;
 	}
 
-	public char getpAdmissionYN() {
+	public String getpAdmissionYN() {
 		return pAdmissionYN;
 	}
 
-	public void setpAdmissionYN(char pAdmissionYN) {
+	public void setpAdmissionYN(String pAdmissionYN) {
 		this.pAdmissionYN = pAdmissionYN;
 	}
 	

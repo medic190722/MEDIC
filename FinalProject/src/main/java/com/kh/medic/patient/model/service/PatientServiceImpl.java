@@ -55,5 +55,10 @@ public class PatientServiceImpl implements PatientService {
 		return patientDao.selectWard();
 	}
 
+	@Override
+	public List<Patient> selectWardPatientList(int ward_code) {
+		return patientDao.selectWardPatientList(ward_code);
+	}
+
 
 }

@@ -28,7 +28,7 @@
 		location.href = "${pageContext.request.contextPath}/vacation/deleteVacation.do?vCode="
 				+ vCode;
 	}
-	
+
 	function closeVacation() {
 		location.href = "${pageContext.request.contextPath}/vacation/vacationList.do"
 	}
@@ -36,10 +36,13 @@
 
 <style>
 .kiho {
-	width: 700px; align-content : center; margin : 0 auto;
+	width: 700px;
+	align-content: center; margin : 0 auto; margin-top : 20px;
+	align-content : center;
+	margin: 0 auto;
+	margin: 0 auto;
 	margin-top: 20px;
 	align-content: center;
-	margin: 0 auto;
 }
 </style>
 </head>
@@ -77,38 +80,42 @@
 									placeholder="${vacation.empName}" readonly>
 							</div>
 						</div>
-						<div>
+						<div style="display: inline-block !important;">
 							<input type="email" class="form-control" id="email"
 								placeholder="${vacation.vDate}" readonly>
-							<!-- <div>${vacation.vYn}</div>  -->
+						</div>
+						~
+						<div style="display: inline-block !important;">
+							<input type="email" class="form-control" id="email"
+								placeholder="${vacation.vDateEnd}" readonly>
 						</div>
 						<div>
 							<textarea class="form-control mb-10" rows="3" name="message"
 								placeholder="${vacation.vContent}" readonly></textarea>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 				<div style="text-align: center;">
-				
+
 					<br> <Br>
 
 
 
-					<button class="btn btn-primary" id="yes" type="button" onclick="yes('${vacation.vCode}');"
-					style="background: #697282; border-color: #333;">
-						승인</button>
-					<button class="btn btn-primary" id="no" type="button" onclick="no('${vacation.vCode}');"
-					style="background: #697282; border-color: #333;">
-						승인 거절</button>
+					<button class="btn btn-primary" id="yes" type="button"
+						onclick="yes('${vacation.vCode}');"
+						style="background: #697282; border-color: #333;">승인</button>
+					<button class="btn btn-primary" id="no" type="button"
+						onclick="no('${vacation.vCode}');"
+						style="background: #697282; border-color: #333;">승인 거절</button>
 					<button class="btn btn-primary" id="deleteVacation" type="button"
 						onclick="deleteVacation('${vacation.vCode}');"
 						style="background: #697282; border-color: #333;">삭제</button>
 					<button class="btn btn-primary" id="closeVacation" type="button"
 						onclick="closeVacation();"
 						style="background: #697282; border-color: #333;">뒤로가기</button>
-						
+
 				</div>
 
 

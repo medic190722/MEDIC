@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.medic.doctor.model.dao.DoctorDao;
+import com.kh.medic.doctor.model.vo.Medical;
+import com.kh.medic.medicine.model.vo.MedicineVo;
 import com.kh.medic.patient.model.vo.Patient;
 
 @Service
@@ -18,6 +20,27 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Patient> patientList() {
 		
 		return drDao.patientList();
+		
+	}
+	
+	@Override
+	public List<MedicineVo> medicineList() {
+		
+		return drDao.medicineList();
+		
+	}
+	
+	@Override
+	public String medicalCode() {
+		
+		return drDao.medicalCode();
+		
+	}
+	
+	@Override
+	public void medicalSave(Medical medical) {
+		
+		drDao.medicalSave(medical);
 		
 	}
 

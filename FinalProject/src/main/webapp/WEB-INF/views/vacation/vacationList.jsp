@@ -130,7 +130,7 @@
 										<tr id="${v.vCode}" style="background: #fff;">
 											<td>${v.vCode}</td>
 											<td>${v.empName}</td>
-											<td>${v.vDate}</td>
+											<td>${v.vDate} ~ ${v.vDateEnd}</td>
 											<td>${v.vYn}</td>
 
 										</tr>

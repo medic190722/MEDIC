@@ -50,11 +50,11 @@
 
     <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="empNo" placeholder="사번">
+        <input type="text" class="form-control" name="empNo" placeholder="사번" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="empPwd" placeholder="비밀번호">
+        <input type="password" class="form-control" name="empPwd" placeholder="비밀번호" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -62,7 +62,7 @@
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">로그인</button>
-           <button class="btn btn-block btn-default btn-flat" type="button" onclick="location.href='${pageContext.request.contextPath}/member/register.do'">회원가입</button>
+       
         </div>
         <!-- /.col -->
         

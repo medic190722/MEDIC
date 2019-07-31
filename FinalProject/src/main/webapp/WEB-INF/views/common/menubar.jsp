@@ -84,7 +84,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/member/register.do"><i class="fa fa-circle-o"></i> 회원가입</a></li>
-           <li><a href="${pageContext.request.contextPath}/member/updateMember.do"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
+           <li><a href="${pageContext.request.contextPath}/member/memberList.do"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
            <li><a href="#"><i class="fa fa-circle-o"></i> 회원탈퇴</a></li>
           </ul>
         </li>

@@ -104,9 +104,7 @@ public class MedicineController {
 	@RequestMapping("/medicine/deleteMedicine.do")
 	public String deleteMedicine(MedicineVo medicine) {
 		String medCode = medicine.getMedCode();
-		System.out.println("q1" + medCode);
 		int result = medicineService.deleteMedicine(medCode);
-		System.out.println("q2");
 
 		return "redirect:/medicine/medicineList.do";
 	}

@@ -55,4 +55,9 @@ public class PatientDaoImpl implements PatientDao {
 		return sqlSession.selectList("patient.selectWard");
 	}
 
+	@Override
+	public List<Patient> selectWardPatientList(int ward_code) {
+		return sqlSession.selectList("patient.selectWardPatient", ward_code);
+	}
+
 }

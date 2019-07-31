@@ -33,12 +33,13 @@
 								<div class="form-group">
 									<label for="pNo" class="col-sm-2 control-label">환자 번호</label>
 									<div class="col-sm-10">
-										<select class="form-control" id="pNo" name="pNo">
+										<select class="form-control" id="pNo" name="pNoSelect">
 											<option>-----</option>
 											<c:forEach var="p" items="${ pList }">
-												<option value="${p.p_name}">${ p.p_no }</option>
+												<option value="${ p.p_name }">${ p.p_no }</option>
 											</c:forEach>
 										</select>
+										<input type="hidden" id="pNoInput" name="pNo"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -71,6 +72,7 @@
 	<script>
 		$('#pNo').on('change',function(){
 			$('#pName').val($(this).val());
+			$('#pNoInput').val($(this).children('option:selected').text());
 		});
 		
 		$(function() {

@@ -10,6 +10,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Medic</title>
   <c:import url="../common/header.jsp"/>
+  <script>
+  function backGo() {
+	  location.href="${pageContext.request.contextPath}/vacation/vacationList.do";
+  }
+  </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -39,7 +44,8 @@
 			<form name="MedicineFrm" action="${pageContext.request.contextPath}/vacation/vacationFormEnd.do" method="post">
 				<input type="text" class="form-control" placeholder="휴가 코드" name="vCode" id="vCode" required>
 				<input type="text" class="form-control" placeholder="사번" name="empNo" id="empNo" required>
-				<input type="text" class="form-control" placeholder="날짜(ex : 2019-01-01)" name="vDate" id="vDate" required>
+				<input type="date" class="form-control" placeholder="출발 날짜" name="vDate" id="vDate" required>
+				<input type="date" class="form-control" placeholder="복귀 날짜" name="vDateEnd" id="vDateEnd" required>
 				<input type="text" class="form-control" placeholder="내용" name="vContent" id="vContent" required>
 	
 				<%-- <input type="text" class="form-control" name="boardWriter" value="${member.userId}" readonly required> --%>
@@ -49,7 +55,7 @@
 				<div style="text-align: right;">
 					<input type="submit" class="btn btn-primary" 
 					style="background: #697282; border-color: #333;" value="추가" >
-					<input class="btn btn-primary" type="reset" 
+					<input class="btn btn-primary" type="button" onclick="backGo()"
 					style="background: #697282; border-color: #333;" value="취소">
 				</div>
 			</form>

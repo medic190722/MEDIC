@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Doctor">
 	
-	<resultMap id="resultMedical" type="Medical">
+	<resultMap id="MedicalMap" type="Medical">
 		<id property="mCode" column="M_CODE"/>
 		<result property="pNo" column="P_NO"/>
 		<result property="pName" column="P_NAME"/>
@@ -15,8 +15,26 @@
 		<result property="pAdmissionYN" column="P_ADMISSION_YN"/>
 	</resultMap>
 	
+	<resultMap id="medicineMap" type="medicine">
+		<id property="medCode" column="MED_CODE"/>
+		<result property="medName" column="MED_NAME"/>
+		<result property="medCount" column="MED_COUNT"/>
+	</resultMap>
+	
 	<select id="patientList" resultType="Patient">
 		SELECT * FROM PATIENT ORDER BY P_NO ASC
 	</select>
+	
+	<select id="medicineList" resultMap="medicineMap">
+		SELECT * FROM MEDICINE ORDER BY MED_CODE ASC
+	</select>
+	
+	<select id="medicalCode" resultType="string">
+		SELECT CONCAT('22MDC', SEQ_M_CODE.NEXTVAL) FROM DUAL
+	</select>
+	
+	<insert id="medicalSave" parameterType="Medical">
+		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{pNo}, #{mDate}, #{empNo}, #{pAdmissionYN})
+	</insert>
 	
 </mapper>

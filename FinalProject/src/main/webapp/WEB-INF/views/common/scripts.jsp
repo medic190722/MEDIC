@@ -41,7 +41,3 @@
 <script src="${pageContext.request.contextPath }/resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.request.contextPath }/resources/dist/js/demo.js"></script>
-<!-- fullCalendar -->
-<script src="${pageContext.request.contextPath }/resources/bower_components/moment/moment.js"></script>
-<script src="${pageContext.request.contextPath }/resources/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/bower_components/fullcalendar/dist/locale-all.js"></script>

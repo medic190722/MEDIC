@@ -58,23 +58,6 @@
                      <p class="login-box-msg">사원을 등록해 주세요</p>
 
 
-
-
-                     <!-- <div class="form-group has-feedback">
-         <label>급여</label>
-        <input type="number" class="form-control" placeholder="급여">   
-        <span class="form-control-feedback">만원</span>
-      </div> -->
-                     <!-- Date -->
-                     <!--  <div class="form-group">
-        <label>입사일:</label>
-        <div class="input-group date">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-          </div>
-          <input type="text" class="form-control pull-right" id="datepicker" name="hireDate">
-        </div>
-        </div> -->
                      <form
                         action="${pageContext.request.contextPath}/member/memberEnrollEnd.do"
                         method="post">
@@ -114,7 +97,7 @@
                                        <td>
                                           <div class="" id="job1" style="display: block;">
 
-                                             <select class="form-control job1">
+                                             <select class="form-control job1 job">
                                                 <option value="부장" selected>부장</option>
                                                 <option value="차장">차장</option>
                                                 <option value="과장">과장</option>
@@ -122,22 +105,23 @@
                                                 <option value="사원">사원</option>
                                                 
                                              </select>
-                                             <div name="sendData1" style="display:none;" id="dataSelect"><input type="hidden" name="jobCode" value="부장"></div>
+                                             <div style="display:none;" id="dataSelect"><input type="hidden" name="jobCode" value="부장"></div>
                                           </div>
                                           <div class="" id="job2" style="display: none;">
 
-                                             <select class="form-control job2">
+                                             <select class="form-control job2 job">
                                                 <option value="부장">부장</option>
                                                 <option value="차장">차장</option>
                                                 <option value="과장">과장</option>
                                                 <option value="대리">대리</option>
                                                 <option value="사원">사원</option>
                                              </select>
+                                             
                                           </div>
 
                                           <div class="" id="job3" style="display: none;">
 
-                                             <select class="form-control job3">
+                                             <select class="form-control job3 job">
                                                 <option value="교수">교수</option>
                                                 <option value="부교수">부교수</option>
                                                 <option value="조교수">조교수</option>
@@ -145,10 +129,11 @@
                                                 <option value="레지던트">레지던트</option>
                                                 <option value="인턴">인턴</option>
                                              </select>
+                                            
                                           </div>
                                           <div class="" id="job4" style="display: none;">
 
-                                             <select class="form-control job4">
+                                             <select class="form-control job4 job">
                                                 <option value="최고 책임자">최고 책임자</option>
                                                 <option value="간호과장">간호과장</option>
                                                 <option value="수간호사">수간호사</option>
@@ -156,6 +141,7 @@
                                                 <option value="주임간호사">주임간호사</option>
                                                 <option value="평간호사">평간호사</option>
                                              </select>
+                                            
                                           </div>
                                        </td>
                                     </tr>
@@ -167,9 +153,11 @@
                                        <td>
                                           
                                              <input type="text" id="rrn" name="empRrn"
-                                                class="form-control" placeholder="주민등록번호">
+                                                class="form-control" placeholder="주민등록번호" maxlength="14">
+                                                	<div id="rrnResult"></div>
                                           
                                        </td>
+                                     
                                        <th>입사일</th>
                                        <td>
                                           <input type="date" class="form-control" id="currnetDate"
@@ -187,7 +175,7 @@
                                     <tr>
                                        <th>연락처</th>
                                        <td><input type="text" class="form-control"
-                                          name="empPhone" placeholder="연락처"></td>
+                                          name="empPhone" placeholder="연락처( - 제외)" maxlength="11"></td>
                                        
                                     </tr>
 
@@ -394,9 +382,15 @@ $(function () {
     
 
     $('.dept').click(function(){
+    	 $('#dataSelect').remove();
       var display = $('.dept option:selected').val();   
       if(display == "총무과"){
          $('#job1').css('display','block');
+         if($('.job1').find('[name=sendData]') != null ){
+             $('.job').find('[name=sendData]').remove();
+          } 
+         var $td = $('.job1');  
+         $td.append('<td name="sendData" style="display:none;" ><input type="hidden" name="jobCode" value="' + $('.job1 option:selected').val() + '"></div>');
       }else{
          $('#job1').css('display','none');
       }
@@ -405,6 +399,11 @@ $(function () {
       var display = $('.dept option:selected').val();   
       if(display == "원무과"){
          $('#job2').css('display','block');
+         if($('.job2').find('[name=sendData]') != null ){
+             $('.job').find('[name=sendData]').remove();
+          } 
+         var $td = $('.job2');  
+         $td.append('<td name="sendData" style="display:none;" ><input type="hidden" name="jobCode" value="' + $('.job2 option:selected').val() + '"></div>');
       }else{
          $('#job2').css('display','none');
       }
@@ -413,14 +412,27 @@ $(function () {
       var display = $('.dept option:selected').val();   
       if(display == "의사"){
          $('#job3').css('display','block');
+         if($('.job3').find('[name=sendData]') != null ){
+             $('.job').find('[name=sendData]').remove();
+          } 
+         var $td = $('.job3');  
+         $td.append('<td name="sendData" style="display:none;" ><input type="hidden" name="jobCode" value="' + $('.job3 option:selected').val() + '"></div>');
       }else{
          $('#job3').css('display','none');
       }
     })
     $('.dept').click(function(){
-      var display = $('.dept option:selected').val();   
+      var display = $('.dept option:selected').val(); 
+      
+      
       if(display == "간호사"){
+    	  console.log($('.job4 option:selected').val());
          $('#job4').css('display','block');
+         if($('.job4').find('[name=sendData]') != null ){
+             $('.job').find('[name=sendData]').remove();
+          } 
+         var $td = $('.job4');  
+         $td.append('<td name="sendData" style="display:none;" ><input type="hidden" name="jobCode" value="' + $('.job4 option:selected').val() + '"></div>');
       }else{
          $('#job4').css('display','none');
       }
@@ -473,8 +485,8 @@ $(function () {
       
       $('#dataSelect').remove();
       
-     if($(this).find('[name=sendData]') != null ){
-        $(this).find('[name=sendData]').remove();
+     if($('.job1').find('[name=sendData]') != null ){
+        $('.job1').find('[name=sendData]').remove();
      } 
       
      var $td = $('<td name="sendData" style="display:none;" >');
@@ -486,9 +498,9 @@ $(function () {
     
    $('.job2').click(function(){
       console.log($(this).val());
-      
-     if($(this).find('[name=sendData]') != null ){
-        $(this).find('[name=sendData]').remove();
+      $('#dataSelect').remove();
+     if($('.job2').find('[name=sendData]') != null ){
+        $('.job2').find('[name=sendData]').remove();
      } 
       
      var $td = $('<td name="sendData" style="display:none;" >');
@@ -499,9 +511,9 @@ $(function () {
    });
    $('.job3').click(function(){
       console.log($(this).val());
-      
-     if($(this).find('[name=sendData]') != null ){
-        $(this).find('[name=sendData]').remove();
+      $('#dataSelect').remove();
+     if($('.job3').find('[name=sendData]') != null ){
+        $('.job3').find('[name=sendData]').remove();
      } 
       
      var $td = $('<td name="sendData" style="display:none;" >');
@@ -512,9 +524,9 @@ $(function () {
    });
    $('.job4').click(function(){
       console.log($(this).val());
-      
-     if($(this).find('[name=sendData]') != null ){
-        $(this).find('[name=sendData]').remove();
+      $('#dataSelect').remove();
+     if($('.job4').find('[name=sendData]') != null ){
+        $('.job4').find('[name=sendData]').remove();
      } 
       
      var $td = $('<td name="sendData" style="display:none;" >');
@@ -525,9 +537,66 @@ $(function () {
    });
    
    
+   
+    
+     $('#rrn').change(function(){
+    	 var num1 = $("#rrn").val().substr(0,6);
+    	   var num2 =$("#rrn").val().substr(7,13);
+    	   
+    	   var arrNum1 = new Array(); // 주민번호 앞자리숫자 6개를 담을 배열
+    	   var arrNum2 = new Array(); // 주민번호 뒷자리숫자 7개를 담을 배열
+
+    	     // -------------- 주민번호 -------------
+    	     // 주민번호 앞자리를 배열에 순서대로 담는다.
+    	 
+    	     for (var i=0; i < num1.length; i++) {
+    	         arrNum1[i] = num1.charAt(i);
+    	    
+    	     } 
+    	     
+    	     // 주민번호 뒷자리를 배열에 순서대로 담는다.
+    	     for (var i=0; i< num2.length; i++) {
+    	         arrNum2[i] = num2.charAt(i);
+    	       
+    	     } 
+    
+    	     
+    	     var tempSum=0;
+
+    	     // 주민번호 검사방법을 적용하여 앞 번호를 모두 계산하여 더함
+    	     for (var i=0; i< num1.length; i++) {
+    	         tempSum += arrNum1[i] * (2+i);
+    	     } 
+    	     
+    	     // 같은방식으로 앞 번호 계산한것의 합에 뒷번호 계산한것을 모두 더함
+    	     for (var i=0; i< num2.length-1; i++) {
+    	         if(i>=2) {
+    	             tempSum += arrNum2[i] * i;
+    	         }
+    	         else {
+    	             tempSum += arrNum2[i] * (8+i);
+    	         }
+    	     } 
+    	
+         if((11-(tempSum%11))%10 != arrNum2[6]){
+             $('#rrnResult').html('올바른 주민번호가 아닙니다.')
+             .css('color','red');
+
+             $(this).select();
+         
+         }else{
+             $('#rrnResult').html('올바른 주민번호 입니다')
+             .css('color','green');
+             
+         }
+     });
     
   });
   
+	
+  
 </script>
+
+
 </body>
 </html>

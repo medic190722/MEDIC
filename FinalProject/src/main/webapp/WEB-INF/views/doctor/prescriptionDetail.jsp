@@ -22,62 +22,126 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-danger">
+					<div class="box box-danger" style="width:1000px; margin:0 auto;">
 						<div class="box-header with-border">
 							<h3 class="box-title">처방전</h3>
 						</div>
-						<div class="box-body">
-							<div class="row">
-								<div class="col-xs-3">
-									<label for="mCode">진료 코드</label>
-									<input type="number" class="form-control" id="mCode">
-								</div>
-								<div class="col-xs-4">
-									<label for="empName">담당 의사</label>
-									<input type="text" class="form-control" id="empName">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-3">
-									<label for="pNo">환자 번호</label>
-									<input type="number" class="form-control" id="pNo" value="${ pNo }">
-								</div>
-								<div class="col-xs-4">
-									<label for="pName">환자 이름</label>
-									<input type="text" class="form-control" id="pName" value="${ pName }">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-3">
-									<label for="mDate">진료일</label>
-									<div class="input-group date">
-										<div class="input-group-addon">
-											<i class="fa fa-calendar"></i>
-										</div>
-										<input type="text" class="form-control pull-right" id="datepicker">
+						<form action="${pageContext.request.contextPath}/doctor/prescriptionSave.do">
+							<div class="box-body">
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-3" style="width:50%;">
+										<label for="mCode">진료 코드</label>
+										<input type="text" class="form-control" id="mCode" name="mCode" value="${ M_Code }">
 									</div>
-										<!-- /.input group -->
-								</div>
-								<div class="col-xs-4">
-									<div class="form-group">
-										<label>
-											입원 여부
-											<div class="iradio_flat-green checked" aria-checked="true" aria-disabled="false" style="position: relative;">
-												<input type="radio" name="r3" class="flat-red" checked="" style="position: absolute; opacity: 0;">
-												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-											</div>
-										</label>
-										<label>
-											<div class="iradio_flat-green" aria-checked="false" aria-disabled="false" style="position: relative;">
-												<input type="radio" name="r3" class="flat-red" style="position: absolute; opacity: 0;">
-												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-											</div>
-										</label>
+									<div class="col-xs-3" style="width:50%;">
+										<label for="mDate">진료일</label>
+										<input type="date" class="form-control" name="mDate">
 									</div>
 								</div>
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-3" style="width:50%;">
+										<label for="pNo">환자 번호</label>
+										<input type="number" class="form-control" id="pNo" name="pNo" value="${ pNo }">
+									</div>
+									<div class="col-xs-4" style="width:50%;">
+										<label for="pName">환자 이름</label>
+										<input type="text" class="form-control" id="pName" name="pName" value="${ pName }">
+									</div>
+								</div>
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-4" style="width:50%;">
+										<label for="empName">담당 의사</label>
+										<input type="hidden" name=empNo value="${ member.empNo }" />
+										<input type="text" class="form-control" id="empName" name="empName" value="${ member.empName }">
+									</div>
+									<div class="col-xs-4" style="width:50%;">
+										<label for="admission">입원 여부</label>
+										<select class="form-control" id="admission" name="admission">
+											<option>-----</option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</div>
+								</div>
+								<div class="box-body table-responsive no-padding" style="height:400px;margin-top:20px;">
+									<table class="table table-bordered" id="mHistory">
+										<tbody>
+											<tr>
+												<th style="text-align:center;">약품 코드</th>
+												<th style="text-align:center;">약품 명</th>
+												<th style="text-align:center;">1회 투약량</th>
+												<th style="text-align:center;">1일 투여횟수</th>
+												<th style="text-align:center;">총 투약 일수</th>
+												<th style="text-align:center;">용법</th>
+											</tr>
+											<tr class="item1">
+												<td style="width:120px;">
+													<select class="form-control medCode">
+														<option>-</option>
+														<c:forEach var="med" items="${ medList }">
+															<option value="${ med.medName }">${ med.medCode }</option>
+														</c:forEach>
+														<input type="hidden" class="selectCode" name="medCode" />
+													</select>
+												</td>
+												<td style="width:120px;">
+													<input style="text-align:center;" type="text" class="form-control medName" name="medName" style="border:none;">
+												</td>
+												<td style="width:100px;">
+													<select class="form-control" name="oneDose">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+													</select>
+												</td>
+												<td style="width:100px;">
+													<select class="form-control" name="oneDayDose">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+													</select>
+												</td>
+												<td style="width:100px;">
+													<select class="form-control" name="totalDose">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+													</select>
+												</td>
+												<td>
+													<textarea class="form-control" rows="1" name="etc"></textarea>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div style="text-align:right; margin-top:10px;">
+										<button type="button" class="btn btn-default" id="addRow">+</button>
+									</div>
+								</div>
+								<div class="box-footer" style="text-align:right;">
+									<button style="margin-right:20px;" type="submit" class="btn btn-default">취소</button>
+									<button type="submit" class="btn btn-info">완료</button>
+								</div>
 							</div>
-						</div>
-						<!-- /.box-body -->
+						</form>
 					</div>
 				</div>
 				<!-- /.row (main row) -->
@@ -93,9 +157,33 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
-		$('#pNo').on('change',function(){
-			$('#pName').val($(this).val());
+		$('.medCode').each(function(){
+			$(this).on('change',function(e){
+				var obj = $(this);
+			// select < td < tr ~~~~~ > input:medName
+				obj.parent().parent().find('.medName').val(obj.val());
+			 	
+				obj.parent().parent().find('.selectCode').val(obj.children('option:selected').text());
+			});
 		});
+		
+		$(function() {
+			$('#addRow').click(function() {
+				var lastItemNo = $("#mHistory tr:last").attr("class").replace("item", "");
+				 
+	            var newitem = $("#mHistory tr:eq(1)").clone(true);
+	            newitem.removeClass();
+	            newitem.find("td:eq(0)").attr("rowspan", "1");
+	            newitem.addClass("item"+(parseInt(lastItemNo)+1));
+
+	            $("#mHistory").append(newitem);
+			});
+		});
+		
+	    //Date picker
+	    $('#datepicker').datepicker({
+	    	autoclose: true
+	    })
 		
 		$(function() {
 	

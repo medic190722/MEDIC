@@ -45,7 +45,7 @@
 							console.log(empNo);
 
 							//location.href = "${pageContext.request.contextPath}/empsal/empsalOne.do?empNo="+ empNo;
-							location.href = "${pageContext.request.contextPath}/member/updateMember.do";
+							location.href = "${pageContext.request.contextPath}/member/updateMember.do?empNo=" + empNo;
 						});
 	});
 </script>

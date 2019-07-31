@@ -127,7 +127,7 @@ public class PatientController {
 		 Patient patient = new Patient();
 	 
 		 patient = patientService.selectPatient(p_no);
-		 
+		 System.out.println("수정할 환자 번호 : " + patient);
 		 String loc = "";
 		 
 		 if(patient != null) { 
@@ -234,6 +234,34 @@ public class PatientController {
 		 return "common/msg";
 		 
 	 }
+	 
+	// 병실환자 조회
+	 @RequestMapping("/patient/wardView.do")
+	 public String wardView(@RequestParam int ward_code, Model model) {
+	  
+		 	List<Patient> patientList = new ArrayList<>();
+		 	
+		 	patientList = patientService.selectWardPatientList(ward_code);
+	  
+		 	for(Patient p : patientList) {
+		 		System.out.println("입원환자 조회 : " + p);
+		 	}
+		 	System.out.println();
+		 	
+		 	String loc = "/";
+	  
+		 	if(patientList != null) {
+		 		loc = "patient/wardPatientList";
+		 	} else {
+		 		loc = "/patient/wardList.do";
+		 	}
+		 	
+		 	model.addAttribute("patientList", patientList);
+		 	
+		 	return loc;
+	
+	 }
+	 
 	 
 	/*
 	 * @RequestMapping("/patient/updatePatientView1.do") public String

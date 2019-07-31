@@ -137,21 +137,24 @@ public class MemberController {
       return "index";
    }
    
-   @RequestMapping("/member/updateMember.do")
-   public String updateMember() {
-      
-      return "/member/updateMember";
-   }
+
    
-   @RequestMapping("/member/memberView.do")
-	public ModelAndView memberView(@RequestParam int empNo) {
+   @RequestMapping("/member/updateMember.do")
+	public String  memberView(@RequestParam int empNo, Model model) {
 
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("member", memberService.selectMember(empNo));
 		
-		mv.setViewName("member/memberView");
+		Member member = new Member();
 		
-		return mv;
+		member = memberService.selectMember(empNo);
+		
+		System.out.println("업데이트 멤버 확인 : " + member);
+		
+		model.addAttribute("member", member);
+		
+		
+		
+		return "member/updateMember";
 	}
 	
    @RequestMapping("/member/memberList.do")
@@ -195,5 +198,6 @@ public class MemberController {
 		return "member/memberList";
 		
 	}
+	
    
 }

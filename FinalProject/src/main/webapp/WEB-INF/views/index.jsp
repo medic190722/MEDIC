@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Medic</title>
-  <c:import url="common/header.jsp"/>
+  <c:import url="common/idxHeader.jsp"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -206,10 +206,8 @@
         </section>
         <!-- /.Left col -->
 
-		<div class="col-md-1"></div>        
-        
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-md-6 connectedSortable">
+        <section class="col-md-8">
 
           <div class="box box-primary">
             <div class="box-body no-padding">
@@ -222,7 +220,6 @@
 
         </section>
         <!-- right col -->
-      	<div class="col-md-1"></div>        
         
       </div>
       <!-- /.row (main row) -->
@@ -235,10 +232,10 @@
  <c:import url="common/sidebar.jsp"/>
 </div>
 <!-- ./wrapper -->
-<c:import url="common/scripts.jsp"/>
+<c:import url="common/idxScripts.jsp"/>
 
 <script>
-$(function () {
+  $(function () {
 
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -263,7 +260,7 @@ $(function () {
 
       })
     }
-
+    
     init_events($('#external-events div.external-event'))
 
     /* initialize the calendar
@@ -275,57 +272,59 @@ $(function () {
         y    = date.getFullYear()
     $('#calendar').fullCalendar({
       locale:'ko',
+      eventLimit : true,
+      selectable : true,
       header    : {
         left  : 'prev,next today',
         center: 'title',
-        right : 'month,agendaWeek,agendaDay'
-      },
-      buttonText: {
-        today: 'today',
-        month: 'month',
-        week : 'week',
-        day  : 'day'
+        right : 'month'
       },
       //Random default events
       events    : [
+   	  	{
+          title          : 'asdf',
+          start          : new Date(y, m, d),
+          backgroundColor: '#f56954', //red
+          borderColor    : '#f56954' //red
+       	},
         {
-          title          : 'All Day Event',
+          title          : '종일',
           start          : new Date(y, m, 1),
           backgroundColor: '#f56954', //red
           borderColor    : '#f56954' //red
         },
         {
-          title          : 'Long Event',
+          title          : '긴',
           start          : new Date(y, m, d - 5),
           end            : new Date(y, m, d - 2),
           backgroundColor: '#f39c12', //yellow
           borderColor    : '#f39c12' //yellow
         },
         {
-          title          : 'Meeting',
-          start          : new Date(y, m, d, 10, 30),
+          title          : '회의',
+          start          : new Date(y, m, d),
           allDay         : false,
           backgroundColor: '#0073b7', //Blue
           borderColor    : '#0073b7' //Blue
         },
         {
-          title          : 'Lunch',
-          start          : new Date(y, m, d, 12, 0),
-          end            : new Date(y, m, d, 14, 0),
+          title          : '점심',
+          start          : new Date(y, m, d),
+          end            : new Date(y, m, d),
           allDay         : false,
           backgroundColor: '#00c0ef', //Info (aqua)
           borderColor    : '#00c0ef' //Info (aqua)
         },
         {
-          title          : 'Birthday Party',
-          start          : new Date(y, m, d + 1, 19, 0),
-          end            : new Date(y, m, d + 1, 22, 30),
+          title          : '생일 Party',
+          start          : new Date(y, m, d + 1),
+          end            : new Date(y, m, d + 1),
           allDay         : false,
           backgroundColor: '#00a65a', //Success (green)
           borderColor    : '#00a65a' //Success (green)
         },
         {
-          title          : 'Click for Google',
+          title          : '구글로',
           start          : new Date(y, m, 28),
           end            : new Date(y, m, 29),
           url            : 'http://google.com/',
@@ -397,7 +396,7 @@ $(function () {
       //Remove event from text input
       $('#new-event').val('')
     })
-  });
+  })
 </script>
 </body>
 </html>

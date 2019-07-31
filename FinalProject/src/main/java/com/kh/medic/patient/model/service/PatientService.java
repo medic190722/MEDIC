@@ -60,5 +60,14 @@ public interface PatientService {
 	 * @return
 	 */
 	List<Ward> selectWard();
+
+	/**
+	 * 병동 입원환자 조회용 메소드
+	 * @param ward_code
+	 * @return
+	 */
+	List<Patient> selectWardPatientList(int ward_code);
+	
+	
 	
 }

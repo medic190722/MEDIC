@@ -6,6 +6,7 @@
 	<resultMap type="vacation" id="vacationMap">
 		<result property="vCode" column="v_code" />
 		<result property="vDate" column="v_date" />
+		<result property="vDateEnd" column="v_dateend" />
 		<result property="vContent" column="v_Content" />
 		<result property="empNo" column="emp_no" />
 		<result property="empName" column="emp_name" />
@@ -58,7 +59,7 @@
 	
 	<insert id="insertVacation">
 		INSERT INTO VACATION 
-		VALUES(#{vCode},#{vDate},#{vContent},#{empNo},DEFAULT)
+		VALUES(#{vCode},#{vDate},#{vDateEnd},#{vContent},#{empNo},DEFAULT)
 	</insert>
 
 

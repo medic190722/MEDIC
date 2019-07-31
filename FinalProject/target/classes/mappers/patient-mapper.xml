@@ -32,6 +32,10 @@
 			ORDER BY W.WARD_CODE
 	</select>
 		
+	<select id="selectWardPatient" parameterType="_int" resultMap="resultPatient">
+		SELECT * FROM PATIENT WHERE WARD_CODE = #{ward_code}
+	</select>
+	
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
 			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 

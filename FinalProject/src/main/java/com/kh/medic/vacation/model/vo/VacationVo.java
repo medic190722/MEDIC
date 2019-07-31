@@ -7,6 +7,7 @@ public class VacationVo implements Serializable{
 
 	private String vCode;
 	private Date vDate;
+	private Date vDateEnd;
 	private String vContent;
 	private String empName;
 	private String vYn;
@@ -15,10 +16,11 @@ public class VacationVo implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public VacationVo(String vCode, Date vDate, String vContent, String empName, String vYn, int empNo) {
+	public VacationVo(String vCode, Date vDate, Date vDateEnd, String vContent, String empName, String vYn, int empNo) {
 		super();
 		this.vCode = vCode;
 		this.vDate = vDate;
+		this.vDateEnd = vDateEnd;
 		this.vContent = vContent;
 		this.empName = empName;
 		this.vYn = vYn;
@@ -35,6 +37,12 @@ public class VacationVo implements Serializable{
 	}
 	public void setvDate(Date vDate) {
 		this.vDate = vDate;
+	}
+	public Date getvDateEnd() {
+		return vDateEnd;
+	}
+	public void setvDateEnd(Date vDateEnd) {
+		this.vDateEnd = vDateEnd;
 	}
 	public String getvContent() {
 		return vContent;
@@ -62,9 +70,10 @@ public class VacationVo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "VacationVo [vCode=" + vCode + ", vDate=" + vDate + ", vContent=" + vContent + ", empName=" + empName
-				+ ", vYn=" + vYn + ", empNo=" + empNo + "]";
+		return "VacationVo [vCode=" + vCode + ", vDate=" + vDate + ", vDateEnd=" + vDateEnd + ", vContent=" + vContent
+				+ ", empName=" + empName + ", vYn=" + vYn + ", empNo=" + empNo + "]";
 	}
+	
 	
 	
 	

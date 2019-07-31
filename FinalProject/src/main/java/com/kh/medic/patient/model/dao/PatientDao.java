@@ -59,5 +59,12 @@ public interface PatientDao {
 	 * @return
 	 */
 	List<Ward> selectWard();
+
+	/**
+	 * 병실 환자 조회용 메소드
+	 * @param ward_code
+	 * @return
+	 */
+	List<Patient> selectWardPatientList(int ward_code);
 	
 }
