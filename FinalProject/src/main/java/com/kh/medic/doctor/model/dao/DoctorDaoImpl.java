@@ -43,5 +43,26 @@ public class DoctorDaoImpl implements DoctorDao {
 		session.insert("Doctor.medicalSave", medical);
 		
 	}
+	
+	@Override
+	public void admissionY() {
+		
+		session.update("Doctor.admissionY");
+		
+	}
+	
+	@Override
+	public void insertACC(Medical medical) {
+		
+		session.insert("Doctor.insertACC", medical);
+		
+	}
+	
+	@Override
+	public void medicalY() {
+		
+		session.update("Doctor.medicalY");
+		
+	}
 
 }

@@ -43,5 +43,26 @@ public class DoctorServiceImpl implements DoctorService {
 		drDao.medicalSave(medical);
 		
 	}
+	
+	@Override
+	public void admissionY() {
+		
+		drDao.admissionY();
+		
+	}
+	
+	@Override
+	public void insertACC(Medical medical) {
+		
+		drDao.insertACC(medical);
+		
+	}
+	
+	@Override
+	public void medicalY() {
+		
+		drDao.medicalY();
+		
+	}
 
 }

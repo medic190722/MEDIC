@@ -86,7 +86,7 @@
       	<div style="display:inline-block; width:100px; text-align:center"><label for="">입원일자</label></div>
       	<div style="display:inline-block">
         	<!-- <input type="date" name="p_admission_date" id="p_admission_date" style="width:300px;"> -->
-        	<input type="date" id="p_admission_date" name="p_admission_date" style="width:200px;">
+        	<input type="date" id="admission_date" name="admission_date" style="width:200px;">
         </div>
       </div>
      
@@ -106,7 +106,7 @@
   </div>
   
    <script>
-     document.getElementById('p_admission_date').value= new Date().toISOString().slice(0, 10);
+     document.getElementById('admission_date').value= new Date().toISOString().slice(0, 10);
    </script>
   <!-- /.content-wrapper -->
  <c:import url="../common/footer.jsp"/>

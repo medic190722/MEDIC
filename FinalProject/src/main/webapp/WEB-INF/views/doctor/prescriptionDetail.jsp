@@ -35,7 +35,7 @@
 									</div>
 									<div class="col-xs-3" style="width:50%;">
 										<label for="mDate">진료일</label>
-										<input type="date" class="form-control" name="mDate">
+										<input type="date" class="form-control" id="mDate" name="mDate">
 									</div>
 								</div>
 								<div class="row" style="margin-top:20px;">
@@ -57,9 +57,8 @@
 									<div class="col-xs-4" style="width:50%;">
 										<label for="admission">입원 여부</label>
 										<select class="form-control" id="admission" name="admission">
-											<option>-----</option>
-											<option value="Y">Y</option>
 											<option value="N">N</option>
+											<option value="Y">Y</option>
 										</select>
 									</div>
 								</div>
@@ -137,7 +136,7 @@
 									</div>
 								</div>
 								<div class="box-footer" style="text-align:right;">
-									<button style="margin-right:20px;" type="submit" class="btn btn-default">취소</button>
+									<button style="margin-right:20px;" type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do'" class="btn btn-default">취소</button>
 									<button type="submit" class="btn btn-info">완료</button>
 								</div>
 							</div>
@@ -157,6 +156,8 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
+		$('#mDate').datepicker('setDate', 'today');
+		
 		$('.medCode').each(function(){
 			$(this).on('change',function(e){
 				var obj = $(this);

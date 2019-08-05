@@ -10,6 +10,8 @@
 	<typeAliases>
 		<typeAlias type="com.kh.medic.patient.model.vo.Patient" alias="Patient" />
 		<typeAlias type="com.kh.medic.patient.model.vo.Ward" alias="Ward" />
+		<typeAlias type="com.kh.medic.patient.model.vo.Admission" alias="Admission" />
+		<typeAlias type="com.kh.medic.acceptance.model.vo.Acceptance" alias="Acceptance" />
 		<typeAlias type="com.kh.medic.member.model.vo.Member" alias="Member" />
 		<typeAlias type="com.kh.medic.notice.model.vo.Notice" alias="Notice" />
 		<typeAlias type="com.kh.medic.medicine.model.vo.MedicineVo" alias="medicine" />

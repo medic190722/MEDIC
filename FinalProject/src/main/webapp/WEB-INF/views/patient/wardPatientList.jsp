@@ -34,7 +34,7 @@
 	      			<th style="text-align:center">환자이름</th>
 	      			<th style="text-align:center">환자나이</th>
 	      			<th style="text-align:center">성별</th>
-	      			<th style="width:240px; text-align:center">입원일</th>
+	      			<th style="text-align:center">입원일</th>
 	      			<!-- <th style="width:131px; text-align:center">정보수정</th> -->
 	      		</tr>
 	      		<c:forEach items="${patientList}" var="p">	      			
@@ -42,17 +42,7 @@
 	      				<td id="${p.p_name}">${p.p_name}</td>
 	      				<td id="${p.p_age}">${p.p_age}</td>
 	      				<td id="${p.p_gender}">${p.p_gender=='M'?'남':'여'}</td>
-	      				<td id="${p.p_admission_date}">${p.p_admission_date}</td>
-	      				<%-- <td> 
-	      					<input type="submit" class="btn btn-primary btn-sm" id="outEnrollPatient" value="외래접수" 
-	      						onclick="location.href='${pageContext.request.contextPath}/patient/outPatientReceipt.do?p_name=${p.p_name}&p_no=${p.p_no}'"/>
-	      					<input type="submit" class="btn btn-primary btn-sm" id="inEnrollPatient" value="입원접수"
-	      						onclick="location.href='${pageContext.request.contextPath}/patient/inPatient.do?p_name=${p.p_name}&p_no=${p.p_no}'" />
-	      				</td>
-	      				<td>
-	      					<input type="submit" class="btn btn-primary btn-sm"  id="updatePatient" value="정보수정"
-	      						onclick="location.href='${pageContext.request.contextPath}/patient/updatePatientView.do?p_no=${p.p_no}'" />
-	      				</td> --%>
+	      				<td id="${p.admission_date}">${p.admission_date}</td>
 	      			</tr>
 	      		</c:forEach>
 	      	</table>

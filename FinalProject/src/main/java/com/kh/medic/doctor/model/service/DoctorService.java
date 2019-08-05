@@ -15,5 +15,11 @@ public interface DoctorService {
 	public String medicalCode();
 
 	public void medicalSave(Medical medical);
+
+	public void admissionY();
+
+	public void insertACC(Medical medical);
+
+	public void medicalY();
 	
 }

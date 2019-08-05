@@ -57,7 +57,7 @@ public class DoctorController {
 			@RequestParam("mDate") Date mDate,
 			@RequestParam("pNo") int pNo,
 			@RequestParam("pName") String pName,
-			@RequestParam("empNo") String empNo,
+			@RequestParam("empNo") int empNo,
 			@RequestParam("empName") String empName,
 			@RequestParam("admission") String admission,
 			@RequestParam("medCode") String medCode,
@@ -86,13 +86,26 @@ public class DoctorController {
 			}
 		}
 		
-		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory, admission);
-		
+		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory);
+
+		if(admission == "Y") {
+			drService.admissionY();
+		}
+
 		drService.medicalSave(medical);
+		
+		drService.medicalY();
+		drService.insertACC(medical);
 		
 		return "index";
 		
 	}
 	
+	@RequestMapping("/doctor/certificate.do")
+	public String certificate() {
+		
+		return "doctor/certificate";
+		
+	}
 	
 }

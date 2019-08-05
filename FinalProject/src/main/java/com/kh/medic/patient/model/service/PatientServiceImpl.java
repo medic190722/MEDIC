@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.medic.patient.model.dao.PatientDao;
+import com.kh.medic.patient.model.vo.Admission;
 import com.kh.medic.patient.model.vo.Patient;
 import com.kh.medic.patient.model.vo.Ward;
 
@@ -58,6 +59,11 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public List<Patient> selectWardPatientList(int ward_code) {
 		return patientDao.selectWardPatientList(ward_code);
+	}
+
+	@Override
+	public int insertAdmission(Admission admission) {
+		return patientDao.insertAdmission(admission);
 	}
 
 

@@ -162,7 +162,7 @@
             		<li style="color:#fff;"><a href="${pageContext.request.contextPath}/patient/outPatientReceipt.do"><i class="fa fa-circle-o"> 외래접수</i></a></li>
             	</ul> --%>
             </li>
-            <li  class="treeview"><a href="#"><i class="fa fa-circle-o"></i> 수납</a>
+            <li><a href="${pageContext.request.contextPath}/acceptance/acceptanceSearch.do"><i class="fa fa-circle-o"></i> 수납</a>
             	<!-- <ul class="treeview-menu">
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 입원수납</i></a></li>
             		<li style="color:#fff;"><a href="#"><i class="fa fa-circle-o"> 외래수납</i></a></li>

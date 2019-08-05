@@ -17,34 +17,41 @@
 	</select>
 	
 	<select id="selectWardList" resultType="Ward">
-		SELECT W.*, COUNT(P.WARD_CODE) CUR_CAPACITY
-			FROM PATIENT P
-			RIGHT JOIN WARD W ON(W.WARD_CODE = P.WARD_CODE)
-			GROUP BY P.WARD_CODE, W.WARD_CODE, W.CAPACITY
+		SELECT W.*, COUNT(A.WARD_CODE) CUR_CAPACITY
+			FROM ADMISSION A
+			RIGHT JOIN WARD W ON(W.WARD_CODE = A.WARD_CODE)
+			GROUP BY A.WARD_CODE, W.WARD_CODE, W.CAPACITY
 			ORDER BY W.WARD_CODE
 	</select>
 	
 	<select id="selectWard" resultType="Ward">
-		SELECT W.*, W.CAPACITY-COUNT(P.WARD_CODE) AVAILABLE_CAPACITY
-			FROM PATIENT P
-			RIGHT JOIN WARD W ON(W.WARD_CODE = P.WARD_CODE)
-			GROUP BY P.WARD_CODE, W.WARD_CODE, W.CAPACITY
+		SELECT W.*, W.CAPACITY-COUNT(A.WARD_CODE) AVAILABLE_CAPACITY
+			FROM ADMISSION A
+			RIGHT JOIN WARD W ON(W.WARD_CODE = A.WARD_CODE)
+			GROUP BY A.WARD_CODE, W.WARD_CODE, W.CAPACITY
 			ORDER BY W.WARD_CODE
 	</select>
 		
 	<select id="selectWardPatient" parameterType="_int" resultMap="resultPatient">
-		SELECT * FROM PATIENT WHERE WARD_CODE = #{ward_code}
+		SELECT P.*, A.ADMISSION_DATE
+			FROM PATIENT P
+			JOIN ADMISSION A ON(P.P_NO = A.P_NO)
+			WHERE A.WARD_CODE = #{ward_code}
 	</select>
 	
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
 			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 
 			#{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, NULL,
-			NULL, NULL, #{p_rrn}, SYSDATE, SYSDATE) 
+			#{p_rrn},SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT) 
+	</insert>
+	
+	<insert id="insertAdmission" parameterType="Admission">
+		INSERT INTO ADMISSION VALUES (#{p_no}, #{ward_code}, #{admission_date})
 	</insert>
 	
 	<update id="outPatientReceipt" parameterType="_int">
-		UPDATE PATIENT SET P_LASTDATE = SYSDATE WHERE P_NO=#{p_no} 
+		UPDATE PATIENT SET P_LASTDATE = SYSDATE, P_ACC_YN = 'Y' WHERE P_NO=#{p_no} 
 	</update>
 	
 	<update id="updatePatient" parameterType="Patient">
@@ -57,7 +64,7 @@
 	
 	<update id="inPatientReceipt" parameterType="Patient">
 		UPDATE PATIENT SET
-			P_ADMISSION_DATE = #{p_admission_date}, WARD_CODE = #{ward_code} 
+			P_ADMISSION_YN = 'Y', P_ACC_YN = 'Y'
 		WHERE P_NO = #{p_no}
 	</update>
 	

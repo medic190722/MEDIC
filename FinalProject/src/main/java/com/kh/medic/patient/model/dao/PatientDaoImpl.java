@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.medic.patient.model.vo.Admission;
 import com.kh.medic.patient.model.vo.Patient;
 import com.kh.medic.patient.model.vo.Ward;
 
@@ -58,6 +59,11 @@ public class PatientDaoImpl implements PatientDao {
 	@Override
 	public List<Patient> selectWardPatientList(int ward_code) {
 		return sqlSession.selectList("patient.selectWardPatient", ward_code);
+	}
+
+	@Override
+	public int insertAdmission(Admission admission) {
+		return sqlSession.insert("patient.insertAdmission",admission);
 	}
 
 }

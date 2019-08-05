@@ -12,7 +12,6 @@
 		<result property="empNo" column="EMP_NO"/>
 		<result property="empName" column="EMP_NAME"/>
 		<result property="mHistory" column="M_HISTORY"/>
-		<result property="pAdmissionYN" column="P_ADMISSION_YN"/>
 	</resultMap>
 	
 	<resultMap id="medicineMap" type="medicine">
@@ -22,7 +21,7 @@
 	</resultMap>
 	
 	<select id="patientList" resultType="Patient">
-		SELECT * FROM PATIENT ORDER BY P_NO ASC
+		SELECT * FROM PATIENT WHERE P_ACC_YN = 'Y' AND P_MEDICAL_YN = 'N' ORDER BY P_NO ASC
 	</select>
 	
 	<select id="medicineList" resultMap="medicineMap">
@@ -34,7 +33,19 @@
 	</select>
 	
 	<insert id="medicalSave" parameterType="Medical">
-		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{pNo}, #{mDate}, #{empNo}, #{pAdmissionYN})
+		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{pNo}, #{mDate}, #{empNo})
 	</insert>
+	
+	<update id="admissionY">
+		UPDATE PATIENT SET P_ADMISSION_YN = 'Y'
+	</update>
+	
+	<insert id="insertACC" parameterType="Medical">
+		INSERT INTO ACCEPTANCE VALUES(SEQ_ACC_NO.NEXXTVAL, #{pNo}, #{mCode}, DEFAULT, DEFAULT)
+	</insert>
+	
+	<update id="medicalY">
+		UPDATE PATIENT SET P_MEDICAL_YN = 'Y'
+	</update>
 	
 </mapper>

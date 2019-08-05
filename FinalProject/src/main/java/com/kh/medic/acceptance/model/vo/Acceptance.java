@@ -2,6 +2,9 @@ package com.kh.medic.acceptance.model.vo;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Acceptance implements Serializable{
 	
 	private static final long serialVersionUID = 303L;

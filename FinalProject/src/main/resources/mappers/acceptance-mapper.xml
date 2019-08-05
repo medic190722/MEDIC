@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="acceptance">
+
+	<resultMap id="resultPatient" type="Patient">
+		<result property="p_phone" column="p_phone" typeHandler="strArrPhoneTypeHandler"/>		
+	</resultMap>
+	
+	<select id="selectPatient" parameterType="string" resultMap="resultPatient">
+		SELECT * FROM PATIENT WHERE P_NAME = #{p_name}
+	</select>
+		
+	
+	
+</mapper>

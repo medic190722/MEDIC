@@ -3,6 +3,7 @@ package com.kh.medic.patient.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.medic.patient.model.vo.Admission;
 import com.kh.medic.patient.model.vo.Patient;
 import com.kh.medic.patient.model.vo.Ward;
 
@@ -67,6 +68,13 @@ public interface PatientService {
 	 * @return
 	 */
 	List<Patient> selectWardPatientList(int ward_code);
+
+	/**
+	 * 환자 입원 등록 메소드
+	 * @param admission
+	 * @return
+	 */
+	int insertAdmission(Admission admission);
 	
 	
 	

@@ -14,15 +14,13 @@ public class Medical implements Serializable {
 	private int pNo;			// 환자 번호
 	private String pName;		// 환자 이름
 	private Date mDate;			// 진료 날짜
-	private String empNo;		// 의사 사번
+	private int empNo;		// 의사 사번
 	private String empName;		// 담당 의사
 	private String mHistory;	// 처방 내역
-	private String pAdmissionYN;	// 입원 여부
 	
 	public Medical() {}
 	
-	public Medical(String mCode, int pNo, String pName, Date mDate, String empNo, String empName, String mHistory,
-			String pAdmissionYN) {
+	public Medical(String mCode, int pNo, String pName, Date mDate, int empNo, String empName, String mHistory) {
 		this.mCode = mCode;
 		this.pNo = pNo;
 		this.pName = pName;
@@ -30,20 +28,19 @@ public class Medical implements Serializable {
 		this.empNo = empNo;
 		this.empName = empName;
 		this.mHistory = mHistory;
-		this.pAdmissionYN = pAdmissionYN;
 	}
 
 	@Override
 	public String toString() {
 		return "Medical [mCode=" + mCode + ", pNo=" + pNo + ", pName=" + pName + ", mDate=" + mDate + ", empNo=" + empNo
-				+ ", empName=" + empName + ", mHistory=" + mHistory + ", pAdmissionYN=" + pAdmissionYN + "]";
+				+ ", empName=" + empName + ", mHistory=" + mHistory + "]";
 	}
 
-	public String getEmpNo() {
+	public int getEmpNo() {
 		return empNo;
 	}
 
-	public void setEmpNo(String empNo) {
+	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
 	}
 
@@ -93,14 +90,6 @@ public class Medical implements Serializable {
 
 	public void setmHistory(String mHistory) {
 		this.mHistory = mHistory;
-	}
-
-	public String getpAdmissionYN() {
-		return pAdmissionYN;
-	}
-
-	public void setpAdmissionYN(String pAdmissionYN) {
-		this.pAdmissionYN = pAdmissionYN;
 	}
 	
 }

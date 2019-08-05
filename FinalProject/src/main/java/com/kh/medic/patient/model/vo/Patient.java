@@ -19,18 +19,20 @@ public class Patient implements Serializable{
 	private String p_rrn; 	// 환자 주민번호
 	private String p_address; // 환자 주소
 	private String[] p_phone;  // 환자 전화번호
-	private String p_admission_yn; // 입원 여부
-	private int ward_code; // 병실 번호
-	private Date p_admission_date; // 입원 날짜
-	private Date p_discharge_date; // 퇴원 날짜
 	private Date p_firstdate; 	// 초진 날짜
 	private Date p_lastdate; 	// 마지막 검진 날짜
+	private String p_acc_yn;	// 접수 여부
+	private String p_medical_yn; // 진료 여부
+	private String p_admission_yn; // 입원 여부	
+	
+	private Date admission_date; // 입원 날짜
+	private String doctor; // 담당의사
 	
 	public Patient() {}
 
-	// 외래진료 환자 접수(초진)
-	public Patient(int p_no, String p_name, int p_age, String p_gender, String p_rrn, String p_address, String[] p_phone,
-			String p_admission_yn, Date p_firstdate) {
+	public Patient(int p_no, String p_name, int p_age, String p_gender, String p_rrn, String p_address,
+			String[] p_phone, Date p_firstdate, Date p_lastdate, String p_acc_yn, String p_medical_yn,
+			String p_admission_yn) {
 		super();
 		this.p_no = p_no;
 		this.p_name = p_name;
@@ -39,53 +41,11 @@ public class Patient implements Serializable{
 		this.p_rrn = p_rrn;
 		this.p_address = p_address;
 		this.p_phone = p_phone;
-		this.p_admission_yn = p_admission_yn;
 		this.p_firstdate = p_firstdate;
-	}
-
-	// 외래진료 환자 접수(재진)
-	public Patient(int p_no, String p_name, int p_age, String p_address, String[] p_phone, String p_admission_yn,
-			Date p_lastdate) {
-		super();
-		this.p_no = p_no;
-		this.p_name = p_name;
-		this.p_age = p_age;
-		this.p_address = p_address;
-		this.p_phone = p_phone;
-		this.p_admission_yn = p_admission_yn;
 		this.p_lastdate = p_lastdate;
-	}
-
-	// 입원진료 환자 접수(초진)
-	public Patient(int p_no, String p_name, int p_age, String p_gender, String p_rrn, String p_address, String[] p_phone,
-			String p_admission_yn, int ward_code, Date p_admission_date, Date p_firstdate) {
-		super();
-		this.p_no = p_no;
-		this.p_name = p_name;
-		this.p_age = p_age;
-		this.p_gender = p_gender;
-		this.p_rrn = p_rrn;
-		this.p_address = p_address;
-		this.p_phone = p_phone;
+		this.p_acc_yn = p_acc_yn;
+		this.p_medical_yn = p_medical_yn;
 		this.p_admission_yn = p_admission_yn;
-		this.ward_code = ward_code;
-		this.p_admission_date = p_admission_date;
-		this.p_firstdate = p_firstdate;
-	}
-
-	// 입원진료 환자 접수(재진)
-	public Patient(int p_no, String p_name, int p_age, String p_address, String[] p_phone, String p_admission_yn,
-			int ward_code, Date p_admission_date, Date p_lastdate) {
-		super();
-		this.p_no = p_no;
-		this.p_name = p_name;
-		this.p_age = p_age;
-		this.p_address = p_address;
-		this.p_phone = p_phone;
-		this.p_admission_yn = p_admission_yn;
-		this.ward_code = ward_code;
-		this.p_admission_date = p_admission_date;
-		this.p_lastdate = p_lastdate;
 	}
 
 	public int getP_no() {
@@ -144,38 +104,6 @@ public class Patient implements Serializable{
 		this.p_phone = p_phone;
 	}
 
-	public String getP_admission_yn() {
-		return p_admission_yn;
-	}
-
-	public void setP_admission_yn(String p_admission_yn) {
-		this.p_admission_yn = p_admission_yn;
-	}
-
-	public int getWard_code() {
-		return ward_code;
-	}
-
-	public void setWard_code(int ward_code) {
-		this.ward_code = ward_code;
-	}
-
-	public Date getP_admission_date() {
-		return p_admission_date;
-	}
-
-	public void setP_admission_date(Date p_admission_date) {
-		this.p_admission_date = p_admission_date;
-	}
-
-	public Date getP_discharge_date() {
-		return p_discharge_date;
-	}
-
-	public void setP_discharge_date(Date p_discharge_date) {
-		this.p_discharge_date = p_discharge_date;
-	}
-
 	public Date getP_firstdate() {
 		return p_firstdate;
 	}
@@ -191,21 +119,54 @@ public class Patient implements Serializable{
 	public void setP_lastdate(Date p_lastdate) {
 		this.p_lastdate = p_lastdate;
 	}
+
+	public String getP_acc_yn() {
+		return p_acc_yn;
+	}
+
+	public void setP_acc_yn(String p_acc_yn) {
+		this.p_acc_yn = p_acc_yn;
+	}
+
+	public String getP_medical_yn() {
+		return p_medical_yn;
+	}
+
+	public void setP_medical_yn(String p_medical_yn) {
+		this.p_medical_yn = p_medical_yn;
+	}
+
+	public String getP_admission_yn() {
+		return p_admission_yn;
+	}
+
+	public void setP_admission_yn(String p_admission_yn) {
+		this.p_admission_yn = p_admission_yn;
+	}	
 	
-	/*
-	 * public String getPP_phone() { return Arrays.toString(p_phone); }
-	 */
+	public Date getAdmission_date() {
+		return admission_date;
+	}
+
+	public void setAdmission_date(Date admission_date) {
+		this.admission_date = admission_date;
+	}
+	
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
+	}
 
 	@Override
 	public String toString() {
 		return "Patient [p_no=" + p_no + ", p_name=" + p_name + ", p_age=" + p_age + ", p_gender=" + p_gender
 				+ ", p_rrn=" + p_rrn + ", p_address=" + p_address + ", p_phone=" + Arrays.toString(p_phone)
-				+ ", p_admission_yn=" + p_admission_yn + ", ward_code=" + ward_code + ", p_admission_date="
-				+ p_admission_date + ", p_discharge_date=" + p_discharge_date + ", p_firstdate=" + p_firstdate
-				+ ", p_lastdate=" + p_lastdate + "]";
+				+ ", p_firstdate=" + p_firstdate + ", p_lastdate=" + p_lastdate
+				+ ", p_acc_yn=" + p_acc_yn + ", p_medical_yn=" + p_medical_yn + ", p_admission_yn=" + p_admission_yn
+				+ "]";
 	}
 
-	
-	
-	
 }
