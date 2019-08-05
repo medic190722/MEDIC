@@ -22,4 +22,6 @@ public interface DoctorDao {
 
 	public void medicalY(int pNo);
 
+	public List<Patient> patientListAll();
+
 }

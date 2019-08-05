@@ -48,4 +48,8 @@
 		UPDATE PATIENT SET P_MEDICAL_YN = 'Y' WHERE P_NO = #{pNo}
 	</update>
 	
+	<select id="patientListAll" resultType="Patient">
+		SELECT * FROM PATIENT ORDER BY P_NO ASC
+	</select>
+	
 </mapper>

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ page import="java.util.*, com.kh.medic.member.model.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <header class="main-header">
     <!-- Logo -->
-    <a href='${pageContext.request.contextPath}/common/main.do' class="logo">
+    <a href='${pageContext.request.contextPath}/index.do' class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -25,24 +26,24 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">${member.empName}</span>
+              <span class="hidden-xs">${m.empName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                   ${member.empName} - ${member.jobTitle}
-                  <small>Member since 입사일</small>
+                   ${m.empName} - ${m.jobTitle}
+                  <small>Member since ${m.hireDate }</small>
                 </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">개인정보</a>
+                  <a href="${pageContext.request.contextPath}/member/privacyView.do?empNo=${m.empNo}" class="btn btn-default btn-flat">개인정보</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">로그아웃</a>
+                  <a href="${pageContext.request.contextPath}/member/memberLogout.do" class="btn btn-default btn-flat">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -65,11 +66,12 @@
           <img src="${pageContext.request.contextPath }/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>${member.empName}</p>
+          <p>${m.empName}</p>
           <i class="fa fa-circle text-success"></i> Online
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
+      <c:if test="${m.deptCode == 'a1'|| m.empName eq '관리자'}">
        <ul class="sidebar-menu" data-widget="tree">
         <li class="header">총무과</li>
         
@@ -83,9 +85,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="${pageContext.request.contextPath}/member/register.do"><i class="fa fa-circle-o"></i> 회원가입</a></li>
-           <li><a href="${pageContext.request.contextPath}/member/memberList.do"><i class="fa fa-circle-o"></i> 회원정보수정</a></li>
-           <li><a href="#"><i class="fa fa-circle-o"></i> 회원탈퇴</a></li>
+           <li><a href="${pageContext.request.contextPath}/member/memberList.do"><i class="fa fa-circle-o"></i> 회원정보조회</a></li>
+           <c:if test="${m.empName eq '관리자'}">
+           	<li><a href="${pageContext.request.contextPath}/member/leaveMemberList.do"><i class="fa fa-circle-o"></i> 회원탈퇴</a></li>
+           </c:if>
           </ul>
         </li>
          <li class="treeview">
@@ -142,7 +145,8 @@
        
       </ul>
       
-      
+      </c:if>
+       <c:if test="${m.deptCode == 'a2'|| m.empName eq '관리자'}">
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">원무과</li>
         
@@ -189,19 +193,20 @@
         </li>
        
       </ul>
-      
+       </c:if>
+       <c:if test="${m.deptCode == 'a3'|| m.empName eq '관리자'}">
        <ul class="sidebar-menu" data-widget="tree">
         <li class="header">의사</li>
-        
+       
         <!-- 의사 -->
           <li>
           <a href="${pageContext.request.contextPath}/doctor/prescription.do">
              <i class="fa fa-medkit"></i>
-            <span>처방전 작성</span>
+            <span>진료</span>
           </a>
           </li>
           <li>
-          <a href="#">
+          <a href="${pageContext.request.contextPath}/doctor/certificate.do">
              <i class="fa fa-pencil"></i>
             <span>진단서 작성</span>
           </a>
@@ -214,6 +219,8 @@
           </li>
   
       </ul>
+      </c:if>
+      <c:if test="${m.deptCode == 'a4'|| m.empName eq '관리자'}">
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">간호사</li>
         
@@ -238,6 +245,7 @@
           </li>
   
       </ul>
+      </c:if>
       <ul class="sidebar-menu" data-widget="tree">
         <!-- 공통 -->
         <li>

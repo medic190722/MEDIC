@@ -20,7 +20,7 @@ import com.kh.medic.member.model.vo.Member;
 import com.kh.medic.common.util.Utils;
 import com.kh.medic.member.model.exception.MemberException;
 
-@SessionAttributes(value= {"member"})
+@SessionAttributes(value= {"m"})
 @Controller
 public class MemberController {
    
@@ -38,33 +38,33 @@ public class MemberController {
 
    
    @RequestMapping("/member/memberEnrollEnd.do")
-   public String memberEnrollEnd(Member member, Model model) {
+   public String memberEnrollEnd(Member m, Model model) {
       
       // 암호화 로직 - spring security
       // - sha 방식 (5버전 때 부터는 보안 문제로 삭제되었음)
       // - bcrypt 방식
       
-      System.out.println("member 확인 : " + member);
+      System.out.println("member 확인 : " + m);
 
       
-      member.setEmpPwd(member.getEmpRrn().substring(0,6));
-      System.out.println("비밀번호 변경 확인 : " + member.getEmpPwd());
+      m.setEmpPwd(m.getEmpRrn().substring(0,6));
+      System.out.println("비밀번호 변경 확인 : " + m.getEmpPwd());
       
-      String rawPassword = member.getEmpPwd();
+      String rawPassword = m.getEmpPwd();
       System.out.println("암호화 전 :" + rawPassword);
-      member.setEmpPwd(bcryptPasswordEncoder.encode(rawPassword));
-      System.out.println("암호화 후 :" + member.getEmpPwd());
+      m.setEmpPwd(bcryptPasswordEncoder.encode(rawPassword));
+      System.out.println("암호화 후 :" + m.getEmpPwd());
       // 1. 비즈니스 로직 실행
-      int result = memberService.insertMember(member);
+      int result = memberService.insertMember(m);
       
       
       // 2. 실행 결과에 따른 화면 처리
-      String loc = "/";
+      String loc = "/member/memberList.do";
       String msg = "";
       
       if(result > 0 ) { msg = "회원가입 성공!";
          
-         loc="/member/register.do";
+         loc="/member/memberList.do";
          /*
           * if(result1>0) { System.out.println("수정된 비밀번호 : " + member.getEmpPwd()); }
           */
@@ -106,7 +106,7 @@ public class MemberController {
             
             if(bcryptPasswordEncoder.matches(empPwd, m.getEmpPwd())) {
                msg = "로그인 성공!";
-               mv.addObject("member", m);
+               mv.addObject("m", m);
                mv.addObject("loc", loc);
             }else {
                msg = "비밀번호가 일치하지 않습니다.";
@@ -140,23 +140,87 @@ public class MemberController {
 
    
    @RequestMapping("/member/updateMember.do")
-	public String  memberView(@RequestParam int empNo, Model model) {
+	public ModelAndView  updateMember( Member member, Model model) {
 
+	   ModelAndView mv = new ModelAndView();
+	   
+	   System.out.println("업데이트 멤버 값 확인 : " + member);
+		
+		// 1. 비즈니스 로직 실행
+		int result = memberService.updateMember(member);
+		
+		// 2. 처리 결과에 따른 화면 설정
+		String loc = "/member/memberList.do";
+		String msg = "";
+		
+		if(result > 0) {
+			msg ="회원 정보 수정 성공";
+			mv.addObject("member", member);
+			}else {
+				msg = "회원정보 수정 실패";
+			}
+		
+		mv.addObject("loc", loc);
+		mv.addObject("msg", msg);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	
+	}
+   
+   @RequestMapping("/member/memberView.do")
+	public ModelAndView memberView(@RequestParam int empNo) {
+		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("member", memberService.selectMember(empNo));
 		
-		Member member = new Member();
+		mv.setViewName("member/updateMember");
 		
-		member = memberService.selectMember(empNo);
-		
-		System.out.println("업데이트 멤버 확인 : " + member);
-		
-		model.addAttribute("member", member);
-		
-		
-		
-		return "member/updateMember";
+		return mv;
 	}
 	
+   @RequestMapping("/member/privacyView.do")
+	public ModelAndView privacyView(@RequestParam int empNo) {
+	   ModelAndView mv = new ModelAndView();
+		mv.addObject("member", memberService.selectMember(empNo));
+		
+		mv.setViewName("member/privacy");
+		
+		return mv;
+	   
+   }
+	
+   @RequestMapping("/member/updatePrivacy.do")
+   public ModelAndView  updatePrivacy( Member member, Model model) {
+
+	   ModelAndView mv = new ModelAndView();
+	   
+	   System.out.println("업데이트 멤버 전 확인 : " + member);
+	   String rawPassword = member.getEmpPwd();
+	      System.out.println("암호화 전 :" + rawPassword);
+	      member.setEmpPwd(bcryptPasswordEncoder.encode(rawPassword));
+	      System.out.println("암호화 후 :" + member.getEmpPwd());
+		// 1. 비즈니스 로직 실행
+		int result = memberService.updatePrivacy(member);
+		System.out.println("업데이트 멤버 후 확인 : " + member);
+		// 2. 처리 결과에 따른 화면 설정
+		String loc = "/index.do";
+		String msg = "";
+		
+		if(result > 0) {
+			msg ="회원 정보 수정 성공";
+			mv.addObject("member", member);
+			}else {
+				msg = "회원정보 수정 실패";
+			}
+		
+		mv.addObject("loc", loc);
+		mv.addObject("msg", msg);
+		mv.setViewName("common/msg");
+		
+		return mv; 
+	}
    @RequestMapping("/member/memberList.do")
 	public String selectMemberList(@RequestParam(value="cPage",required=false, defaultValue="1") int cPage,
 			Model model) {
@@ -177,7 +241,26 @@ public class MemberController {
 		
 	}
    
-// 환자 접수를 위해 환자 이름으로 검색하여 환자 조회
+   @RequestMapping("/member/leaveMemberList.do")
+	public String leaveMemberList(@RequestParam(value="cPage",required=false, defaultValue="1") int cPage,
+			Model model) {
+		
+		int limit=10;
+		
+		ArrayList<Map<String,String>> list=new ArrayList<>(memberService.leaveMemverList(cPage, limit));
+		
+		int totalContents= memberService.leaveMemberTotalContents();
+		
+		String pageBar= Utils.getPageBar(totalContents, cPage, limit, "leaveMemberList.do");
+		
+		model.addAttribute("list", list).addAttribute("totalContents", totalContents).addAttribute("numPerPage", limit)
+		.addAttribute("pageBar", pageBar);
+		
+		return "member/leaveMemberList";
+		
+		
+	}
+  
 	@RequestMapping("/member/searchMember.do")
 	public String searchMember(@RequestParam String e_name, SessionStatus sessionStatus, Model model) {
 		
@@ -199,5 +282,40 @@ public class MemberController {
 		
 	}
 	
-   
+	
+	
+	@RequestMapping("/member/memberLogout.do")
+	public String memberLogout(SessionStatus sessionStatus) {
+		
+		// sesstionStatus : 현재 연결되어 있는 세션의 상태를 관리하는 객체
+		System.out.println("session 상태 확인:" + sessionStatus.isComplete());
+		
+		if(!sessionStatus.isComplete()) {
+			sessionStatus.setComplete();
+		}
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/member/memberDelete.do")
+	public String memberDelete(@RequestParam int empNo, Model model) {
+		
+		System.out.println("empNo확인" + empNo);
+		
+		int result = memberService.deleteMember(empNo);
+	
+		// 2. 처리 결과에 따른 페이지 설정
+		String loc = "/member/leaveMemberList.do";
+		String msg = "";
+		
+		if(result > 0 ) msg = "회원 탈퇴 성공!";
+		else msg = "회원 탈퇴 실패!";
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+	}
+	
+	
 }

@@ -43,9 +43,15 @@
 									.text();
 
 							console.log(empNo);
-
+							var result = confirm('회원을 탈퇴 시키겠습니까?');
+							
+							if(result){
+								location.href = "${pageContext.request.contextPath}/member/memberDelete.do?empNo=" + empNo;	
+							}else{
+								location.href = "${pageContext.request.contextPath}/member/leaveMemberList.do";
+							}; 
 							//location.href = "${pageContext.request.contextPath}/empsal/empsalOne.do?empNo="+ empNo;
-							location.href = "${pageContext.request.contextPath}/member/memberView.do?empNo=" + empNo;
+							/* location.href = "${pageContext.request.contextPath}/member/memberDelete.do?empNo=" + empNo; */
 						});
 	});
 	

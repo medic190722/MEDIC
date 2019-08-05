@@ -13,4 +13,11 @@ public interface AcceptanceDao {
 	 */
 	List<Patient> selectPatient(String p_name);
 
+	/**
+	 * 납부환자 한 명 조회용 메소드
+	 * @param p_no
+	 * @return
+	 */
+	Patient selectPayPatient(int p_no);
+
 }

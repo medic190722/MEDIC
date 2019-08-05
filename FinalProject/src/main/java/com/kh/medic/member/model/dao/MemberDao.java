@@ -56,4 +56,7 @@ public interface MemberDao {
 	int selectMemberTotalContents();
 	
 	List<Member> selectSearchMember(String e_name);
+	int updatePrivacy(Member member);
+	List<Map<String, String>> leaveMemverList(int cPage, int limit);
+	int leaveMemberTotalContents();
 }

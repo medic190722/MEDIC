@@ -64,5 +64,12 @@ public class DoctorServiceImpl implements DoctorService {
 		drDao.medicalY(pNo);
 		
 	}
+	
+	@Override
+	public List<Patient> patientListAll() {
+		
+		return drDao.patientListAll();
+		
+	}
 
 }

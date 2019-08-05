@@ -18,6 +18,11 @@ public class AcceptanceServiceImpl implements AcceptanceService {
 	public List<Patient> selectPatient(String p_name) {
 		return acceptanceDao.selectPatient(p_name);
 	}
+
+	@Override
+	public Patient selectPayPatient(int p_no) {
+		return acceptanceDao.selectPayPatient(p_no);
+	}
 	
 	
 }

@@ -34,7 +34,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int deleteMember(int empNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("member.deleteMember",empNo);
 	}
 
 	@Override
@@ -66,6 +66,24 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Member> selectSearchMember(String e_name) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.selectSearchMember",e_name);
+	}
+
+	@Override
+	public int updatePrivacy(Member member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("member.updatePrivacy",member);
+	}
+
+	@Override
+	public List<Map<String, String>> leaveMemverList(int cPage, int limit) {
+		RowBounds rows=new RowBounds((cPage-1)*limit,limit);
+		return sqlSession.selectList("member.selectLeaveMember", null, rows);
+	}
+
+	@Override
+	public int leaveMemberTotalContents() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.leaveMemberTotalContents");
 	}
 	
 	

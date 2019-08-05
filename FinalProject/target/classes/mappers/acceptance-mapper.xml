@@ -9,9 +9,17 @@
 	</resultMap>
 	
 	<select id="selectPatient" parameterType="string" resultMap="resultPatient">
-		SELECT * FROM PATIENT WHERE P_NAME = #{p_name}
+		SELECT P.*, M.M_CODE 
+		FROM PATIENT P 
+		JOIN MEDICAL M ON(P.P_NO = M.P_NO) 
+		WHERE M.P_NO IN(SELECT P_NO FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%'))
 	</select>
 		
-	
+	<select id="selectPayPatient" parameterType="_int" resultMap="resultPatient">
+		SELECT P.*, M.M_CODE, M.M_HISTORY
+		FROM PATIENT P
+		JOIN MEDICAL M ON(P.P_NO = M.P_NO)
+		WHERE M.P_NO = #{p_no}
+	</select>
 	
 </mapper>

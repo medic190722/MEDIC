@@ -9,7 +9,7 @@
 	</resultMap>
 	
 	<select id="selectPatientList" parameterType="string" resultMap="resultPatient">
-		SELECT * FROM PATIENT WHERE P_NAME = #{p_name}
+		SELECT * FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%')
 	</select>
 		
 	<select id="selectUpdatePatient" parameterType="_int" resultMap="resultPatient">
@@ -62,11 +62,11 @@
 		
 	</update>
 	
-	<update id="inPatientReceipt" parameterType="Patient">
+	<!-- <update id="inPatientReceipt" parameterType="Patient">
 		UPDATE PATIENT SET
 			P_ADMISSION_YN = 'Y', P_ACC_YN = 'Y'
 		WHERE P_NO = #{p_no}
-	</update>
+	</update> -->
 	
 	
 </mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="schedule">
+
+	<resultMap type="Schedule" id="scheduleSelect">
+		<result property="scno" column="SC_NO"/> 
+		<result property="empno" column="EMP_NO"/> 
+		<result property="scstart" column="SC_STRAT"/> 
+		<result property="scend" column="SC_END"/> 
+		<result property="sccontent" column="SC_CONTENT"/>
+	</resultMap>
+	
+	<insert id="insertSchedule">
+	 	INSERT INTO SCHEDULE VALUES(SEQ_SCH.NEXTVAL, #{empno}, #{scstart}, NULL, #{sccontent})
+	</insert>
+	
+
+</mapper>

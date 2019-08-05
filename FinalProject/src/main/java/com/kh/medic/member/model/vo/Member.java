@@ -11,8 +11,12 @@ public class Member implements Serializable {
    private static final long serialVersionUID = 1000L;
    
    private int empNo;
+   private int empNo1;
    private String empPwd;
-   private String empName;
+
+
+
+private String empName;
    private String empAddress;
    private String empEmail;
    private String empRrn;
@@ -120,6 +124,47 @@ public Member(String empPwd, String empName, String empAddress, String empEmail,
 
 
 
+   public Member(int empNo, int empNo1, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
+		String empPhone, String deptCode, String jobCode, int salary, Date hireDate, Date entDate, String entYn,
+		String deptTitle, String jobTitle) {
+	super();
+	this.empNo = empNo;
+	this.empNo1 = empNo1;
+	this.empPwd = empPwd;
+	this.empName = empName;
+	this.empAddress = empAddress;
+	this.empEmail = empEmail;
+	this.empRrn = empRrn;
+	this.empPhone = empPhone;
+	this.deptCode = deptCode;
+	this.jobCode = jobCode;
+	this.salary = salary;
+	this.hireDate = hireDate;
+	this.entDate = entDate;
+	this.entYn = entYn;
+	this.deptTitle = deptTitle;
+	this.jobTitle = jobTitle;
+}
+
+
+
+
+
+
+
+public int getEmpNo1() {
+	return empNo1;
+}
+
+
+
+
+
+
+
+public void setEmpNo1(int empNo1) {
+	this.empNo1 = empNo1;
+}
 
 
 
@@ -276,10 +321,10 @@ public String getEmpPhone() {
 
    @Override
 public String toString() {
-	return "Member [empNo=" + empNo + ", empPwd=" + empPwd + ", empName=" + empName + ", empAddress=" + empAddress
-			+ ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone + ", deptCode=" + deptCode
-			+ ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate + ", entDate=" + entDate
-			+ ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle + "]";
+	return "Member [empNo=" + empNo + ", empNo1=" + empNo1 + ", empPwd=" + empPwd + ", empName=" + empName
+			+ ", empAddress=" + empAddress + ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone
+			+ ", deptCode=" + deptCode + ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate
+			+ ", entDate=" + entDate + ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle + "]";
 }
    
    

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+ 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -18,7 +19,7 @@
    
    th{   
       text-align: right;
-      width: 100px;
+      width: 150px;
    
    }
    td{
@@ -76,7 +77,7 @@
         </div>
         </div> -->
                      <form
-                        action="${pageContext.request.contextPath}/member/updateMember.do"
+                        action="${pageContext.request.contextPath}/member/updatePrivacy.do"
                         method="post">
                         <section>
                            <div style="text-align: center;">
@@ -89,79 +90,27 @@
                                     <td>
                                           <input type="text" class="form-control" name="empName"
                                              placeholder="이름" value="${member.empName}" readonly>
-                                       </td>
-                                    <th>부서  </th>
-                                    <td>                           
-
-                                          <select class="form-control dept" name="deptCode"
-                                             id="deptCode">
-                                             <option value="총무과" ${member.deptTitle == '총무과'?'selected':''}>총무과</option>
-                                             <option value="원무과" ${member.deptTitle == '원무과'?'selected':''}>원무과</option>
-                                             <option value="의사" ${member.deptTitle == '의사'?'selected':''}>의사</option>
-                                             <option value="간호사" ${member.deptTitle == '간호사'?'selected':''}>간호사</option>
-                                          </select>
-                                       
                                     </td>
-                                    
+									<th>비밀번호변경  </th>
+                                    <td>
+                                          <input type="password" class="form-control" name="empPwd"
+                                             placeholder="비밀번호" value="" id="userPwd1">
+                                    </td>
                                  </thead>
                                  <tbody>
-                                    <input type="password" name="empPwd" value="null" style="display:none;"/>
+                                  
                                     <tr>
                                        <th>이메일</th>
                                        <td><input type="email" name="empEmail"
                                           class="form-control" placeholder="이메일" value="${member.empEmail}" > <span
                                           class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                        </td>
-                                       <th>직급</th>
-                                       <td>
-                                          <div class="" id="job1" style="display: block;">
-
-                                             <select class="form-control job1 job">
-                                                <option value="부장" ${member.jobTitle=='부장'?'selected':''}>부장</option>
-                                                <option value="차장" ${member.jobTitle=='차장'?'selected':''}>차장</option>
-                                                <option value="과장" ${member.jobTitle=='과장'?'selected':''}>과장</option>
-                                                <option value="대리" ${member.jobTitle=='대리'?'selected':''}>대리</option>
-                                                <option value="사원" ${member.jobTitle=='사원'?'selected':''}>사원</option>
-                                                
-                                             </select>
-                                             <div name="sendData1" style="display:none;" id="dataSelect"><input type="hidden" name="jobCode" value="부장"></div>
-                                          </div>
-                                          <div class="" id="job2" style="display: none;">
-
-                                             <select class="form-control job2 job">
-                                                <option value="부장" ${member.jobTitle=='부장'?'selected':''}>부장</option>
-                                                <option value="차장" ${member.jobTitle=='차장'?'selected':''}>차장</option>
-                                                <option value="과장" ${member.jobTitle=='과장'?'selected':''}>과장</option>
-                                                <option value="대리" ${member.jobTitle=='대리'?'selected':''}>대리</option>
-                                                <option value="사원" ${member.jobTitle=='사원'?'selected':''}>사원</option>
-                                             </select>
-                                          </div>
-
-                                          <div class="" id="job3" style="display: none;">
-
-                                             <select class="form-control job3 job">
-                                                <option value="교수" ${member.jobTitle=='교수'?'selected':''}>교수</option>
-                                                <option value="부교수" ${member.jobTitle=='부교수'?'selected':''}>부교수</option>
-                                                <option value="조교수" ${member.jobTitle=='조교수'?'selected':''}>조교수</option>
-                                                <option value="전임의" ${member.jobTitle=='전임의'?'selected':''}>전임의</option>
-                                                <option value="레지던트" ${member.jobTitle=='레지던트'?'selected':''}>레지던트</option>
-                                                <option value="인턴" ${member.jobTitle=='인턴'?'selected':''}>인턴</option>
-                                             </select>
-                                          </div>
-                                          <div class="" id="job4" style="display: none;">
-
-                                             <select class="form-control job4 job">
-                                                <option value="최고 책임자" ${member.jobTitle=='최고 책임자'?'selected':''}>최고 책임자</option>
-                                                <option value="간호과장" ${member.jobTitle=='간호과장'?'selected':''}>간호과장</option>
-                                                <option value="수간호사" ${member.jobTitle=='수간호사'?'selected':''}>수간호사</option>
-                                                <option value="책임간호사" ${member.jobTitle=='책임간호사'?'selected':''}>책임간호사</option>
-                                                <option value="주임간호사" ${member.jobTitle=='주임간호사'?'selected':''}>주임간호사</option>
-                                                <option value="평간호사" ${member.jobTitle=='평간호사'?'selected':''}>평간호사</option>
-                                             </select>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                 
+                                       <th>비밀번호확인  </th>
+                                    <td>
+                                          <input type="password" class="form-control" name=""
+                                             placeholder="비밀번호 확인" value="" id="userPwd2">
+                                             <div id="pwdResult"></div>
+                                    </td>
 
                                     <tr>
                                        <th>주민등록번호</th>
@@ -172,11 +121,7 @@
                                                 class="form-control" placeholder="주민등록번호" value="${member.empRrn}" readonly>
                                           
                                        </td>
-                                       <th>입사일</th>
-                                       <td>
-                                          <input type="date" class="form-control" id="currnetDate"
-                                          name="hireDate" value="${member.hireDate}">
-                                       </td>
+                                     
 
                                     </tr>
 
@@ -184,13 +129,7 @@
                                        <th>주소</th>
                                        <td><input type="text" class="form-control"
                                           name="empAddress" placeholder="주소" value="${member.empAddress}"></td>
-                                          <th>퇴사여부</th>
-                                       <td class="ent"><select class="form-control entYn" >
-                                                <option value="Y" ${member.entYn=='Y'?'selected':''}>Y</option>
-                                                <option value="N" ${member.entYn=='N'?'selected':''}>N</option>                                          
-                                       </select>
-                                       <div name="sendData2" style="display:none;" ><input type="hidden" name="entYn" value="N"></div>
-                                       </td>
+                                       
                                        
                                     </tr>
                                     <tr class="entDate">
@@ -349,95 +288,8 @@ $(function () {
    }
    
 
-   $('.job1').click(function(){
-	      console.log($(this).val());
-	      
-	      $('#dataSelect').remove();
-	      
-	     if($('.job1').find('[name=sendData]') != null ){
-	        $('.job1').find('[name=sendData]').remove();
-	     } 
-	      
-	     var $td = $('<td name="sendData" style="display:none;" >');
-	     
-	     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	     
-	     $(this).append($td);
-	   });
-	    
-	   $('.job2').click(function(){
-	      console.log($(this).val());
-	      $('#dataSelect').remove();
-	     if($('.job2').find('[name=sendData]') != null ){
-	        $('.job2').find('[name=sendData]').remove();
-	     } 
-	      
-	     var $td = $('<td name="sendData" style="display:none;" >');
-	     
-	     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	     
-	     $(this).append($td);
-	   });
-	   $('.job3').click(function(){
-	      console.log($(this).val());
-	      $('#dataSelect').remove();
-	     if($('.job3').find('[name=sendData]') != null ){
-	        $('.job3').find('[name=sendData]').remove();
-	     } 
-	      
-	     var $td = $('<td name="sendData" style="display:none;" >');
-	     
-	     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	     
-	     $(this).append($td);
-	   });
-	   $('.job4').click(function(){
-	      console.log($(this).val());
-	      $('#dataSelect').remove();
-	     if($('.job4').find('[name=sendData]') != null ){
-	        $('.job4').find('[name=sendData]').remove();
-	     } 
-	      
-	     var $td = $('<td name="sendData" style="display:none;" >');
-	     
-	     $td.append('<input type="hidden" name="jobCode" value="' + $(this).val() + '">');
-	     
-	     $(this).append($td);
-	   });
    
-	   $('.entYn').click(function(){
-		      console.log($(this).val());
-		      
-		     if($('.ent').find('[name=sendData2]') != null ){
-		        $('.ent').find('[name=sendData2]').remove();
-		     } 
-		      
-		     var $td = $('<div name="sendData2" style="display:none;" id="dataSelect">');
-		     
-		     $td.append('<input type="hidden" name="entYn" value="'+$(this).val()+'">' );
-		     
-		     $(this).append($td);
-		   });
-   
-   $(".entbox").click(function(){
-      
-      console.log($('.entbox option:selected').val());
-      
-      if($('.entbox option:selected').val() == 'Y'){
-     
-        
-        if($('.entDate').find('[name=entDate]') != null ){
-	        $('.entDate').find('[name=entDate]').remove();
-	        $('.entDate').find('#entTh').remove();
-	        $('.entDate').find('#entTd').remove();
-	     }
-        $('.entDate').append('<th id="entTh">퇴사일자</th><td id="entTd"><input type="date" class="form-control" id="currnetDate" name="entDate" value="${member.entDate}" required></td>');
-      }else{
-    	  $('.entDate').find('[name=entDate]').remove();
-	        $('.entDate').find('#entTh').remove();
-	        $('.entDate').find('#entTd').remove();
-      }
-      })
+
     
   });
   

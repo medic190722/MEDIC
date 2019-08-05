@@ -13,5 +13,11 @@ public interface AcceptanceService {
 	 */
 	List<Patient> selectPatient(String p_name);
 
+	/**
+	 * 납부할 환자 한 명 조회용 메소드
+	 * @return
+	 */
+	Patient selectPayPatient(int p_no);
+
 	
 }

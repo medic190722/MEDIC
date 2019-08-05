@@ -20,7 +20,7 @@
         	Medic
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/medic/common/main.do"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/medic/index.do"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Main</li>
       </ol>
     </section>
@@ -31,20 +31,20 @@
         <!-- Left col -->
      	<div class="col-md-1"></div>        
         
-        <section class="col-md-3 connectedSortable">
+        <section class="col-md-3">
 
-          <div class="box box-solid">
+          <div class="box box-solid" id="dragEvent" style="display: none;">
             <div class="box-header with-border">
               <h4 class="box-title">Draggable Events</h4>
             </div>
             <div class="box-body">
               <!-- the events -->
               <div id="external-events">
-                <div class="external-event bg-green">Lunch</div>
-                <div class="external-event bg-yellow">Go home</div>
-                <div class="external-event bg-aqua">Do homework</div>
-                <div class="external-event bg-light-blue">Work on UI design</div>
-                <div class="external-event bg-red">Sleep tight</div>
+                <div class="external-event bg-green">점심</div>
+                <div class="external-event bg-yellow">퇴근</div>
+                <div class="external-event bg-aqua">업무1</div>
+                <div class="external-event bg-light-blue">업무2</div>
+                <div class="external-event bg-red">휴식</div>
                 <div class="checkbox">
                   <label for="drop-remove">
                     <input type="checkbox" id="drop-remove">
@@ -56,7 +56,7 @@
             <!-- /.box-body -->
           </div>
           <!-- /. box -->
-          <div class="box box-solid">
+          <div class="box box-solid" id="createEvent" style="display: none;">
             <div class="box-header with-border">
               <h3 class="box-title">Create Event</h3>
             </div>
@@ -117,7 +117,7 @@
                   <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
-                      </span>
+                  </span>
                   <!-- checkbox -->
                   <input type="checkbox" value="">
                   <!-- todo text -->
@@ -212,7 +212,10 @@
           <div class="box box-primary">
             <div class="box-body no-padding">
               <!-- THE CALENDAR -->
-              <div id="calendar"></div>
+              <div id="calendar">
+                  <button id="add-new-schedule" type="button" class="btn btn-primary btn-flat" style="float: right;">일정 추가</button>
+                  <button id="confirm-schedule" type="button" class="btn btn-primary btn-flat" style="float: right; display: none;">등록 완료</button>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -235,6 +238,20 @@
 <c:import url="common/idxScripts.jsp"/>
 
 <script>
+   $('#add-new-schedule').on('click',function(){
+	   $('#createEvent').css('display','block');
+	   $('#dragEvent').css('display','block');
+	   $('#add-new-schedule').css('display','none');
+	   $('#confirm-schedule').css('display','block');
+   });
+   
+   $('#confirm-schedule').on('click',function(){
+	   $('#confirm-schedule').css('display','none');
+	   $('#createEvent').css('display','none');
+	   $('#dragEvent').css('display','none');
+	   $('#add-new-schedule').css('display','block');
+   })
+
   $(function () {
 
     /* initialize the external events
@@ -333,34 +350,96 @@
         }
       ],
       editable  : true,
-      droppable : true, // this allows things to be dropped onto the calendar !!!
-      drop      : function (date, allDay) { // this function is called when something is dropped
-
+      droppable : true, // this allows things to be dropped onto the calendar !!! 
+     					// 이렇게하면 달력에 일정을 떨어 뜨릴 수 있습니다!
+      drop      : function (date, allDay) { // this function is called when something is dropped 
+    	  									// 이 함수는 무언가가 떨어지면 호출됩니다.
+    	console.log("drop 실행!");							
+      
         // retrieve the dropped element's stored Event Object
-        var originalEventObject = $(this).data('eventObject')
+        // 삭제 된 요소의 저장된 Event 객체를 가져옵니다.
+        var originalEventObject = $(this).data('eventObject');
 
         // we need to copy it, so that multiple events don't have a reference to the same object
-        var copiedEventObject = $.extend({}, originalEventObject)
-
+        // 여러 이벤트가 동일한 객체에 대한 참조를 갖지 않도록 복사해야합니다.
+        var copiedEventObject = $.extend({}, originalEventObject);
+        
+        
         // assign it the date that was reported
-        copiedEventObject.start           = date
-        copiedEventObject.allDay          = allDay
-        copiedEventObject.backgroundColor = $(this).css('background-color')
-        copiedEventObject.borderColor     = $(this).css('border-color')
+        copiedEventObject.start           = date;
+        copiedEventObject.allDay          = allDay;
+        copiedEventObject.backgroundColor = $(this).css('background-color');
+        copiedEventObject.borderColor     = $(this).css('border-color');
 
         // render the event on the calendar
         // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
-
+        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+        
+        console.log(originalEventObject);
+        console.log(copiedEventObject);
+        console.log(date);
+        
+        console.log(copiedEventObject.title);
+        console.log(copiedEventObject.start._d);
+        console.log(copiedEventObject.end);
+        console.log(copiedEventObject.allDay);
+        // insert 실행
+        $.ajax({
+        	url:"${pageContext.request.contextPath}/common/schedule/insertSchedule.do",
+        	data : {
+//         		title : event.title, // 내용
+//         		start : event.start, // 시작
+//         		end : event.end      // 종료
+// 				allDay: allDay
+				empNo : '${member.empNo}',
+        		scstart : copiedEventObject.start._d.getTime(),
+        		sccontent : copiedEventObject.title
+        	},
+        	success : function(data){
+        		console.log("성공");
+        	}, error : function(data){
+        		console.log(data);
+        	}
+        });
+        
         // is the "remove after drop" checkbox checked?
         if ($('#drop-remove').is(':checked')) {
           // if so, remove the element from the "Draggable Events" list
-          $(this).remove()
+          $(this).remove();
         }
+      },
+      
+      // 일정 사이즈 리사이즈(종일(all time)만가능)
+      eventResize: function(event, delta, revertFunc, jsEvent, ui, view) {
 
-      }
-    })
+    	    alert(event.title+ " : " + event.start.format()+" ~ " + event.end.format());
 
+    	    console.log(event.title);
+            console.log(event.start._d);
+            console.log(event.end._d);
+    	    
+    	    if (!confirm("수정하시겠습니까?")) {
+    	      revertFunc();
+    	    }
+
+    	  }
+      
+    });
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default
     //Color chooser button

@@ -64,5 +64,12 @@ public class DoctorDaoImpl implements DoctorDao {
 		session.update("Doctor.medicalY", pNo);
 		
 	}
+	
+	@Override
+	public List<Patient> patientListAll() {
+		
+		return session.selectList("Doctor.patientListAll");
+		
+	}
 
 }

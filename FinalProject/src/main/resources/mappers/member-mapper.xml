@@ -5,6 +5,7 @@
 <mapper namespace="member">
    <resultMap id="memberSelect" type="Member">
       <result property="empNo" column="emp_no" />
+      <result property="empNo1" column="emp_no" />
       <result property="empPwd" column="emp_pwd" />
       <result property="empName" column="emp_name" />
       <result property="empAddress" column="emp_address" />
@@ -29,28 +30,27 @@
 		WHERE EMP_NO  = #{empNo}
    </select>
    
-   <insert id="insertMember" parameterType="member">
+   <insert id="insertMember" parameterType="Member">
       INSERT INTO EMPLOYEE VALUES(SEQ_EMP_NO.NEXTVAL, #{empPwd} ,#{empName},
       #{empAddress},#{empEmail}, #{empPhone}, #{empRrn}, 
       (SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
       (SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),#{salary},#{hireDate},#{entDate},DEFAULT)   
    </insert>
    
-   <update id="updatePassword" parameterType="member">
+   <update id="updatePassword" parameterType="Member">
       UPDATE EMPLOYEE SET EMP_PWD = (SELECT SUBSTR(E_RRN,1,6) FROM EMPLOYEE WHERE EMP_NO=#{empNo}) WHERE EMP_NO = #{empNo}
    </update>
    
-   <update id="updateMember" parameterType="member">
+   <update id="updateMember" parameterType="Member">
       UPDATE EMPLOYEE SET
-      EMP_PWD = #{empPwd},
       EMP_EMAIL = #{empEmail},      
       EMP_PHONE = #{empPhone},
       EMP_ADDRESS = #{empAddress},
-      DEPT_CODE = #{deptCode},
-      JOB_CODE = #{jobCode},
+      DEPT_CODE = (SELECT DEPT_CODE FROM DEPARTMENT WHERE DEPT_TITLE = #{deptCode}),
+      JOB_CODE = (SELECT JOB_CODE FROM JOB WHERE JOB_TITLE = #{jobCode}),
       HIRE_DATE = #{hireDate},
       ENT_DATE = #{entDate},
-      ENT_YN = #{entYn},
+      ENT_YN = #{entYn}
       WHERE EMP_NO = #{empNo}      
    </update>
 	
@@ -74,4 +74,28 @@
 		WHERE EMP_NAME  = #{empName}
 	</select>
 	
+	<update id="updatePrivacy" parameterType="Member">
+		UPDATE EMPLOYEE SET
+		EMP_PWD = #{empPwd},
+		EMP_EMAIL = #{empEmail},
+		EMP_PHONE = #{empPhone},
+     	 EMP_ADDRESS = #{empAddress}
+		WHERE EMP_NO = #{empNo}    
+	</update>
+	<select id="selectLeaveMember" resultMap="memberSelect">
+		SELECT E.*, D.DEPT_TITLE,J.JOB_TITLE
+		FROM EMPLOYEE E,JOB J, DEPARTMENT D
+		WHERE E.DEPT_CODE=D.DEPT_CODE
+		AND E.JOB_CODE=J.JOB_CODE
+		AND ENT_YN = 'Y'
+	</select>
+	<select id="leaveMemberTotalContents" resultType="_int">
+		SELECT
+		COUNT(*) FROM EMPLOYEE
+		WHERE ENT_YN = 'Y'
+	</select>
+	
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM EMPLOYEE WHERE EMP_NO = #{empNo}
+	</delete>
 </mapper>

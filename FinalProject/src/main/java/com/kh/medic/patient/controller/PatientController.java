@@ -218,15 +218,17 @@ public class PatientController {
 	 @RequestMapping("/patient/inPatientReceipt.do")
 	 public String inPatientReceipt(Patient patient, Admission admission, Model model) {
 		 
-		 int result = patientService.updateInPatient(patient);
-		 System.out.println("patient 객체 정보 확인 : " + patient);
-		 int result1= patientService.insertAdmission(admission);
+		/*
+		 * int result = patientService.updateInPatient(patient);
+		 * System.out.println("patient 객체 정보 확인 : " + patient);
+		 */
+		 int result= patientService.insertAdmission(admission);
 		 System.out.println("admission 객체 정보 확인 : " + admission);
 		 
 		 String msg = "";
 		 String loc = "/";
 		 
-		 if(result > 0 && result1 > 0) {
+		 if(result > 0 ) {
 			 msg = "입원 접수 성공!";
 			 loc = "/patient/patientReceipt.do";
 		 } else {

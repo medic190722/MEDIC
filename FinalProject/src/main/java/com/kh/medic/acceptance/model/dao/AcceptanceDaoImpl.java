@@ -18,5 +18,10 @@ public class AcceptanceDaoImpl implements AcceptanceDao {
 	public List<Patient> selectPatient(String p_name) {
 		return sqlSession.selectList("acceptance.selectPatient", p_name);
 	}
+
+	@Override
+	public Patient selectPayPatient(int p_no) {
+		return sqlSession.selectOne("acceptance.selectPayPatient", p_no);
+	}
 	
 }

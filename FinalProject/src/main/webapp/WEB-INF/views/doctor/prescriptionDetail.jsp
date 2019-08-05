@@ -22,7 +22,7 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-danger" style="width:1000px; margin:0 auto;">
+					<div class="box box-danger" style="width:80%; margin:0 auto;">
 						<div class="box-header with-border">
 							<h3 class="box-title">처방전</h3>
 						</div>
@@ -51,15 +51,8 @@
 								<div class="row" style="margin-top:20px;">
 									<div class="col-xs-4" style="width:50%;">
 										<label for="empName">담당 의사</label>
-										<input type="hidden" name=empNo value="${ member.empNo }" />
-										<input type="text" class="form-control" id="empName" name="empName" value="${ member.empName }">
-									</div>
-									<div class="col-xs-4" style="width:50%;">
-										<label for="admission">입원 여부</label>
-										<select class="form-control" id="admission" name="admission">
-											<option value="N">N</option>
-											<option value="Y">Y</option>
-										</select>
+										<input type="hidden" name=empNo value="${ m.empNo }" />
+										<input type="text" class="form-control" id="empName" name="empName" value="${ m.empName }">
 									</div>
 								</div>
 								<div class="box-body table-responsive no-padding" style="height:400px;margin-top:20px;">
@@ -135,9 +128,10 @@
 										<button type="button" class="btn btn-default" id="addRow">+</button>
 									</div>
 								</div>
-								<div class="box-footer" style="text-align:right;">
-									<button style="margin-right:20px;" type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do'" class="btn btn-default">취소</button>
-									<button type="submit" class="btn btn-info">완료</button>
+								<div class="box-footer">
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/admission.do?pNo='+'${ pNo }'" class="btn btn-info pull-left">입원 신청</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do" class="btn btn-info pull-right">취소</button>
+									<button style="margin-right:20px;" type="submit" class="btn btn-info pull-right">완료</button>
 								</div>
 							</div>
 						</form>
@@ -156,7 +150,7 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
-	document.getElementById('mDate').value= new Date().toISOString().slice(0, 10);
+		document.getElementById('mDate').value= new Date().toISOString().slice(0, 10);
 		
 		$('.medCode').each(function(){
 			$(this).on('change',function(e){

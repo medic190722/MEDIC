@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int deleteMember(int empNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.deleteMember(empNo);
 	}
 
 	@Override
@@ -66,6 +66,24 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectSearchMember(String e_name) {
 		// TODO Auto-generated method stub
 		return memberDao.selectSearchMember(e_name);
+	}
+
+	@Override
+	public int updatePrivacy(Member member) {
+		// TODO Auto-generated method stub
+		return memberDao.updatePrivacy(member);
+	}
+
+	@Override
+	public List<Map<String, String>> leaveMemverList(int cPage, int limit) {
+		// TODO Auto-generated method stub
+		return memberDao.leaveMemverList(cPage, limit);
+	}
+
+	@Override
+	public int leaveMemberTotalContents() {
+		// TODO Auto-generated method stub
+		return memberDao.leaveMemberTotalContents();
 	}
 	
 	

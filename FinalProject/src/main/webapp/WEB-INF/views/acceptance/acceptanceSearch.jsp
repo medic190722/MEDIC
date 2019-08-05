@@ -28,12 +28,11 @@
 				})
 				.click(
 						function() {
-							var p_no = $(this).parent().children().eq(0)
-									.text();
+							var p_no = $(this).parent().children().eq(1).text();
 
 							console.log(p_no);
 
-							location.href = "${pageContext.request.contextPath}/acceptance/patientAcceptanceInsert.do?p_no=" + p_no;
+							location.href = "${pageContext.request.contextPath}/acceptance/patientAcceptanceInsert.do?p_no="+ p_no;
 						});
 	});
   </script>
@@ -65,13 +64,14 @@
 	      <div class="searchPatient" style="margin:0 auto; margin-top:20px;">
 	      	<table class="table table-striped table-hover" id="listArea" style="width:800px; text-align:center; margin : 0 auto; ">
 	      		<tr>
-	      			<!-- <th style="text-align:center">차트번호</th> -->
+	      			<th style="text-align:center">차트번호</th>
 	      			<th style="text-align:center">환자번호</th>
 	      			<th style="text-align:center">환자이름</th>
 	      			<th style="text-align:center">전화번호</th>
 	      		</tr>
 	      		<c:forEach items="${patientList}" var="p">	      			
 	      			<tr id="${p.p_no}" style="background: #fff;">
+	      				<td id="${p.m_code}">${p.m_code}</td>
 	      				<td id="${p.p_no}">${p.p_no}</td>
 	      				<td id="${p.p_name}">${p.p_name}</td>
 	      				<td id="${p.p_phone[0]}">${p.p_phone[0]}</td>

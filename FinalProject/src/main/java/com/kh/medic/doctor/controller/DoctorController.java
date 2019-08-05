@@ -88,10 +88,6 @@ public class DoctorController {
 		
 		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory);
 
-		if(admission == "Y") {
-			drService.admissionY(pNo);
-		}
-
 		drService.medicalSave(medical);
 		
 		drService.medicalY(pNo);
@@ -101,8 +97,25 @@ public class DoctorController {
 		
 	}
 	
+	@RequestMapping("/doctor/admission.do")
+	public String admission(@RequestParam("pNo") int pNo, Model model) {
+		
+		drService.admissionY(pNo);
+		drService.medicalY(pNo);
+		
+		model.addAttribute("msg", "입원 신청 완료");
+		model.addAttribute("loc", "/doctor/prescription.do");
+		
+		return "common/msg";
+		
+	}
+	
 	@RequestMapping("/doctor/certificate.do")
-	public String certificate() {
+	public String certificate(Model model) {
+		
+		List<Patient> pList = drService.patientList();
+		
+		model.addAttribute("pList", pList);
 		
 		return "doctor/certificate";
 		

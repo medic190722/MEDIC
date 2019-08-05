@@ -46,7 +46,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="m_code" name="m_code"
-										value="차트번호" readonly>
+										value="${patient.m_code}" readonly>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -56,7 +56,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="p_no" name="p_no" min=0
-										value="환자번호" readonly>
+										value="${patient.p_no}" readonly>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -66,27 +66,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="p_no" name="p_no" min=0
-										value="환자이름" readonly>
-								</div>
-							</div>
-							<div class="form-group has-feedback">
-								<div
-									style="display: inline-block; width: 100px; text-align: center">
-									<label for="">담당의사</label>
-								</div>
-								<div style="display: inline-block">
-									<input type="text" id="doctor" name="doctor"
-										class="form-check-input" value="담당의사" readonly />
-								</div>
-							</div>
-							<div class="form-group has-feedback">
-								<div
-									style="display: inline-block; width: 100px; text-align: center">
-									<label for="">진료일</label>
-								</div>
-								<div style="display: inline-block">
-									<input type="text" name="m_date" id="m_date"
-										style="width: 300px;" value="진료일">
+										value="${patient.p_name}" readonly>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -96,7 +76,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" name="m_date" id="m_date"
-										style="width: 300px;" value="진료내역">
+										style="width: 300px;" value="${patient.m_history}">
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -106,7 +86,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" name="m_date" id="m_date"
-										style="width: 300px;" value="수납금액">
+										style="width: 300px;" value="">
 								</div>
 							</div>
        

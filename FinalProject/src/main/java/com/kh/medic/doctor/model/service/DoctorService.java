@@ -21,5 +21,7 @@ public interface DoctorService {
 	public void insertACC(Medical medical);
 
 	public void medicalY(int pNo);
+
+	public List<Patient> patientListAll();
 	
 }
