@@ -16,10 +16,10 @@ public interface DoctorDao {
 
 	public void medicalSave(Medical medical);
 
-	public void admissionY();
+	public void admissionY(int pNo);
 
 	public void insertACC(Medical medical);
 
-	public void medicalY();
+	public void medicalY(int pNo);
 
 }

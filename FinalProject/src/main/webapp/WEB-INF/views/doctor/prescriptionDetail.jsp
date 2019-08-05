@@ -156,7 +156,7 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
-		$('#mDate').datepicker('setDate', 'today');
+	document.getElementById('mDate').value= new Date().toISOString().slice(0, 10);
 		
 		$('.medCode').each(function(){
 			$(this).on('change',function(e){

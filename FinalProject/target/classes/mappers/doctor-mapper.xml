@@ -36,16 +36,16 @@
 		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{pNo}, #{mDate}, #{empNo})
 	</insert>
 	
-	<update id="admissionY">
-		UPDATE PATIENT SET P_ADMISSION_YN = 'Y'
+	<update id="admissionY" parameterType="_int">
+		UPDATE PATIENT SET P_ADMISSION_YN = 'Y' WHERE P_NO = #{pNo}
 	</update>
 	
 	<insert id="insertACC" parameterType="Medical">
-		INSERT INTO ACCEPTANCE VALUES(SEQ_ACC_NO.NEXXTVAL, #{pNo}, #{mCode}, DEFAULT, DEFAULT)
+		INSERT INTO ACCEPTANCE VALUES(SEQ_ACC_NO.NEXTVAL, #{pNo}, #{mCode}, DEFAULT, DEFAULT)
 	</insert>
 	
-	<update id="medicalY">
-		UPDATE PATIENT SET P_MEDICAL_YN = 'Y'
+	<update id="medicalY" parameterType="_int">
+		UPDATE PATIENT SET P_MEDICAL_YN = 'Y' WHERE P_NO = #{pNo}
 	</update>
 	
 </mapper>

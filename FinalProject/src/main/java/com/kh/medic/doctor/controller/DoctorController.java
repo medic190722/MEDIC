@@ -89,12 +89,12 @@ public class DoctorController {
 		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory);
 
 		if(admission == "Y") {
-			drService.admissionY();
+			drService.admissionY(pNo);
 		}
 
 		drService.medicalSave(medical);
 		
-		drService.medicalY();
+		drService.medicalY(pNo);
 		drService.insertACC(medical);
 		
 		return "index";

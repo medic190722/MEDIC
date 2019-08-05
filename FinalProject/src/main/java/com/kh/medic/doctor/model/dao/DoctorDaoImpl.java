@@ -45,9 +45,9 @@ public class DoctorDaoImpl implements DoctorDao {
 	}
 	
 	@Override
-	public void admissionY() {
+	public void admissionY(int pNo) {
 		
-		session.update("Doctor.admissionY");
+		session.update("Doctor.admissionY", pNo);
 		
 	}
 	
@@ -59,9 +59,9 @@ public class DoctorDaoImpl implements DoctorDao {
 	}
 	
 	@Override
-	public void medicalY() {
+	public void medicalY(int pNo) {
 		
-		session.update("Doctor.medicalY");
+		session.update("Doctor.medicalY", pNo);
 		
 	}
 

@@ -45,9 +45,9 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public void admissionY() {
+	public void admissionY(int pNo) {
 		
-		drDao.admissionY();
+		drDao.admissionY(pNo);
 		
 	}
 	
@@ -59,9 +59,9 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public void medicalY() {
+	public void medicalY(int pNo) {
 		
-		drDao.medicalY();
+		drDao.medicalY(pNo);
 		
 	}
 
