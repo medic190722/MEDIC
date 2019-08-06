@@ -1,5 +1,6 @@
 package com.kh.medic.doctor.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.kh.medic.doctor.model.vo.Medical;
@@ -23,5 +24,7 @@ public interface DoctorService {
 	public void medicalY(int pNo);
 
 	public List<Patient> patientListAll();
+
+	public Patient patientOne(HashMap<String, String> hmap);
 	
 }

@@ -16,7 +16,7 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>처방전 작성</h1>
+				<h1>진료</h1>
 			</section>
 			<!-- Main content -->
 			<section class="content">

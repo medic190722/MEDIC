@@ -59,13 +59,14 @@ public class DoctorController {
 			@RequestParam("pName") String pName,
 			@RequestParam("empNo") int empNo,
 			@RequestParam("empName") String empName,
-			@RequestParam("admission") String admission,
 			@RequestParam("medCode") String medCode,
 			@RequestParam("medName") String medName,
 			@RequestParam("oneDose") String oneDose,
 			@RequestParam("oneDayDose") String oneDayDose,
 			@RequestParam("totalDose") String totalDose,
-			@RequestParam("etc") String etc
+			@RequestParam("etc") String etc,
+			@RequestParam("medicalHistory") String medicalHistory,
+			@RequestParam("selectMedical") String selectMedical
 			) {
 		
 		String[] medCodeArr = medCode.split(",");
@@ -78,7 +79,7 @@ public class DoctorController {
 		String mHistory = "";
 		
 		for(int i = 0; i < etcArr.length; i++) {
-			mHistory += "약품 코드 : " + medCodeArr[i] + " , 약품 명 : " + medNameArr[i] + ", 1회 투약량 : " + oneDoseArr[i]
+			mHistory += "1. 진료 내용 - " + medicalHistory + " 2. 검사 항목 - " + selectMedical + " 3. 처방약 - 약품 코드 : " + medCodeArr[i] + " , 약품 명 : " + medNameArr[i] + ", 1회 투약량 : " + oneDoseArr[i]
 					 + " , 1일 투여횟수 : " + oneDayDoseArr[i] + " , 총 투약 일수 : " + totalDoseArr[i] + " , 용법 : "
 					 + etcArr[i];
 			if(i != etcArr.length-1) {
@@ -98,7 +99,19 @@ public class DoctorController {
 	}
 	
 	@RequestMapping("/doctor/admission.do")
-	public String admission(@RequestParam("pNo") int pNo, Model model) {
+	public String admission(
+			@RequestParam("mCode") String mCode,
+			@RequestParam("mDate") Date mDate,
+			@RequestParam("pNo") int pNo,
+			@RequestParam("pName") String pName,
+			@RequestParam("empNo") int empNo,
+			@RequestParam("empName") String empName,
+			@RequestParam("medicalHistory") String medicalHistory,
+			Model model) {
+		
+		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, medicalHistory);
+		
+		drService.medicalSave(medical);
 		
 		drService.admissionY(pNo);
 		drService.medicalY(pNo);
@@ -113,11 +126,23 @@ public class DoctorController {
 	@RequestMapping("/doctor/certificate.do")
 	public String certificate(Model model) {
 		
-		List<Patient> pList = drService.patientList();
-		
-		model.addAttribute("pList", pList);
-		
 		return "doctor/certificate";
+		
+	}
+	
+	@RequestMapping("/doctor/certificateDetail.do")
+	public String certificatedetail(@RequestParam("pName") String pName, @RequestParam("pRrn") String pRrn, Model model) {
+		
+		HashMap<String, String> hmap = new HashMap<>();
+		
+		hmap.put("pName", pName);
+		hmap.put("pRrn", pRrn);
+		
+		Patient p = drService.patientOne(hmap);
+		
+		model.addAttribute("p", p);
+		
+		return "doctor/certificatedetail";
 		
 	}
 	

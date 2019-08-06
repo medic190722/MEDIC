@@ -22,33 +22,72 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-info" style="width:600px; margin:0 auto; margin-top:50px;">
-						<div class="box-header with-border" style="text-align:center;">
-							<h3 class="box-title">환자 정보 조회</h3>
-						</div>
-						<!-- /.box-header -->
-						<!-- form start -->
-						<form class="form-horizontal" action="${pageContext.request.contextPath}/doctor/certificateDetail.do">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="pName" class="col-sm-3 control-label">성명</label>
-									<div class="col-sm-8">
-										<input type="text" id="pName" name="pName" class="form-control"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="pRrn" class="col-sm-3 control-label">주민등록번호</label>
-									<div class="col-sm-8">
-										<input type="text" id="pRrn" name="pRrn" class="form-control" maxlength="14" required>
-									</div>
-								</div>
+					<div class="box box-info" style="width:80%; margin:0 auto;">
+						<div class="box-body">
+							<div id="print_page" class="row" style="margin-top:20px; text-align:center;">
+								<table class="table table-bordered" style="width:97%; margin:0 auto;">
+									<tr>
+										<th colspan="6">
+											<div class="box-header with-border" style="text-align:center;">
+												<h3 class="box-title">진단서</h3>
+											</div>
+										</th>
+									</tr>
+									<tr>
+										<td style="vertical-align:middle; width:15%;">성명</td>
+										<td><input style="text-align:center;" type="text" class="form-control" value="${ p.p_name }" disabled/></td>
+										<td style="vertical-align:middle; width:10%;">성별</td>
+										<td>
+											<c:choose>
+												<c:when test="${ p.p_gender eq 'M' }">
+													<input style="text-align:center;" type="text" class="form-control" value="남성" disabled/>
+												</c:when>
+												<c:when test="${ p.p_gender eq 'F' }">
+													<input style="text-align:center;" type="text" class="form-control" value="여성" disabled/>
+												</c:when>
+											</c:choose> 
+										</td>
+										<td style="vertical-align:middle; width:20%;">주민등록번호</td>
+										<td><input style="text-align:center;" type="text" class="form-control" value="${ p.p_rrn }" disabled/></td>
+									</tr>
+									<tr>
+										<td style="vertical-align:middle;">주소</td>
+										<td colspan="5"><input style="text-align:center;" type="text" class="form-control" value="${ p.p_address }" disabled/></td>
+									</tr>
+									<tr>
+										<td style="vertical-align:middle;">병명<br><br>및<br><br>임상소견</td>
+										<td colspan="5"><textarea class="form-control" rows="12"></textarea></td>
+									</tr>
+									<tr>
+										<td style="vertical-align:middle;">진료일</td>
+										<td style="vertical-align:middle;" colspan="5">
+											<div>
+												<input style="text-align:center;" type="date" class="form-control"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td style="vertical-align:middle;">향후<br><br>치료 의견</td>
+										<td colspan="5"><textarea class="form-control" rows="12"></textarea></td>
+									</tr>
+									<tr>
+										<td colspan="6">
+											<div class="pull-right" style="margin-right:2%;">
+												<div style="text-align:left;">
+													<div style="margin-top:10px;">발 행 일&emsp;:&emsp;201&emsp; 년&emsp; 월&emsp; 일</div>
+													<div style="margin-top:10px;">의료기관명&emsp;:&emsp;MEDIC병원</div>
+													<div style="margin-top:10px; margin-bottom:10px;">담당의사&emsp;:&emsp;${ m.empName }&emsp; (인)</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
-							<!-- /.box-body -->
 							<div class="box-footer">
-								<button type="submit" class="btn btn-info pull-right">작성하기</button>
+								<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do" class="btn btn-info pull-right">메인 화면</button>
+								<button type="button" onclick="pageprint()" class="btn btn-info pull-right" style="margin-right:20px;">Print</button>
 							</div>
-							<!-- /.box-footer -->
-						</form>
+						</div>
 					</div>
 				</div>
 				<!-- /.row (main row) -->
@@ -62,34 +101,29 @@
 	</div>
 	<!-- ./wrapper -->
 	<c:import url="../common/scripts.jsp" />
-
+	
 	<script>
-		function autoHypenResidentRegistrationNumber(str) {
-			str = str.replace(/[^0-9]/g, '');
-			var tmp = '';
-			if (str.length < 6) {
-				return str;
-			} else if (str.length < 6) {
-				tmp += str.substr(0, 6);
-				tmp += '-';
-				tmp += str.substr(6);
-				return tmp;
-			} else {
-				tmp += str.substr(0, 6);
-				tmp += '-';
-				tmp += str.substr(6, 7);
-				return tmp;
-			}
-			return str;
-	
+		
+		var initBody;
+		function beforePrint() {
+			initBody = document.body.innerHTML; 
+			document.body.innerHTML = print_page.innerHTML;
 		}
-	
-		var residentRegistrationNumber = document.getElementById('pRrn');
-		residentRegistrationNumber.onkeyup = function(event) {
-			event = event || window.event;
-			var _val = this.value.trim();
-			this.value = autoHypenResidentRegistrationNumber(_val);
-		}
+		
+		function afterPrint() {
+			document.body.innerHTML = initBody; 
+		} 
+		
+		function pageprint() {
+			window.onbeforeprint = beforePrint; 
+			window.onafterprint = afterPrint; 
+			window.print();
+		} 
+		
+	    //Date picker
+	    $('#datepicker').datepicker({
+	    	autoclose: true
+	    })
 		
 		$(function() {
 	

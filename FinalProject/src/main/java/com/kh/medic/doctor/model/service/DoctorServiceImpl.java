@@ -1,5 +1,6 @@
 package com.kh.medic.doctor.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,13 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Patient> patientListAll() {
 		
 		return drDao.patientListAll();
+		
+	}
+	
+	@Override
+	public Patient patientOne(HashMap<String, String> hmap) {
+		
+		return drDao.patientOne(hmap);
 		
 	}
 

@@ -42,7 +42,7 @@
 	<insert id="insertPatient" parameterType="Patient">
 		INSERT INTO PATIENT VALUES (
 			SEQ_P_NO.NEXTVAL, #{p_name}, #{p_age}, #{p_gender}, 
-			#{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, NULL,
+			#{p_address}, #{p_phone, typeHandler=strArrPhoneTypeHandler}, 
 			#{p_rrn},SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT) 
 	</insert>
 	

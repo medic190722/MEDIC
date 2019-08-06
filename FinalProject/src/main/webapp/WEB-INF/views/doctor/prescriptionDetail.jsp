@@ -16,15 +16,15 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>처방전 작성</h1>
+				<h1>진료</h1>
 			</section>
 			<!-- Main content -->
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-danger" style="width:80%; margin:0 auto;">
+					<div class="box box-info" style="width:80%; margin:0 auto;">
 						<div class="box-header with-border">
-							<h3 class="box-title">처방전</h3>
+							<h3 class="box-title">진료</h3>
 						</div>
 						<form action="${pageContext.request.contextPath}/doctor/prescriptionSave.do">
 							<div class="box-body">
@@ -53,6 +53,19 @@
 										<label for="empName">담당 의사</label>
 										<input type="hidden" name=empNo value="${ m.empNo }" />
 										<input type="text" class="form-control" id="empName" name="empName" value="${ m.empName }">
+									</div>
+								</div>
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-4" style="width:100%">
+										<label>진료 내용</label>
+										<span class="pull-right">
+											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="주사">주사</label> 
+											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="마취">마취</label> 
+											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="혈액 검사">혈액 검사</label> 
+											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="물리 치료">물리 치료</label> 
+											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="영상 진단">영상 진단</label>
+										</span>
+										<textarea style="resize:none;" class="form-control" rows="5" name="medicalHistory"></textarea>
 									</div>
 								</div>
 								<div class="box-body table-responsive no-padding" style="height:400px;margin-top:20px;">
@@ -119,7 +132,7 @@
 													</select>
 												</td>
 												<td>
-													<textarea class="form-control" rows="1" name="etc"></textarea>
+													<textarea style="resize:none;" class="form-control" rows="1" name="etc"></textarea>
 												</td>
 											</tr>
 										</tbody>
@@ -129,7 +142,7 @@
 									</div>
 								</div>
 								<div class="box-footer">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/admission.do?pNo='+'${ pNo }'" class="btn btn-info pull-left">입원 신청</button>
+									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/admission.do?pNo=${ pNo }'" class="btn btn-info pull-left">입원 신청</button>
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do" class="btn btn-info pull-right">취소</button>
 									<button style="margin-right:20px;" type="submit" class="btn btn-info pull-right">완료</button>
 								</div>

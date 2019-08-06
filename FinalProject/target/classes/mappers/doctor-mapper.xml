@@ -7,10 +7,8 @@
 	<resultMap id="MedicalMap" type="Medical">
 		<id property="mCode" column="M_CODE"/>
 		<result property="pNo" column="P_NO"/>
-		<result property="pName" column="P_NAME"/>
 		<result property="mDate" column="M_DATE"/>
 		<result property="empNo" column="EMP_NO"/>
-		<result property="empName" column="EMP_NAME"/>
 		<result property="mHistory" column="M_HISTORY"/>
 	</resultMap>
 	
@@ -50,6 +48,10 @@
 	
 	<select id="patientListAll" resultType="Patient">
 		SELECT * FROM PATIENT ORDER BY P_NO ASC
+	</select>
+	
+	<select id="patientOne" parameterType="hashmap" resultType="Patient">
+		SELECT * FROM PATIENT WHERE P_NAME = #{pName} AND P_RRN = #{pRrn}
 	</select>
 	
 </mapper>
