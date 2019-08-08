@@ -29,15 +29,18 @@
 		</bean>
 	</property>
 	</bean>
-    
-    <!-- Mybatis를 연동하기 위한 설정 -->
-      <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-<!--     	dataSource : 마이바티스 빈 객체에 사용할 DB 설정 객체 참조 -->
-		<property name="dataSource" ref="dataSource"/>
-<!-- 		mapperLocations : mybatis-config에 작성하였던 mapper 파일들을 한번에 불러오기 위한 설정 -->
-		<property name="mapperLocations" value="classpath*:mappers/*.xml"/>
-<!-- 		configLocation : mybatis-config 설정을 읽어 오기 위한 속성 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+	<!-- Mybatis를 연동하기 위한 설정 -->
+	<bean id="sqlSessionFactoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- dataSource : 마이바티스 빈 객체에 사용할 DB 설정 객체 참조 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- mapperLocations : mybatis-config에 작성하였던 mapper 파일들을 한번에 불러오기 위한 설정 -->
+		<property name="mapperLocations"
+			value="classpath*:mappers/*.xml" />
+		<!-- configLocation : mybatis-config 설정을 읽어 오기 위한 속성 -->
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
 	</bean>
 	 
 	<!-- Mybatis 사용과 관련된 sqlSession 객체 선언하기 -->
@@ -45,9 +48,22 @@
     	<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
     </bean>
    
-    
-    <!-- 어노테이션을 통해 스프링이 자동추가하게 하는 방식 -->
-    <!-- 프로그래밍(어노테이션)적 방식 -->
-    
-    
+    <bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" />
+		<property name="port" value="465" />
+		<property name="username" value="rlghvmffjqj" />
+		<property name="password" value="z2067211" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+   
 </beans>

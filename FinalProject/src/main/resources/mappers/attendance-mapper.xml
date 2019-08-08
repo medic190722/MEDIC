@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attendance">
+   <resultMap id="attendSelect" type="Attendance">
+      <result property="empNo" column="emp_no" />
+      <result property="empName" column="emp_name" />
+      <result property="attend" column="attend" />
+      <result property="leave" column="leave" />
+   </resultMap>
+   
+   <select id="selectAttendance" parameterType="_int" resultMap="attendSelect">
+      SELECT A.EMP_NO, E.EMP_NAME ,to_char(ATTEND,'yyyy-mm-dd hh24:mi:ss') ATTEND, to_char(LEAVE,'yyyy-mm-dd hh24:mi:ss') LEAVE 
+      FROM ATTENDANCE A
+      JOIN EMPLOYEE E ON(A.EMP_NO = E.EMP_NO)
+      WHERE A.EMP_NO = #{empNo}
+   </select>
+	
+	<select id="selectAttendanceTotalContents" resultType="_int">
+		SELECT
+		COUNT(*) FROM ATTENDANCE
+	</select>
+   
+   <insert id="insertAttend" parameterType="Attendance">
+   	INSERT INTO ATTENDANCE (EMP_NO,ATTEND) VALUES(#{empNo},SYSDATE)
+   </insert>
+   
+   <update id="insertLeave" parameterType="Attendance">
+   	UPDATE ATTENDANCE SET
+   	LEAVE = SYSDATE
+   	WHERE EMP_NO = #{empNo} AND ATTEND LIKE '%'||to_char(SYSDATE,'yy/mm/dd')||'%'
+   </update>
+ </mapper>
+   
+  	

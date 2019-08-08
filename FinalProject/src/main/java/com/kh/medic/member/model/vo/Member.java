@@ -13,10 +13,7 @@ public class Member implements Serializable {
    private int empNo;
    private int empNo1;
    private String empPwd;
-
-
-
-private String empName;
+   private String empName;
    private String empAddress;
    private String empEmail;
    private String empRrn;
@@ -29,6 +26,8 @@ private String empName;
    private String entYn;
    private String deptTitle;
    private String jobTitle;
+   private String attend;
+   private String leave;
    
    public Member() {
       super();
@@ -65,7 +64,37 @@ private String empName;
 
 
 
-   public Member(int empNo, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
+   public Member(int empNo, int empNo1, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
+		String empPhone, String deptCode, String jobCode, int salary, Date hireDate, Date entDate, String entYn,
+		String deptTitle, String jobTitle, String attend, String leave) {
+	super();
+	this.empNo = empNo;
+	this.empNo1 = empNo1;
+	this.empPwd = empPwd;
+	this.empName = empName;
+	this.empAddress = empAddress;
+	this.empEmail = empEmail;
+	this.empRrn = empRrn;
+	this.empPhone = empPhone;
+	this.deptCode = deptCode;
+	this.jobCode = jobCode;
+	this.salary = salary;
+	this.hireDate = hireDate;
+	this.entDate = entDate;
+	this.entYn = entYn;
+	this.deptTitle = deptTitle;
+	this.jobTitle = jobTitle;
+	this.attend = attend;
+	this.leave = leave;
+}
+
+
+
+
+
+
+
+public Member(int empNo, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
 		String empPhone, String deptCode, String jobCode, int salary, Date hireDate, Date entDate, String entYn,
 		String deptTitle, String jobTitle) {
 	super();
@@ -144,6 +173,46 @@ public Member(String empPwd, String empName, String empAddress, String empEmail,
 	this.entYn = entYn;
 	this.deptTitle = deptTitle;
 	this.jobTitle = jobTitle;
+}
+
+
+
+
+
+
+
+public String getAttend() {
+	return attend;
+}
+
+
+
+
+
+
+
+public void setAttend(String attend) {
+	this.attend = attend;
+}
+
+
+
+
+
+
+
+public String getLeave() {
+	return leave;
+}
+
+
+
+
+
+
+
+public void setLeave(String leave) {
+	this.leave = leave;
 }
 
 
@@ -324,7 +393,8 @@ public String toString() {
 	return "Member [empNo=" + empNo + ", empNo1=" + empNo1 + ", empPwd=" + empPwd + ", empName=" + empName
 			+ ", empAddress=" + empAddress + ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone
 			+ ", deptCode=" + deptCode + ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate
-			+ ", entDate=" + entDate + ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle + "]";
+			+ ", entDate=" + entDate + ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle
+			+ ", attend=" + attend + ", leave=" + leave + "]";
 }
    
    

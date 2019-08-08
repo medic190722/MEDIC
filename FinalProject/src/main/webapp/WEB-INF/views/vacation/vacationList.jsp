@@ -107,9 +107,7 @@
 								class="btn btn-primary" onclick="clickOn();"
 								style="background: #697282; border-color: #333;">검 색</button>
 							
-							<button id="firstOutReceipt" type="submit"
-								class="btn btn-primary" onclick="insert();"
-								style="background: #697282; border-color: #333;">휴가 등록</button>
+							
 						</div>
 
 

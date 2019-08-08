@@ -22,33 +22,50 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="box box-info" style="width:600px; margin:0 auto; margin-top:50px;">
+					<div class="box box-info" style="width:800px; margin:0 auto; margin-top:50px;">
 						<div class="box-header with-border" style="text-align:center;">
 							<h3 class="box-title">환자 정보 조회</h3>
 						</div>
 						<!-- /.box-header -->
 						<!-- form start -->
-						<form class="form-horizontal" action="${pageContext.request.contextPath}/doctor/certificateDetail.do">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="pName" class="col-sm-3 control-label">성명</label>
-									<div class="col-sm-8">
-										<input type="text" id="pName" name="pName" class="form-control"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="pRrn" class="col-sm-3 control-label">주민등록번호</label>
-									<div class="col-sm-8">
-										<input type="text" id="pRrn" name="pRrn" class="form-control" maxlength="14" required>
-									</div>
-								</div>
+						<div class="box-body">
+							<div class="input-group pull-right" style="width:30%;">
+								<input type="text" id="pName" name="pName" onkeyup="enterkey();" class="form-control"/>
+								<span class="input-group-addon" style="padding:0; border:none;">
+									<button type="button" id="patientSearch" class="btn btn-default">검색</button>
+								</span>
 							</div>
-							<!-- /.box-body -->
-							<div class="box-footer">
-								<button type="submit" class="btn btn-info pull-right">작성하기</button>
-							</div>
-							<!-- /.box-footer -->
-						</form>
+						</div>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+								<thead>
+									<tr role="row">
+										<th class="sorting_asc" tabindex="0" aria-controls="example1"
+											style="text-align:center;"
+											rowspan="1" colspan="1"
+											aria-label="Rendering engine: activate to sort column descending"
+											aria-sort="ascending">환자 이름</th>
+										<th class="sorting_asc" tabindex="0" aria-controls="example1"
+											style="text-align:center;"
+											rowspan="1" colspan="1"
+											aria-label="Rendering engine: activate to sort column descending"
+											aria-sort="ascending">전화 번호</th>
+										<th class="sorting_asc" tabindex="0" aria-controls="example1"
+											style="text-align:center;"
+											rowspan="1" colspan="1"
+											aria-label="Rendering engine: activate to sort column descending"
+											aria-sort="ascending">주민등록번호</th>
+										<th class="sorting_asc" tabindex="0" aria-controls="example1"
+											style="text-align:center;"
+											rowspan="1" colspan="1"
+											aria-label="Rendering engine: activate to sort column descending"
+											aria-sort="ascending">진단서 작성</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<!-- /.box-footer -->
 					</div>
 				</div>
 				<!-- /.row (main row) -->
@@ -64,31 +81,47 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
-		function autoHypenResidentRegistrationNumber(str) {
-			str = str.replace(/[^0-9]/g, '');
-			var tmp = '';
-			if (str.length < 6) {
-				return str;
-			} else if (str.length < 6) {
-				tmp += str.substr(0, 6);
-				tmp += '-';
-				tmp += str.substr(6);
-				return tmp;
-			} else {
-				tmp += str.substr(0, 6);
-				tmp += '-';
-				tmp += str.substr(6, 7);
-				return tmp;
+		function enterkey(){
+			
+			if(window.event.keyCode == 13){
+				search();
 			}
-			return str;
-	
+			
 		}
-	
-		var residentRegistrationNumber = document.getElementById('pRrn');
-		residentRegistrationNumber.onkeyup = function(event) {
-			event = event || window.event;
-			var _val = this.value.trim();
-			this.value = autoHypenResidentRegistrationNumber(_val);
+		
+		function search() {
+			$.ajax({
+				url : "${ pageContext.request.contextPath }/doctor/patientSearch.do",
+				data : {pName : $("#pName").val()},
+				success : function(pList) {
+					$('#example1 > tbody').empty();
+					
+					var str = "<tbody>";
+					var pNo = "";
+					
+					for(var i in pList) {
+						str += "<tr><td style='text-align:center;'>" + pList[i].p_name + "</td>";
+						str += "<td style='text-align:center;'>" + pList[i].p_phone[0] + "</td>";
+						str += "<td style='text-align:center;'>" + pList[i].p_rrn + "</td>";
+						pNo = pList[i].p_no;
+						str += "<td style='text-align:center;'><button type='button' class='btn btn-info btn-flat' onclick='certificate(" + pNo + ");'>작성</button></td></tr>"
+					}
+					
+					str += "</tbody>";
+					
+					$('#example1').append(str);
+				}	
+			});
+		}
+		
+		$('#patientSearch').on("click", function() {
+			
+			search();
+			
+		});
+		
+		function certificate(pNo) {
+			location.href="${ pageContext.request.contextPath }/doctor/certificateDetail.do?pNo=" + pNo;
 		}
 		
 		$(function() {

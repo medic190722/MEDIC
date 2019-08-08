@@ -67,16 +67,23 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public List<Patient> patientListAll() {
+	public Patient patientOne(int pNo) {
 		
-		return drDao.patientListAll();
+		return drDao.patientOne(pNo);
 		
 	}
 	
 	@Override
-	public Patient patientOne(HashMap<String, String> hmap) {
+	public void admissionMedicalSave(Medical medical) {
 		
-		return drDao.patientOne(hmap);
+		drDao.admissionMedicalSave(medical);
+		
+	}
+	
+	@Override
+	public List<Patient> patientSearch(String pName) {
+		
+		return drDao.patientSearch(pName);
 		
 	}
 

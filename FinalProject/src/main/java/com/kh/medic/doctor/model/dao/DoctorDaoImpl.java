@@ -67,16 +67,23 @@ public class DoctorDaoImpl implements DoctorDao {
 	}
 	
 	@Override
-	public List<Patient> patientListAll() {
+	public Patient patientOne(int pNo) {
 		
-		return session.selectList("Doctor.patientListAll");
+		return session.selectOne("Doctor.patientOne", pNo);
 		
 	}
 	
 	@Override
-	public Patient patientOne(HashMap<String, String> hmap) {
+	public void admissionMedicalSave(Medical medical) {
 		
-		return session.selectOne("Doctor.patientOne", hmap);
+		session.insert("Doctor.admissionMedicalSave", medical);
+		
+	}
+	
+	@Override
+	public List<Patient> patientSearch(String pName) {
+		
+		return session.selectList("Doctor.patientSearch", pName);
 		
 	}
 

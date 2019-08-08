@@ -27,7 +27,7 @@ public class Patient implements Serializable{
 	
 	private Date admission_date; // 입원 날짜
 	private String m_code; // 차트번호
-	private String m_history; // 진료내역
+	private Date m_date; // 진료일
 	
 	public Patient() {}
 
@@ -161,12 +161,12 @@ public class Patient implements Serializable{
 		this.m_code = m_code;
 	}
 
-	public String getM_history() {
-		return m_history;
+	public Date getM_date() {
+		return m_date;
 	}
 
-	public void setM_history(String m_history) {
-		this.m_history = m_history;
+	public void setM_date(Date m_date) {
+		this.m_date = m_date;
 	}
 
 	@Override
@@ -175,9 +175,12 @@ public class Patient implements Serializable{
 				+ ", p_rrn=" + p_rrn + ", p_address=" + p_address + ", p_phone=" + Arrays.toString(p_phone)
 				+ ", p_firstdate=" + p_firstdate + ", p_lastdate=" + p_lastdate + ", p_acc_yn=" + p_acc_yn
 				+ ", p_medical_yn=" + p_medical_yn + ", p_admission_yn=" + p_admission_yn + ", admission_date="
-				+ admission_date + ", m_code=" + m_code + ", m_history=" + m_history + "]";
+				+ admission_date + ", m_code=" + m_code + ", m_date=" + m_date + "]";
 	}
 
+	
+
+	
 	
 	
 

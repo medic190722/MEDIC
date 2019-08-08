@@ -128,6 +128,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath }/vacation/vacationList.do"><i class="fa fa-circle-o"></i> 휴가 및 병가 승인 여부</a></li>
+            <li><a href="${pageContext.request.contextPath }/attendance/attendListView.do"><i class="fa fa-circle-o"></i> 출근관리</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -254,12 +255,22 @@
             <span>일정 관리</span>
           </a>
          </li>
-        <li>
+         
+         
+         <li class="treeview">
           <a href="#">
              <i class="fa fa-calendar"></i>
             <span>근태관리</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-          </li>
+          <ul class="treeview-menu">
+           <li><a href="${pageContext.request.contextPath}/vacation/vacationInset.do"><i class="fa fa-circle-o"></i> 휴가신청하기</a></li>
+           	<li><a href="#"><i class="fa fa-circle-o"></i> 출근/퇴근</a></li>
+          </ul>
+        </li>
+
           <li>
           <a href="${pageContext.request.contextPath}/notice/noticeList.do">
              <i class="fa fa-desktop"></i>

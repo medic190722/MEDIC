@@ -16,7 +16,7 @@
 	</select>
 		
 	<select id="selectPayPatient" parameterType="_int" resultMap="resultPatient">
-		SELECT P.*, M.M_CODE, M.M_HISTORY
+		SELECT P.*, M.M_CODE, M.M_DATE<!-- , SUBSTR(M.M_HISTORY,12,INSTR(M.M_HISTORY,' 2.')-12) M_TREATMENT -->
 		FROM PATIENT P
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO)
 		WHERE M.P_NO = #{p_no}

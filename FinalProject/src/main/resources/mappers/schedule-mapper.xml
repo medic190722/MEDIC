@@ -7,14 +7,32 @@
 	<resultMap type="Schedule" id="scheduleSelect">
 		<result property="scno" column="SC_NO"/> 
 		<result property="empno" column="EMP_NO"/> 
-		<result property="scstart" column="SC_STRAT"/> 
+		<result property="scstart" column="SC_START"/> 
 		<result property="scend" column="SC_END"/> 
 		<result property="sccontent" column="SC_CONTENT"/>
+		<result property="backcolor" column="SC_BACKCOLOR"/>
+		<result property="bordercolor" column="SC_BORDERCOLOR"/>
 	</resultMap>
 	
+	<select id="scheduleList" resultMap="scheduleSelect" parameterType="_int">
+		SELECT * FROM SCHEDULE WHERE EMP_NO = #{empno}
+	</select>
+	
 	<insert id="insertSchedule">
-	 	INSERT INTO SCHEDULE VALUES(SEQ_SCH.NEXTVAL, #{empno}, #{scstart}, NULL, #{sccontent})
+	 	INSERT INTO SCHEDULE VALUES(SEQ_SCH.NEXTVAL, #{empno}, #{scstart}, NULL, #{sccontent}, #{backcolor}, #{bordercolor})
+	 	
+	 	<selectKey keyProperty="scno" order="AFTER" resultType="_int">
+	 		SELECT SEQ_SCH.CURRVAL FROM DUAL
+	 	</selectKey>
 	</insert>
+	
+	<update id="updateSchedule" parameterType="schedule">
+		UPDATE SCHEDULE SET SC_START = #{scstart}, SC_END = #{scend} where SC_NO = #{scno}
+	</update>
+	
+	<delete id="deleteSchedule" parameterType="_int">
+		DELETE FROM SCHEDULE WHERE SC_NO = #{scno}
+	</delete>
 	
 
 </mapper>

@@ -10,6 +10,12 @@
 		<result property="mDate" column="M_DATE"/>
 		<result property="empNo" column="EMP_NO"/>
 		<result property="mHistory" column="M_HISTORY"/>
+		<result property="mExamination" column="M_EXAMINATION"/>
+		<result property="mMedList" column="M_MEDLIST"/>
+	</resultMap>
+	
+	<resultMap id="patientMap" type="Patient">
+		<result property="p_phone" column="p_phone" typeHandler="strArrPhoneTypeHandler"/>		
 	</resultMap>
 	
 	<resultMap id="medicineMap" type="medicine">
@@ -18,7 +24,7 @@
 		<result property="medCount" column="MED_COUNT"/>
 	</resultMap>
 	
-	<select id="patientList" resultType="Patient">
+	<select id="patientList" resultMap="patientMap">
 		SELECT * FROM PATIENT WHERE P_ACC_YN = 'Y' AND P_MEDICAL_YN = 'N' ORDER BY P_NO ASC
 	</select>
 	
@@ -31,7 +37,7 @@
 	</select>
 	
 	<insert id="medicalSave" parameterType="Medical">
-		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{pNo}, #{mDate}, #{empNo})
+		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, #{mExamination}, #{mMedList}, #{pNo}, #{mDate}, #{empNo})
 	</insert>
 	
 	<update id="admissionY" parameterType="_int">
@@ -46,12 +52,16 @@
 		UPDATE PATIENT SET P_MEDICAL_YN = 'Y' WHERE P_NO = #{pNo}
 	</update>
 	
-	<select id="patientListAll" resultType="Patient">
-		SELECT * FROM PATIENT ORDER BY P_NO ASC
+	<select id="patientOne" parameterType="_int" resultMap="patientMap">
+		SELECT * FROM PATIENT WHERE P_NO = #{pNo}
 	</select>
 	
-	<select id="patientOne" parameterType="hashmap" resultType="Patient">
-		SELECT * FROM PATIENT WHERE P_NAME = #{pName} AND P_RRN = #{pRrn}
+	<insert id="admissionMedicalSave" parameterType="Medical">
+		INSERT INTO MEDICAL VALUES(#{mCode}, #{mHistory}, NULL, NULL, #{pNo}, #{mDate}, #{empNo})
+	</insert>
+	
+	<select id="patientSearch" parameterType="string" resultMap="patientMap">
+		SELECT * FROM PATIENT WHERE P_NAME LIKE #{pName} ORDER BY P_NO ASC
 	</select>
 	
 </mapper>

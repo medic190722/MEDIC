@@ -20,14 +20,18 @@
       <result property="entYn" column="ent_yn" />
       <result property="deptTitle" column="dept_title"/>
 	  <result property="jobTitle" column="job_title"/>
+	  <result property="attend" column="attend"/>
+	  <result property="leave" column="leave"/>
+	  
    </resultMap>
    
    <select id="selectMember" parameterType="_int" resultMap="memberSelect">
-      SELECT E.*, DEPT_TITLE, JOB_TITLE 
+      SELECT E.*, D.DEPT_TITLE, J.JOB_TITLE <!-- , to_char(A.ATTEND,'yyyy-mm-dd hh24:mi:ss') ATTEND, to_char(A.LEAVE,'yyyy-mm-dd hh24:mi:ss') LEAVE --> 
 		FROM EMPLOYEE E 
 		JOIN DEPARTMENT D ON(E.DEPT_CODE = D.DEPT_CODE) 
 		JOIN JOB J ON(E.JOB_CODE = J.JOB_CODE) 
-		WHERE EMP_NO  = #{empNo}
+        <!-- JOIN ATTENDANCE A ON(E.EMP_NO = A.EMP_NO) -->
+		WHERE E.EMP_NO  = #{empNo} <!-- AND A.ATTEND LIKE '%'||to_char(SYSDATE,'yy/mm/dd')||'%' -->
    </select>
    
    <insert id="insertMember" parameterType="Member">

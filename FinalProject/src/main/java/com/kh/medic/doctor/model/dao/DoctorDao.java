@@ -23,8 +23,10 @@ public interface DoctorDao {
 
 	public void medicalY(int pNo);
 
-	public List<Patient> patientListAll();
+	public Patient patientOne(int pNo);
 
-	public Patient patientOne(HashMap<String, String> hmap);
+	public void admissionMedicalSave(Medical medical);
+
+	public List<Patient> patientSearch(String pName);
 
 }

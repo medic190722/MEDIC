@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.medic.doctor.model.service.DoctorService;
 import com.kh.medic.doctor.model.vo.Medical;
@@ -59,14 +60,14 @@ public class DoctorController {
 			@RequestParam("pName") String pName,
 			@RequestParam("empNo") int empNo,
 			@RequestParam("empName") String empName,
-			@RequestParam("medCode") String medCode,
-			@RequestParam("medName") String medName,
-			@RequestParam("oneDose") String oneDose,
-			@RequestParam("oneDayDose") String oneDayDose,
-			@RequestParam("totalDose") String totalDose,
-			@RequestParam("etc") String etc,
-			@RequestParam("medicalHistory") String medicalHistory,
-			@RequestParam("selectMedical") String selectMedical
+			@RequestParam(value="medCode", required=false) String medCode,
+			@RequestParam(value="medName", required=false) String medName,
+			@RequestParam(value="oneDose", required=false) String oneDose,
+			@RequestParam(value="oneDayDose", required=false) String oneDayDose,
+			@RequestParam(value="totalDose", required=false) String totalDose,
+			@RequestParam(value="etc", required=false) String etc,
+			@RequestParam("mHistory") String mHistory,
+			@RequestParam(value="mExamination", required=false) String mExamination
 			) {
 		
 		String[] medCodeArr = medCode.split(",");
@@ -76,18 +77,17 @@ public class DoctorController {
 		String[] totalDoseArr = totalDose.split(",");
 		String[] etcArr = etc.split(",");
 		
-		String mHistory = "";
+		String mMedList = "";
 		
 		for(int i = 0; i < etcArr.length; i++) {
-			mHistory += "1. 진료 내용 - " + medicalHistory + " 2. 검사 항목 - " + selectMedical + " 3. 처방약 - 약품 코드 : " + medCodeArr[i] + " , 약품 명 : " + medNameArr[i] + ", 1회 투약량 : " + oneDoseArr[i]
-					 + " , 1일 투여횟수 : " + oneDayDoseArr[i] + " , 총 투약 일수 : " + totalDoseArr[i] + " , 용법 : "
-					 + etcArr[i];
-			if(i != etcArr.length-1) {
-				mHistory += " / ";
+			mMedList += medCodeArr[i] + "/" + medNameArr[i] + "/" + oneDoseArr[i] + "/" + oneDayDoseArr[i]
+					+ "/" + totalDoseArr[i] + "/" + etcArr[i];
+			if(i != etcArr.length - 1) {
+				mMedList += "<br>";
 			}
 		}
 		
-		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory);
+		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory, mExamination, mMedList);
 
 		drService.medicalSave(medical);
 		
@@ -106,12 +106,12 @@ public class DoctorController {
 			@RequestParam("pName") String pName,
 			@RequestParam("empNo") int empNo,
 			@RequestParam("empName") String empName,
-			@RequestParam("medicalHistory") String medicalHistory,
+			@RequestParam("mHistory") String mHistory,
 			Model model) {
 		
-		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, medicalHistory);
+		Medical medical = new Medical(mCode, pNo, pName, mDate, empNo, empName, mHistory);
 		
-		drService.medicalSave(medical);
+		drService.admissionMedicalSave(medical);
 		
 		drService.admissionY(pNo);
 		drService.medicalY(pNo);
@@ -131,18 +131,25 @@ public class DoctorController {
 	}
 	
 	@RequestMapping("/doctor/certificateDetail.do")
-	public String certificatedetail(@RequestParam("pName") String pName, @RequestParam("pRrn") String pRrn, Model model) {
+	public String certificatedetail(@RequestParam("pNo") int pNo, Model model) {
 		
-		HashMap<String, String> hmap = new HashMap<>();
-		
-		hmap.put("pName", pName);
-		hmap.put("pRrn", pRrn);
-		
-		Patient p = drService.patientOne(hmap);
+		Patient p = drService.patientOne(pNo);
 		
 		model.addAttribute("p", p);
 		
 		return "doctor/certificatedetail";
+		
+	}
+	
+	@RequestMapping("/doctor/patientSearch.do")
+	@ResponseBody
+	public List<Patient> patientSearch(@RequestParam("pName") String pName) {
+		
+		String name = "%" + pName + "%";
+		
+		List<Patient> pList = drService.patientSearch(name);
+		
+		return pList;
 		
 	}
 	

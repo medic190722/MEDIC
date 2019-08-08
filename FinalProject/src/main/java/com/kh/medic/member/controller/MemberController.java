@@ -1,5 +1,6 @@
 package com.kh.medic.member.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +12,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.medic.member.model.service.MemberService;
 import com.kh.medic.member.model.vo.Member;
+import com.google.gson.Gson;
+import com.kh.medic.common.schedule.model.service.ScheduleService;
+import com.kh.medic.common.schedule.model.service.ScheduleServiceImpl;
+import com.kh.medic.common.schedule.model.vo.Schedule;
 import com.kh.medic.common.util.Utils;
 import com.kh.medic.member.model.exception.MemberException;
 
@@ -24,8 +30,12 @@ import com.kh.medic.member.model.exception.MemberException;
 @Controller
 public class MemberController {
    
-   @Autowired
-   MemberService memberService;
+	@Autowired
+	MemberService memberService;
+	
+	@Autowired
+	ScheduleService scService;
+	   
    
    @Autowired
    private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -132,8 +142,12 @@ public class MemberController {
    }
    
    @RequestMapping("/index.do")
-   public String mainGo() {
+   public String mainGo(Model model, @SessionAttribute Member m) {
       
+	   List<Schedule> schList = scService.scheduleList(m.getEmpNo());
+	   
+	   model.addAttribute("schList", new Gson().toJson(schList));
+	   
       return "index";
    }
    

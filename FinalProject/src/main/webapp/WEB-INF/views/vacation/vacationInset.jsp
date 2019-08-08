@@ -43,7 +43,7 @@
 							style="margin: 0 auto; margin-top: 20px; width: 1000px;">
 			<form name="MedicineFrm" action="${pageContext.request.contextPath}/vacation/vacationFormEnd.do" method="post">
 				<input type="text" class="form-control" placeholder="휴가 코드" name="vCode" id="vCode" required>
-				<input type="text" class="form-control" placeholder="사번" name="empNo" id="empNo" required>
+				<input type="text" class="form-control" placeholder="사번" name="empNo" id="empNo"  value="${m.empNo }" readonly>
 				<input type="date" class="form-control" placeholder="출발 날짜" name="vDate" id="vDate" required>
 				<input type="date" class="form-control" placeholder="복귀 날짜" name="vDateEnd" id="vDateEnd" required>
 				<input type="text" class="form-control" placeholder="내용" name="vContent" id="vContent" required>

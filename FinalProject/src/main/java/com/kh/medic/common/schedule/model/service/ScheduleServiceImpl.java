@@ -16,13 +16,21 @@ public class ScheduleServiceImpl implements ScheduleService {
 	ScheduleDao scDao;
 
 	@Override
-	public List<Schedule> scheduleList(int scno) {
-		return scDao.scheduleList(scno);
+	public List<Schedule> scheduleList(int empNo) {
+		return scDao.scheduleList(empNo);
 	}
 
 	@Override
 	public int insertSchedule(Schedule sc) {
-		return scDao.insertSchedule(sc);
+		int result = scDao.insertSchedule(sc);
+		
+		if(result > 0) {
+			result = sc.getScno();
+		} else {
+			throw new RuntimeException();
+		}
+		
+		return result; 
 	}
 
 	@Override

@@ -51,7 +51,7 @@
 								<div class="row" style="margin-top:20px;">
 									<div class="col-xs-4" style="width:50%;">
 										<label for="empName">담당 의사</label>
-										<input type="hidden" name=empNo value="${ m.empNo }" />
+										<input type="hidden" name=empNo id="empNo" value="${ m.empNo }" />
 										<input type="text" class="form-control" id="empName" name="empName" value="${ m.empName }">
 									</div>
 								</div>
@@ -59,17 +59,17 @@
 									<div class="col-xs-4" style="width:100%">
 										<label>진료 내용</label>
 										<span class="pull-right">
-											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="주사">주사</label> 
-											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="마취">마취</label> 
-											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="혈액 검사">혈액 검사</label> 
-											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="물리 치료">물리 치료</label> 
-											<label style="margin-right:10px;"><input name="selectMedical" type="checkbox" value="영상 진단">영상 진단</label>
+											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="주사">주사</label> 
+											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="마취">마취</label> 
+											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="혈액 검사">혈액 검사</label> 
+											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="물리 치료">물리 치료</label> 
+											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="영상 진단">영상 진단</label>
 										</span>
-										<textarea style="resize:none;" class="form-control" rows="5" name="medicalHistory"></textarea>
+										<textarea style="resize:none;" class="form-control" rows="5" id="mHistory" name="mHistory"></textarea>
 									</div>
 								</div>
 								<div class="box-body table-responsive no-padding" style="height:400px;margin-top:20px;">
-									<table class="table table-bordered" id="mHistory">
+									<table class="table table-bordered" id="mMedList">
 										<tbody>
 											<tr>
 												<th style="text-align:center;">약품 코드</th>
@@ -142,7 +142,7 @@
 									</div>
 								</div>
 								<div class="box-footer">
-									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/admission.do?pNo=${ pNo }'" class="btn btn-info pull-left">입원 신청</button>
+									<button type="button" onclick="admission();" class="btn btn-info pull-left">입원 신청</button>
 									<button type="button" onclick="location.href='${pageContext.request.contextPath}/doctor/prescription.do" class="btn btn-info pull-right">취소</button>
 									<button style="margin-right:20px;" type="submit" class="btn btn-info pull-right">완료</button>
 								</div>
@@ -163,6 +163,13 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
+		function admission() {
+			location.href="${pageContext.request.contextPath}/doctor/admission.do?mCode=" + $('#mCode').val()
+					+ "&mDate=" + $('#mDate').val() + "&pNo=" + $('#pNo').val()
+					+ "&pName=" + $('#pName').val() + "&empNo=" + $('#empNo').val()
+					+ "&empName=" + $('#empName').val() + "&mHistory=" + $('#mHistory').val();
+		}
+	
 		document.getElementById('mDate').value= new Date().toISOString().slice(0, 10);
 		
 		$('.medCode').each(function(){
@@ -177,14 +184,14 @@
 		
 		$(function() {
 			$('#addRow').click(function() {
-				var lastItemNo = $("#mHistory tr:last").attr("class").replace("item", "");
+				var lastItemNo = $("#mMedList tr:last").attr("class").replace("item", "");
 				 
-	            var newitem = $("#mHistory tr:eq(1)").clone(true);
+	            var newitem = $("#mMedList tr:eq(1)").clone(true);
 	            newitem.removeClass();
 	            newitem.find("td:eq(0)").attr("rowspan", "1");
 	            newitem.addClass("item"+(parseInt(lastItemNo)+1));
 
-	            $("#mHistory").append(newitem);
+	            $("#mMedList").append(newitem);
 			});
 		});
 		

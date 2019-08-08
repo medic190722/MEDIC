@@ -6,7 +6,7 @@ import com.kh.medic.common.schedule.model.vo.Schedule;
 
 public interface ScheduleService {
 
-	List<Schedule> scheduleList(int scno);
+	List<Schedule> scheduleList(int empNo);
 	
 	int insertSchedule(Schedule sc);
 	

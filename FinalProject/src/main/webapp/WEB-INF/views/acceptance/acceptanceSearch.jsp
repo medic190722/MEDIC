@@ -58,7 +58,10 @@
 			<div style="text-align: center;">	      
 	      	<div class="has-feedback" style="width:400px; display:inline-block">
 	       	<input type="search" class="form-control input-sm" id="p_name" name="p_name" onkeyup="enterkey();"/>
-	       	<span class="glyphicon glyphicon-search form-control-feedback" ></span> </div>          	    	
+	       	<span class="glyphicon glyphicon-search form-control-feedback" ></span> </div>     
+	       	<button id="firstOutReceipt" type="submit" class="btn btn-primary"
+						onclick="location.href='${pageContext.request.contextPath}/acceptance/patientSearch.do?p_name='+$(p_name).val();"
+						style="background: #697282; border-color: #333;" >검색하기</button>       	    	
 	     </div>
 	      
 	      <div class="searchPatient" style="margin:0 auto; margin-top:20px;">

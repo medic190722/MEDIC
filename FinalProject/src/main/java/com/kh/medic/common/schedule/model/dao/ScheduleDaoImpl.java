@@ -21,17 +21,17 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public List<Schedule> scheduleList(int scno) {
-		return null;
+	public List<Schedule> scheduleList(int empNo) {
+		return sqlSession.selectList("schedule.scheduleList", empNo);
 	}
 
 	@Override
 	public int updateSchedule(Schedule sc) {
-		return 0;
+		return sqlSession.update("schedule.updateSchedule", sc);
 	}
 
 	@Override
 	public int deleteScehdule(int scno) {
-		return 0;
+		return sqlSession.delete("schedule.deleteSchedule", scno);
 	}
 }
