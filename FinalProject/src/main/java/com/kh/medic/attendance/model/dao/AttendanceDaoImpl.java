@@ -62,4 +62,16 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		return sqlSession.update("attendance.insertLeave",empNo);
 	}
 
+	@Override
+	public int todayAttend(int empNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("attendance.todayAttend",empNo);
+	}
+
+	@Override
+	public int todayLeave(int empNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("attendance.todayLeave",empNo);
+	}
+
 }

@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Medic</title>
+<title>출근조회</title>
 <c:import url="../common/header.jsp" />
 
 <link rel="stylesheet"
@@ -61,11 +61,12 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>출근관리</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Main</li>
+					<li class="active">근태관리</li>
+					<li class="active">출근관리</li>
 				</ol>
 			</section>
 			<!-- Main content -->

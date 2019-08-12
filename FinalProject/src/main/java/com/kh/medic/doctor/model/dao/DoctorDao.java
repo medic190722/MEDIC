@@ -1,6 +1,5 @@
 package com.kh.medic.doctor.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.kh.medic.doctor.model.vo.Medical;
@@ -28,5 +27,9 @@ public interface DoctorDao {
 	public void admissionMedicalSave(Medical medical);
 
 	public List<Patient> patientSearch(String pName);
+
+	public List<Medical> myFatientCareList(int empNo);
+
+	public int myFatientCount(int empNo);
 
 }

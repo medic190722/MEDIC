@@ -15,4 +15,7 @@ public interface AttendanceDao {
 	
 	int insertAttend(int empNo);
 	int insertLeave(int empNo);
+	
+	int todayAttend(int empNo);
+	int todayLeave(int empNo);
 }

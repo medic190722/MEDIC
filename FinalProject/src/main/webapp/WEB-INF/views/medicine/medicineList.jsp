@@ -120,7 +120,7 @@ input#btn-add {
 										<tr id="${m.medCode}" style="background: #fff;">
 											<td>${m.medCode}</td>
 											<td>${m.medName}</td>
-											<td><input type="number" name="medCount"
+											<td><input type="number" name="medCount" style="text-align: center;"
 												value="${m.medCount}"></td>
 											<td>
 												<button type="button"

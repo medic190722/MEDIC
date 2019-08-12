@@ -1,6 +1,7 @@
 package com.kh.medic.notice.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kh.medic.common.util.Utils;
 import com.kh.medic.notice.model.service.NoticeService;
 import com.kh.medic.notice.model.vo.Notice;
@@ -21,6 +25,16 @@ public class NoticeController {
 	@Autowired
 	NoticeService nService;
 	
+	@RequestMapping("/notice/noticeTop5.do")
+	@ResponseBody
+	public List<Notice> selectTop5(Model model) {
+	
+		   List<Notice> nList = nService.noticeTop5();
+		   
+		   model.addAttribute("nList", new Gson().toJson(nList));
+	      
+		   return nList;
+	}
 
 	@RequestMapping("/notice/noticeList.do")
 	public String selectNoticeList(	

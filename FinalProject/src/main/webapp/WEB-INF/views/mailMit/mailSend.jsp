@@ -22,15 +22,7 @@
 	crossorigin="anonymous"></script>
 <!-- 사용자작성 css -->
 <c:import url="../common/header.jsp" />
-<script>
-	$(function() {
-		$('[name=upFile]').on('change', function() {
-			var fileName = $(this).prop('files')[0].name;//파일명(jquery)
-			console.log($(this).val());
-			$(this).next('.custom-file-label').html(fileName);
-		})
-	});
-</script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -59,7 +51,7 @@
 							method="post" enctype="multipart/form-data">
 							<div>
 								<input type="text" name="tomail" size="120" style="width: 100%"
-									placeholder="상대의 이메일" class="form-control">
+									value="${mailMit.empEmail}" placeholder="이메일을 입력해주세요" class="form-control">
 							</div>
 							<div align="center">
 								<!-- 제목 -->
@@ -73,10 +65,13 @@
 									style="width: 100%; resize: none" placeholder="내용#"
 									class="form-control"></textarea>
 							</div>
+							
+							<input type="text" name="empEmail" style="display: none;" value="${m.empEmail}">
 				
 							<p>
 							<div align="center">
 								<input type="submit" value="메일 보내기" class="btn btn-warning">
+								
 							</div>
 						</form>
 					</div>

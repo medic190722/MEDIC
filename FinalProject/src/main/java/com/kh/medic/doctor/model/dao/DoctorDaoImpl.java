@@ -1,6 +1,5 @@
 package com.kh.medic.doctor.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -84,6 +83,20 @@ public class DoctorDaoImpl implements DoctorDao {
 	public List<Patient> patientSearch(String pName) {
 		
 		return session.selectList("Doctor.patientSearch", pName);
+		
+	}
+	
+	@Override
+	public List<Medical> myFatientCareList(int empNo) {
+		
+		return session.selectList("Doctor.myFatientCareList", empNo);
+		
+	}
+	
+	@Override
+	public int myFatientCount(int empNo) {
+		
+		return session.selectOne("Doctor.myFatientCount", empNo);
 		
 	}
 

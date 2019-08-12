@@ -47,7 +47,7 @@
 	</insert>
 	
 	<insert id="insertAdmission" parameterType="Admission">
-		INSERT INTO ADMISSION VALUES (#{p_no}, #{ward_code}, #{admission_date})
+		INSERT INTO ADMISSION(P_NO, WARD_CODE, ADMISSION_DATE, DISCHARGE_YN) VALUES (#{p_no}, #{ward_code}, #{admission_date}, DEFAULT)
 	</insert>
 	
 	<update id="outPatientReceipt" parameterType="_int">

@@ -61,11 +61,12 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>회원정보조회</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Main</li>
+					<li class="active">회원관리</li>
+					<li class="active">회원정보조회</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -102,7 +103,7 @@
 				<div class="searchPatient" style="margin: 0 auto; margin-top: 20px;">
 
 					<table class="table table-striped table-hover" id="listArea"
-						style="width: 100%; text-align: center; margin: 0 auto;">
+						style="width: 1600px; text-align: center; margin: 0 auto;">
 						<thead>
 							<tr style="background: #41aeda;">
 								<th style="text-align: center">사번</th>

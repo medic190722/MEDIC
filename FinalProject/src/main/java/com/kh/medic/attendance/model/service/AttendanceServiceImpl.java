@@ -57,4 +57,16 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attendanceDao.insertLeave(empNo);
 	}
 
+	@Override
+	public int todayAttend(int empNo) {
+		// TODO Auto-generated method stub
+		return attendanceDao.todayAttend(empNo);
+	}
+
+	@Override
+	public int todayLeave(int empNo) {
+		// TODO Auto-generated method stub
+		return attendanceDao.todayLeave(empNo);
+	}
+
 }

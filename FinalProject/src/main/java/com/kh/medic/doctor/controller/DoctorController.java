@@ -1,9 +1,7 @@
 package com.kh.medic.doctor.controller;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -124,7 +122,7 @@ public class DoctorController {
 	}
 	
 	@RequestMapping("/doctor/certificate.do")
-	public String certificate(Model model) {
+	public String certificate() {
 		
 		return "doctor/certificate";
 		
@@ -150,6 +148,32 @@ public class DoctorController {
 		List<Patient> pList = drService.patientSearch(name);
 		
 		return pList;
+		
+	}
+	
+	@RequestMapping("/doctor/myFatientCare.do")
+	public String myFatientCare(@RequestParam("empNo") int empNo,
+			@RequestParam(value="cPage", required=false, defaultValue="1") int cPage, Model model) {
+		
+		int startPage;
+		int endPage;
+		int maxPage;
+		int limit = 10;
+		
+		int listCount = drService.myFatientCount(empNo);
+		
+		List<Medical> mList = drService.myFatientCareList(empNo);
+		
+		if(mList.size() == 0) {
+			model.addAttribute("msg", "담당 환자가 없습니다.");
+			model.addAttribute("loc", "/index.do");
+			
+			return "common/msg";
+		} else {
+			model.addAttribute("mList", mList);
+			
+			return "doctor/myFatientCare";
+		}
 		
 	}
 	

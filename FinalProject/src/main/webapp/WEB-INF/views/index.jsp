@@ -32,43 +32,45 @@
 
 					<section class="col-md-3">
 						<!-- Profile Image -->
-						<div class="box box-primary">
+						<div class="box box-primary" id="attitude">
 							<div class="box-body box-profile">
-
-
 								<h3 class="profile-username text-center">${m.empName }</h3>
 
 								<p class="text-muted text-center">${m.deptTitle}-
 									${m.jobTitle }</p>
 
 								<ul class="list-group list-group-unbordered">
-									<li class="list-group-item"><b>출근시간</b> <a
-										class="pull-right"><%-- ${m.attend } --%></a></li>
-									<li class="list-group-item"><b>퇴근시간</b> <a
-										class="pull-right"><%-- ${m.leave } --%></a></li>
+									<li class="list-group-item"><b>최근출근시간</b> <a
+										class="pull-right"> ${m.todayAttend }</a></li>
+									<li class="list-group-item"><b>최근퇴근시간</b> <a
+										class="pull-right">${m.todayLeave }</a></li>
 
 								</ul>
-
+									
 								<a
-									href="${pageContext.request.contextPath}/attendance/attendAdd.do?empNo=${m.empNo}"
-									class="btn btn-primary"><b>출근</b></a> <a
-									href="${pageContext.request.contextPath}/attendance/leaveAdd.do?empNo=${m.empNo}"
-									class="btn btn-primary"><b>퇴근</b></a> <a
+									href="#"
+									class="btn btn-primary attend"><b>출근</b></a> <a
+									href="#"
+									class="btn btn-primary leave"><b>퇴근</b></a> <a
 									href="${pageContext.request.contextPath}/attendance/attendListOne.do?empNo=${m.empNo}"
 									class="btn btn-primary"><b>나의 근태조회</b></a>
+						
 							</div>
 						</div>
+		
+						
+						
 						<div class="box box-solid" id="dragEvent" style="display: none;">
 							<div class="box-header with-border">
-								<h4 class="box-title">Draggable Events</h4>
+								<h4 class="box-title">일정 목록</h4>
 							</div>
 							<div class="box-body">
 								<!-- the events -->
 								<div id="external-events">
-									<div class="external-event bg-green">점심</div>
-									<div class="external-event bg-yellow">퇴근</div>
-									<div class="external-event bg-aqua">업무1</div>
-									<div class="external-event bg-light-blue">업무2</div>
+									<div class="external-event bg-green">회의</div>
+									<div class="external-event bg-yellow">업무1</div>
+									<div class="external-event bg-aqua">업무2</div>
+									<div class="external-event bg-light-blue">업무3</div>
 									<div class="external-event bg-red">휴식</div>
 									<div class="checkbox">
 										<label for="drop-remove"> <input type="checkbox"
@@ -82,7 +84,7 @@
 						<!-- /. box -->
 						<div class="box box-solid" id="createEvent" style="display: none;">
 							<div class="box-header with-border">
-								<h3 class="box-title">Create Event</h3>
+								<h3 class="box-title">일정 생성</h3>
 							</div>
 							<div class="box-body">
 								<div class="btn-group" style="width: 100%; margin-bottom: 10px;">
@@ -131,88 +133,62 @@
 						</div>
 
 						<!-- TO DO List -->
-						<div class="box box-primary">
+						<div class="box box-primary" id="todoList">
 							<div class="box-header">
 								<i class="ion ion-clipboard"></i>
 
 								<h3 class="box-title">해야할 일</h3>
-
-								<div class="box-tools pull-right">
-									<ul class="pagination pagination-sm inline">
-										<li><a href="#">&laquo;</a></li>
-										<li><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">&raquo;</a></li>
-									</ul>
-								</div>
+								<button type="button" class="btn btn-default pull-right" id="addItem">
+									<i class="fa fa-plus"></i> 추가
+								</button>
+								<button type="button" class="btn btn-default pull-right" id="confItem" style="display: none;">
+									완료
+								</button>
+								
+							</div>
+							<div align="center" id="insertTodo" style="display: none;">
+								<input type="text" name="todo" placeholder="할일" required id="todoVal"/>&nbsp;
+								<button class="btn btn-outline-success" id="todoSave">저장</button>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-								<ul class="todo-list">
+								<ul class="todo-list" id="todo-list">
 									<li>
-										<!-- drag handle --> <span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <!-- checkbox --> <input type="checkbox" value=""> <!-- todo text -->
 										<span class="text">Design a nice theme</span> <!-- Emphasis label -->
-										<small class="label label-danger"><i
-											class="fa fa-clock-o"></i> 2 mins</small> <!-- General tools such as edit or delete-->
 										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
+											<i class="fa fa-trash-o"></i>
 										</div>
 									</li>
-									<li><span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <input type="checkbox" value=""> <span class="text">Make
-											the theme responsive</span> <small class="label label-info"><i
-											class="fa fa-clock-o"></i> 4 hours</small>
-										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
-										</div></li>
-									<li><span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <input type="checkbox" value=""> <span class="text">Let
-											theme shine like a star</span> <small class="label label-warning"><i
-											class="fa fa-clock-o"></i> 1 day</small>
-										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
-										</div></li>
-									<li><span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <input type="checkbox" value=""> <span class="text">Let
-											theme shine like a star</span> <small class="label label-success"><i
-											class="fa fa-clock-o"></i> 3 days</small>
-										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
-										</div></li>
-									<li><span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <input type="checkbox" value=""> <span class="text">Check
-											your messages and notifications</span> <small
-										class="label label-primary"><i class="fa fa-clock-o"></i>
-											1 week</small>
-										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
-										</div></li>
-									<li><span class="handle"> <i
-											class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i>
-									</span> <input type="checkbox" value=""> <span class="text">Let
-											theme shine like a star</span> <small class="label label-default"><i
-											class="fa fa-clock-o"></i> 1 month</small>
-										<div class="tools">
-											<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
-										</div></li>
 								</ul>
 							</div>
 							<!-- /.box-body -->
-							<div class="box-footer clearfix no-border">
-								<button type="button" class="btn btn-default pull-right">
-									<i class="fa fa-plus"></i> Add item
-								</button>
-							</div>
+							
 						</div>
 						<!-- /.box -->
+						
+							<!-- Notice List -->
+						<div class="box box-primary" id="noticeList">
+							<div class="box-header">
+								<i class="ion ion-clipboard"></i>
+
+								<h3 class="box-title">공지사항</h3>
+								<button type="button" class="btn btn-default pull-right" id="goNoticeList">
+									<i class="fa fa-plus">More</a></i> 
+								</button>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+								<ul class="todo-list" id="notice-list">
+								</ul>
+							</div>
+							<!-- /.box-body -->
+							
+						</div>
+						<!-- /.box -->
+						
+						
 					</section>
 					<!-- /.Left col -->
 
@@ -323,6 +299,9 @@
 			$('#dragEvent').css('display', 'block');
 			$('#add-new-schedule').css('display', 'none');
 			$('#confirm-schedule').css('display', 'block');
+			$('#attitude').css('display','none');
+			$('#todoList').css('display','none');
+			$('#noticeList').css('display','none');
 			$('#calendarTrash').css('display','block');
 			$('#calendar').fullCalendar('option', 'editable', true);
 		});
@@ -332,9 +311,48 @@
 			$('#createEvent').css('display', 'none');
 			$('#dragEvent').css('display', 'none');
 			$('#add-new-schedule').css('display', 'block');
+			$('#attitude').css('display','block');
+			$('#todoList').css('display','block');
+			$('#noticeList').css('display','block');
 			$('#calendarTrash').css('display','none');
 			$('#calendar').fullCalendar('option', 'editable', false);
 		});
+		
+		$('#goNoticeList').on('click', function(){
+			location.href = "${pageContext.request.contextPath}/notice/noticeList.do";
+		});
+		
+		$('#addItem').on('click', function(){
+			$('#insertTodo').css('display','block');
+			$('#addItem').css('display','none');
+			$('#confItem').css('display','block');
+		});
+		
+		$('#confItem').on('click', function(){
+			$('#insertTodo').css('display','none');
+			$('#addItem').css('display','block');
+			$('#confItem').css('display','none');
+		});
+		
+		$('#todoSave').on('click', function(){
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/todo/insertTodo.do",
+				data : {
+					todo : $('#todoVal').val()
+				},
+				success : function(data) {
+					console.log("성공");
+					console.log(data);
+				},
+				error : function(data) {
+					console.log(data);
+				}
+			});
+			
+		});
+		
+		
 
 		$(function() {
 
@@ -376,15 +394,15 @@
 			$('#calendar')
 					.fullCalendar(
 							{
-								locale : 'ko',
-								eventLimit : true,
-								selectable : true,
+								locale : 'ko', // 한국어설정
+								eventLimit : true, // 달력에 표시될 일정 개수 제한
+								selectable : true, // 마우스로 클릭한 위치확인용(추가용으로는 쓰지않음)
 								header : {
-									left : 'prev,next today',
-									center : 'title',
-									right : 'month'
+									left : 'prev,next today', // 전 후 오늘 버튼
+									center : 'title', // 센터에 제목
+									right : 'month' // agendaweek 와 agendaday 와 list 삭제 추가하면 나오기는하는데 시간까지 찍는 달력은아님
 								},
-								//Random default events
+								//Random default events // 임시 데이터
 								events : myDataList/*[ {
 									title : 'asdf',
 									start : new Date(y, m, d),
@@ -455,7 +473,7 @@
 									copiedEventObject.borderColor = $(this)
 											.css('border-color');
 
-									// render the event on the calendar
+									// render the event on the calendar // 이벤트 렌더링
 									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 									$('#calendar').fullCalendar('renderEvent',
 											copiedEventObject, true);

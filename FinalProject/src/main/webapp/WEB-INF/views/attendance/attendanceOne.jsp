@@ -40,35 +40,19 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>출근조회</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Main</li>
+					<li class="active">근태관리</li>
+					<li class="active">출근관리</li>
+					<li class="active">출근조회</li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
 				<!-- Main row -->
-				<div class="row">
-					
-					<div style="text-align: center;">
-					<div class="has-feedback"
-						style="width: 400px; display: inline-block">
-						<input type="text" class="form-control input-sm" id="e_name"
-							name="e_name" onkeyup="enterkey();" /> <span
-							class="glyphicon glyphicon-search form-control-feedback"></span>
-					</div>
-					<button id="firstOutReceipt" type="submit" class="btn btn-primary"
-						onclick="location.href='${pageContext.request.contextPath}/member/searchMember.do?e_name='+$(e_name).val();"
-						style="background: #697282; border-color: #333;" >검색하기</button>
-						
-						<button id="firstOutReceipt" type="submit" class="btn btn-primary"
-						onclick="AllList();"
-						style="background: #697282; border-color: #333;">전체보기</button>
-						
-				</div>
-				</div>
+			
 				<!-- ================================================================================== -->
 
 

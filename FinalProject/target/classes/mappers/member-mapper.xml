@@ -20,18 +20,18 @@
       <result property="entYn" column="ent_yn" />
       <result property="deptTitle" column="dept_title"/>
 	  <result property="jobTitle" column="job_title"/>
-	  <result property="attend" column="attend"/>
-	  <result property="leave" column="leave"/>
+	  <result property="todayAttend" column="today_attend"/>
+	  <result property="todayLeave" column="today_leave"/>
 	  
    </resultMap>
    
    <select id="selectMember" parameterType="_int" resultMap="memberSelect">
-      SELECT E.*, D.DEPT_TITLE, J.JOB_TITLE <!-- , to_char(A.ATTEND,'yyyy-mm-dd hh24:mi:ss') ATTEND, to_char(A.LEAVE,'yyyy-mm-dd hh24:mi:ss') LEAVE --> 
+      SELECT E.*, D.DEPT_TITLE, J.JOB_TITLE , to_char(A.TODAY_ATTEND,'yyyy-mm-dd hh24:mi:ss') TODAY_ATTEND, to_char(A.TODAY_LEAVE,'yyyy-mm-dd hh24:mi:ss') TODAY_LEAVE 
 		FROM EMPLOYEE E 
 		JOIN DEPARTMENT D ON(E.DEPT_CODE = D.DEPT_CODE) 
 		JOIN JOB J ON(E.JOB_CODE = J.JOB_CODE) 
-        <!-- JOIN ATTENDANCE A ON(E.EMP_NO = A.EMP_NO) -->
-		WHERE E.EMP_NO  = #{empNo} <!-- AND A.ATTEND LIKE '%'||to_char(SYSDATE,'yy/mm/dd')||'%' -->
+       JOIN TODAYATTEND A ON(E.EMP_NO = A.EMP_NO)
+		WHERE E.EMP_NO  = #{empNo} 
    </select>
    
    <insert id="insertMember" parameterType="Member">

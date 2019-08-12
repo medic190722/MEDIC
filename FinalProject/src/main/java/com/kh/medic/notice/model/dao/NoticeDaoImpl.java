@@ -50,4 +50,9 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sqlSession.delete("notice.deleteNotice", nno);
 	}
 
+	@Override
+	public List<Notice> noticeTop5() {
+		return sqlSession.selectList("notice.noticeTop5");
+	}
+
 }

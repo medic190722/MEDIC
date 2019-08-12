@@ -212,12 +212,19 @@
             <span>진단서 작성</span>
           </a>
           </li>
-          <li>
-           <a href="#">
-             <i class="fa fa-wheelchair"></i>
+          <li class="treeview">
+          <a href="#">
+             <i class="fa fa-user"></i>
             <span>담당 환자 관리</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-          </li>
+          <ul class="treeview-menu">
+			<li><a href="${pageContext.request.contextPath}/doctor/myFatientCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>일반 환자 관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/doctor/myFatientCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>입원 환자 관리</a></li>
+          </ul>
+       </li>
   
       </ul>
       </c:if>
@@ -227,9 +234,9 @@
         
         <!-- 간호사 -->
           <li>
-          <a href="#">
+          <a href="${pageContext.request.contextPath}/nurse/orderList.do">
              <i class="fa fa-wheelchair"></i>
-            <span>재원 환자 관리</span>
+            <span>입원환자 업무</span>
           </a>
           </li>
           <li>

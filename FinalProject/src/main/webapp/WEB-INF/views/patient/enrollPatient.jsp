@@ -30,7 +30,7 @@
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="register-box-body outReceipt"
+					<div class=" outReceipt"
 						style="width: 500px; margin: 0 auto; margin-top: 50px;">
 						<p class="login-box-msg">
 							<b style="font-size: 20px;">환자 등록</b>
@@ -45,7 +45,7 @@
 									<label for="">이름 </label>
 								</div>
 								<div style="display: inline-block">
-									<input type="text" id="p_name" name="p_name" required>
+									<input type="text" id="p_name" name="p_name" style="width:300px;  text-align: center;" required >
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -54,7 +54,7 @@
 									<label for="">나이 </label>
 								</div>
 								<div style="display: inline-block">
-									<input type="number" id="p_age" name="p_age" min=0 required>
+									<input type="number" id="p_age" name="p_age" min=0 style="width:300px; text-align: center;" required>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -76,8 +76,11 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="p_rrn" name="p_rrn"
-										class="form-check-input" />
-									<div id="rrnResult" style="display: inline-block;"></div>
+										class="form-check-input" style="width:300px;  text-align: center;"/>
+									
+								</div>
+								<div style="text-align: center;">
+								<div id="rrnResult" style="display: inline-block;"></div>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -87,7 +90,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" name="p_address" id="p_address"
-										style="width: 300px;">
+										style="width: 300px;  text-align: center;">
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -137,7 +140,7 @@
 							</div>
 						</form>
 
-
+						
 
 
 					</div>

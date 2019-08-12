@@ -23,7 +23,8 @@
 	</select>
    
    <insert id="insertAttend" parameterType="Attendance">
-   	INSERT INTO ATTENDANCE (EMP_NO,ATTEND) VALUES(#{empNo},SYSDATE)
+   INSERT INTO ATTENDANCE(EMP_NO,ATTEND) SELECT #{empNo},SYSDATE FROM DUAL WHERE NOT EXISTS(SELECT ATTEND FROM ATTENDANCE WHERE ATTEND LIKE '%'||to_char(SYSDATE,'yy/mm/dd')||'%') 
+
    </insert>
    
    <update id="insertLeave" parameterType="Attendance">
@@ -31,6 +32,22 @@
    	LEAVE = SYSDATE
    	WHERE EMP_NO = #{empNo} AND ATTEND LIKE '%'||to_char(SYSDATE,'yy/mm/dd')||'%'
    </update>
+   
+   
+   <update id="todayAttend" parameterType="Attendance">
+   UPDATE TODAYATTEND SET
+   	TODAY_ATTEND = SYSDATE
+   	WHERE EMP_NO = #{empNo}
+   </update>
+   
+   <update id="todayLeave" parameterType="Attendance">
+    UPDATE TODAYATTEND SET
+   	TODAY_LEAVE = SYSDATE
+   	WHERE EMP_NO = #{empNo}
+   </update>
+   
+   
+
  </mapper>
    
   	

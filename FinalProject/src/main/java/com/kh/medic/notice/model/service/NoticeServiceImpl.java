@@ -45,4 +45,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.deleteNotice(nno);
 	}
 
+	@Override
+	public List<Notice> noticeTop5() {
+		return nDao.noticeTop5();
+	}
+
 }

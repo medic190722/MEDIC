@@ -9,17 +9,61 @@
 	</resultMap>
 	
 	<select id="selectPatient" parameterType="string" resultMap="resultPatient">
-		SELECT P.*, M.M_CODE 
+		SELECT P.*, M.M_CODE, M.M_DATE 
 		FROM PATIENT P 
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO) 
 		WHERE M.P_NO IN(SELECT P_NO FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%'))
 	</select>
 		
-	<select id="selectPayPatient" parameterType="_int" resultMap="resultPatient">
-		SELECT P.*, M.M_CODE, M.M_DATE<!-- , SUBSTR(M.M_HISTORY,12,INSTR(M.M_HISTORY,' 2.')-12) M_TREATMENT -->
+	<select id="selectPayPatient" parameterType="string" resultMap="resultPatient">
+		SELECT P.*, M.M_CODE, M.M_DATE, M.M_EXAMINATION
 		FROM PATIENT P
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO)
-		WHERE M.P_NO = #{p_no}
+		WHERE M.M_CODE = #{m_code}
 	</select>
+	
+	<select id="selectInjection" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='주사'
+	</select>
+	
+	<select id="selectAnesthesia" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='마취'
+	</select>
+	
+	<select id="selectTreatementAndSurgery" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='수술'
+	</select>
+	
+	<select id="selectInpection" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='혈액 검사'
+	</select>
+	
+	<select id="selectImage" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='영상 진단'
+	</select>
+	
+	<select id="selectRadiation" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='방사선진단'
+	</select>
+	
+	<select id="selectTreatment" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM AD_ORDER WHERE P_NO = #{p_no} AND CHECK_YN = 'Y' AND ORDER_EXAMINATION='물리 치료'
+	</select>	
+	
+	<update id="updateAcceptance" parameterType="Acceptance">
+		UPDATE ACCEPTANCE SET 
+			ACC_AMOUNT = #{acc_amount}, 
+			ACC_TOTAL_AMOUNT = #{acc_total_amount}, 
+			ACC_UNPAID_AMOUNT = #{acc_unpaid_amount},
+			ACC_YN ='Y'
+		WHERE M_CODE = #{m_code}
+	</update>
+	
+	<update id="updatePatient" parameterType="_int">
+		UPDATE PATIENT SET
+			P_ACC_YN = 'N',
+			P_MEDICAL_YN ='N'
+		WHERE P_NO = #{p_no}
+	</update>
 	
 </mapper>

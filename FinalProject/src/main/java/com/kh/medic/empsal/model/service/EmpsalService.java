@@ -14,7 +14,6 @@ public interface EmpsalService {
 	int selectEmpsalTotalContents();
 	
 	EmpsalVo selectOneEmpsal(String empNo);
-	
 
 	int updateEmpsal(int empNo, int salary);
 	

@@ -122,7 +122,7 @@
 									<tr style="background: #4BA0BE;">
 										<th style="text-align: center">사번</th>
 										<th style="text-align: center">이름</th>
-										<th style="text-align: center">급여</th>
+										<th style="text-align: center">급여(만원)</th>
 										<th style="text-align: center">부서명</th>
 										<th style="text-align: center">직급명</th>
 

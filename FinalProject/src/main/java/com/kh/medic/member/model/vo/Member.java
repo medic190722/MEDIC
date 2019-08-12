@@ -26,8 +26,8 @@ public class Member implements Serializable {
    private String entYn;
    private String deptTitle;
    private String jobTitle;
-   private String attend;
-   private String leave;
+   private String todayAttend;
+   private String todayLeave;
    
    public Member() {
       super();
@@ -66,7 +66,7 @@ public class Member implements Serializable {
 
    public Member(int empNo, int empNo1, String empPwd, String empName, String empAddress, String empEmail, String empRrn,
 		String empPhone, String deptCode, String jobCode, int salary, Date hireDate, Date entDate, String entYn,
-		String deptTitle, String jobTitle, String attend, String leave) {
+		String deptTitle, String jobTitle, String todayAttend, String todayLeave) {
 	super();
 	this.empNo = empNo;
 	this.empNo1 = empNo1;
@@ -84,8 +84,8 @@ public class Member implements Serializable {
 	this.entYn = entYn;
 	this.deptTitle = deptTitle;
 	this.jobTitle = jobTitle;
-	this.attend = attend;
-	this.leave = leave;
+	this.todayAttend = todayAttend;
+	this.todayLeave = todayLeave;
 }
 
 
@@ -181,8 +181,12 @@ public Member(String empPwd, String empName, String empAddress, String empEmail,
 
 
 
-public String getAttend() {
-	return attend;
+
+
+
+
+public String getTodayAttend() {
+	return todayAttend;
 }
 
 
@@ -191,8 +195,8 @@ public String getAttend() {
 
 
 
-public void setAttend(String attend) {
-	this.attend = attend;
+public void setTodayAttend(String todayAttend) {
+	this.todayAttend = todayAttend;
 }
 
 
@@ -201,8 +205,8 @@ public void setAttend(String attend) {
 
 
 
-public String getLeave() {
-	return leave;
+public String getTodayLeave() {
+	return todayLeave;
 }
 
 
@@ -211,8 +215,8 @@ public String getLeave() {
 
 
 
-public void setLeave(String leave) {
-	this.leave = leave;
+public void setTodayLeave(String todayLeave) {
+	this.todayLeave = todayLeave;
 }
 
 
@@ -394,7 +398,7 @@ public String toString() {
 			+ ", empAddress=" + empAddress + ", empEmail=" + empEmail + ", empRrn=" + empRrn + ", empPhone=" + empPhone
 			+ ", deptCode=" + deptCode + ", jobCode=" + jobCode + ", salary=" + salary + ", hireDate=" + hireDate
 			+ ", entDate=" + entDate + ", entYn=" + entYn + ", deptTitle=" + deptTitle + ", jobTitle=" + jobTitle
-			+ ", attend=" + attend + ", leave=" + leave + "]";
+			+ ", todayAttend=" + todayAttend + ", todayLeave=" + todayLeave + "]";
 }
    
    

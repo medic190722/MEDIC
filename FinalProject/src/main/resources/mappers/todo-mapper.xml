@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="todo">
+
+	<select id="selectTodoList" resultType="Todo">
+		SELECT * FROM TODO ORDER BY TODONO DESC
+	</select>
+	
+	<insert id="insertTodo">
+		INSERT INTO TODO VALUES
+		(SEQ_TODONO.NEXTVAL, #{todo}, DEFAULT)			
+	</insert>
+		
+	<delete id="deleteTodo">
+		DELETE FROM TODO WHERE TODONO = #{todoNo}
+	</delete>
+
+</mapper>
+

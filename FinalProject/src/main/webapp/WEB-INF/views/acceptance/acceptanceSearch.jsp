@@ -28,11 +28,11 @@
 				})
 				.click(
 						function() {
-							var p_no = $(this).parent().children().eq(1).text();
+							var m_code = $(this).parent().children().eq(0).text();
 
-							console.log(p_no);
+							console.log(m_code);
 
-							location.href = "${pageContext.request.contextPath}/acceptance/patientAcceptanceInsert.do?p_no="+ p_no;
+							location.href = "${pageContext.request.contextPath}/acceptance/patientAcceptanceInsert.do?m_code="+ m_code;
 						});
 	});
   </script>
@@ -71,6 +71,7 @@
 	      			<th style="text-align:center">환자번호</th>
 	      			<th style="text-align:center">환자이름</th>
 	      			<th style="text-align:center">전화번호</th>
+	      			<th style="text-align:center">진료일</th>
 	      		</tr>
 	      		<c:forEach items="${patientList}" var="p">	      			
 	      			<tr id="${p.p_no}" style="background: #fff;">
@@ -78,6 +79,7 @@
 	      				<td id="${p.p_no}">${p.p_no}</td>
 	      				<td id="${p.p_name}">${p.p_name}</td>
 	      				<td id="${p.p_phone[0]}">${p.p_phone[0]}</td>
+	      				<td id="${p.m_date}">${p.m_date}</td>
 	      				<%-- <td> 
 	      					<input type="submit" class="btn btn-primary btn-sm" id="acceptance" value="납부" 
 	      						style="width: 100px;" onclick="location.href='${pageContext.request.contextPath}/acceptance/acceptance.do?p_no=${p.p_no}'"/>

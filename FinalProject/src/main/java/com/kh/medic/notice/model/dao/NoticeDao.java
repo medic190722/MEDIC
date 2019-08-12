@@ -18,5 +18,7 @@ public interface NoticeDao {
 	int updateNotice(Notice notice);
 	
 	int deleteNotice(int nno);
+
+	List<Notice> noticeTop5();
 	
 }

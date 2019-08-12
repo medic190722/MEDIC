@@ -12,19 +12,38 @@ public class Acceptance implements Serializable{
 	private int acc_no; // 수납 코드
 	private int p_no; 	// 환자 번호
 	private String m_code;	// 진료 코드
-	private int acc_mount; 	// 납부 금액
+	private int acc_amount; 	// 실납부 금액
+	private int acc_total_amount; // 총납부 금액
+	private int acc_unpaid_amount; //미납 금액
 	private String acc_yn; 	// 납부 여부
 	
 	public Acceptance() {}
 
-	public Acceptance(int acc_no, int p_no, String m_code, int acc_mount, String acc_yn) {
+	
+	
+	public Acceptance(String m_code, int acc_amount, int acc_total_amount, int acc_unpaid_amount) {
+		super();
+		this.m_code = m_code;
+		this.acc_amount = acc_amount;
+		this.acc_total_amount = acc_total_amount;
+		this.acc_unpaid_amount = acc_unpaid_amount;
+	}
+
+
+
+	public Acceptance(int acc_no, int p_no, String m_code, int acc_amount, int acc_total_amount, int acc_unpaid_amount,
+			String acc_yn) {
 		super();
 		this.acc_no = acc_no;
 		this.p_no = p_no;
 		this.m_code = m_code;
-		this.acc_mount = acc_mount;
+		this.acc_amount = acc_amount;
+		this.acc_total_amount = acc_total_amount;
+		this.acc_unpaid_amount = acc_unpaid_amount;
 		this.acc_yn = acc_yn;
 	}
+
+
 
 	public int getAcc_no() {
 		return acc_no;
@@ -50,12 +69,28 @@ public class Acceptance implements Serializable{
 		this.m_code = m_code;
 	}
 
-	public int getAcc_mount() {
-		return acc_mount;
+	public int getAcc_amount() {
+		return acc_amount;
 	}
 
-	public void setAcc_mount(int acc_mount) {
-		this.acc_mount = acc_mount;
+	public void setAcc_amount(int acc_amount) {
+		this.acc_amount = acc_amount;
+	}
+
+	public int getAcc_total_amount() {
+		return acc_total_amount;
+	}
+
+	public void setAcc_total_amount(int acc_total_amount) {
+		this.acc_total_amount = acc_total_amount;
+	}
+
+	public int getAcc_unpaid_amount() {
+		return acc_unpaid_amount;
+	}
+
+	public void setAcc_unpaid_amount(int acc_unpaid_amount) {
+		this.acc_unpaid_amount = acc_unpaid_amount;
 	}
 
 	public String getAcc_yn() {
@@ -68,10 +103,10 @@ public class Acceptance implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Acceptance [acc_no=" + acc_no + ", p_no=" + p_no + ", m_code=" + m_code + ", acc_mount=" + acc_mount
-				+ ", acc_yn=" + acc_yn + "]";
+		return "Acceptance [acc_no=" + acc_no + ", p_no=" + p_no + ", m_code=" + m_code + ", acc_amount=" + acc_amount
+				+ ", acc_total_amount=" + acc_total_amount + ", acc_unpaid_amount=" + acc_unpaid_amount + ", acc_yn="
+				+ acc_yn + "]";
 	}
-	
 	
 	
 }

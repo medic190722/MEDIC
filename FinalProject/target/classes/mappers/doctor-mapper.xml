@@ -4,9 +4,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Doctor">
 	
-	<resultMap id="MedicalMap" type="Medical">
+	<resultMap id="medicalMap" type="Medical">
 		<id property="mCode" column="M_CODE"/>
 		<result property="pNo" column="P_NO"/>
+		<result property="pName" column="P_NAME"/>
 		<result property="mDate" column="M_DATE"/>
 		<result property="empNo" column="EMP_NO"/>
 		<result property="mHistory" column="M_HISTORY"/>
@@ -45,7 +46,7 @@
 	</update>
 	
 	<insert id="insertACC" parameterType="Medical">
-		INSERT INTO ACCEPTANCE VALUES(SEQ_ACC_NO.NEXTVAL, #{pNo}, #{mCode}, DEFAULT, DEFAULT)
+		INSERT INTO ACCEPTANCE VALUES(SEQ_ACC_NO.NEXTVAL, #{pNo}, #{mCode}, DEFAULT, DEFAULT, 0, 0)
 	</insert>
 	
 	<update id="medicalY" parameterType="_int">
@@ -62,6 +63,14 @@
 	
 	<select id="patientSearch" parameterType="string" resultMap="patientMap">
 		SELECT * FROM PATIENT WHERE P_NAME LIKE #{pName} ORDER BY P_NO ASC
+	</select>
+	
+	<select id="myFatientCareList" parameterType="_int" resultMap="medicalMap">
+		SELECT M_CODE, P_NAME, M_DATE, M_HISTORY, M_EXAMINATION, M_MEDLIST FROM PATIENT JOIN MEDICAL USING(P_NO) WHERE EMP_NO = #{empNo} AND P_ADMISSION_YN = 'N'
+	</select>
+	
+	<select id="myFatientCount" resultType="_int">
+		SELECT COUNT(*) FROM PATIENT WHERE P_NO IN(SELECT DISTINCT P_NO FROM MEDICAL WHERE EMP_NO = #{empNo}) AND P_ADMISSION_YN = 'N'
 	</select>
 	
 </mapper>

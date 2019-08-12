@@ -10,12 +10,13 @@ public class MailMitVo implements Serializable {
 	private String contents;
 	private String originalFileName;
 	private String renamedFileName;
+	private String empEmail;
 	public MailMitVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public MailMitVo(String tomail, String title, String content, String contents, String originalFileName,
-			String renamedFileName) {
+			String renamedFileName, String empEmail) {
 		super();
 		this.tomail = tomail;
 		this.title = title;
@@ -23,6 +24,7 @@ public class MailMitVo implements Serializable {
 		this.contents = contents;
 		this.originalFileName = originalFileName;
 		this.renamedFileName = renamedFileName;
+		this.empEmail = empEmail;
 	}
 	public String getTomail() {
 		return tomail;
@@ -60,10 +62,17 @@ public class MailMitVo implements Serializable {
 	public void setRenamedFileName(String renamedFileName) {
 		this.renamedFileName = renamedFileName;
 	}
+	public String getEmpEmail() {
+		return empEmail;
+	}
+	public void setEmpEmail(String empEmail) {
+		this.empEmail = empEmail;
+	}
 	@Override
 	public String toString() {
-		return "MailVo [tomail=" + tomail + ", title=" + title + ", content=" + content + ", contents=" + contents
-				+ ", originalFileName=" + originalFileName + ", renamedFileName=" + renamedFileName + "]";
+		return "MailMitVo [tomail=" + tomail + ", title=" + title + ", content=" + content + ", contents=" + contents
+				+ ", originalFileName=" + originalFileName + ", renamedFileName=" + renamedFileName + ", empEmail="
+				+ empEmail + "]";
 	}
 	
 	

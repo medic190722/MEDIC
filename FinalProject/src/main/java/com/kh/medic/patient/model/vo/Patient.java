@@ -28,6 +28,8 @@ public class Patient implements Serializable{
 	private Date admission_date; // 입원 날짜
 	private String m_code; // 차트번호
 	private Date m_date; // 진료일
+	private String m_examination; //검사항목 
+	//private int acc_no; // 수납 번호
 	
 	public Patient() {}
 
@@ -169,18 +171,31 @@ public class Patient implements Serializable{
 		this.m_date = m_date;
 	}
 
+	public String getM_examination() {
+		return m_examination;
+	}
+
+	public void setM_examination(String m_examination) {
+		this.m_examination = m_examination;
+	}
+	
+	/*public int getAcc_no() {
+		return acc_no;
+	}*/
+
+	/*public void setAcc_no(int acc_no) {
+		this.acc_no = acc_no;
+	}*/
+
 	@Override
 	public String toString() {
 		return "Patient [p_no=" + p_no + ", p_name=" + p_name + ", p_age=" + p_age + ", p_gender=" + p_gender
 				+ ", p_rrn=" + p_rrn + ", p_address=" + p_address + ", p_phone=" + Arrays.toString(p_phone)
 				+ ", p_firstdate=" + p_firstdate + ", p_lastdate=" + p_lastdate + ", p_acc_yn=" + p_acc_yn
 				+ ", p_medical_yn=" + p_medical_yn + ", p_admission_yn=" + p_admission_yn + ", admission_date="
-				+ admission_date + ", m_code=" + m_code + ", m_date=" + m_date + "]";
+				+ admission_date + ", m_code=" + m_code + ", m_date=" + m_date + ", m_examination=" + m_examination
+				/* + ", acc_no=" + acc_no */ + "]";
 	}
-
-	
-
-	
 	
 	
 

@@ -65,7 +65,7 @@
 											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="물리 치료">물리 치료</label> 
 											<label style="margin-right:10px;"><input name="mExamination" type="checkbox" value="영상 진단">영상 진단</label>
 										</span>
-										<textarea style="resize:none;" class="form-control" rows="5" id="mHistory" name="mHistory"></textarea>
+										<textarea style="resize:none;" class="form-control" rows="5" id="mHistory" name="mHistory" required="required"></textarea>
 									</div>
 								</div>
 								<div class="box-body table-responsive no-padding" style="height:400px;margin-top:20px;">
@@ -132,7 +132,7 @@
 													</select>
 												</td>
 												<td>
-													<textarea style="resize:none;" class="form-control" rows="1" name="etc"></textarea>
+													<textarea style="resize:none;" class="form-control" rows="1" name="etc" required="required"></textarea>
 												</td>
 											</tr>
 										</tbody>

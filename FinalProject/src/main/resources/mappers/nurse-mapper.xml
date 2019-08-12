@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nurse">
+   <resultMap id="nurseSelect" type="Nurse">
+      <result property="pNo" column="p_no" />
+      <result property="wardCode" column="ward_code" />
+      <result property="orderDate" column="order_date" />
+      <result property="empNo" column="emp_no" />
+      <result property="orderExamination" column="order_examination" />
+      <result property="doctorOrder" column="doctor_order" />
+      <result property="checkYn" column="check_yn" />
+      <result property="empName" column="emp_name" />
+      <result property="pName" column="p_name" />
+   </resultMap>
+   
+   <select id="selectOrderList" parameterType="_int" resultMap="nurseSelect">
+   		SELECT A.*, E.EMP_NAME, P.P_NAME FROM AD_ORDER A
+		JOIN PATIENT P ON(A.P_NO = P.P_NO)
+		JOIN EMPLOYEE E ON(A.EMP_NO = E.EMP_NO)
+		WHERE CHECK_YN = 'N'
+		
+   </select>
+ 
+   <select id="selectOrderTotalContents" resultType="_int">
+		SELECT
+		COUNT(*) FROM AD_ORDER
+	</select>
+	
+	<update id="updateOrderYn" parameterType="_int" >
+		UPDATE AD_ORDER SET
+		CHECK_YN = 'Y'
+		WHERE P_NO = #{pNo}
+	</update>
+ </mapper>
+   
+  	

@@ -46,7 +46,7 @@
 			<div id="notice-container">
 			<form name="noticeFrm" action="${pageContext.request.contextPath}/notice/noticeFormEnd.do" method="post" onsubmit="return validate();">
 				<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" required>
-				<input type="text" class="form-control" name="nwriter" value="${member.empName}" readonly required>
+				<input type="text" class="form-control" name="nwriter" value="${m.empName}" readonly required>
 			    <textarea class="form-control" name="ncontent" placeholder="내용 작성" required></textarea>
 				<br />
 				<input type="submit" class="btn btn-outline-success" value="저장" >

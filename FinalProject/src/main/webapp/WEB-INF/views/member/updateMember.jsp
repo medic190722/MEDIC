@@ -186,8 +186,9 @@
                                           name="empAddress" placeholder="주소" value="${member.empAddress}"></td>
                                           <th>퇴사여부</th>
                                        <td class="ent"><select class="form-control entYn" >
+                                       <option value="N" ${member.entYn=='N'?'selected':''}>N</option>   
                                                 <option value="Y" ${member.entYn=='Y'?'selected':''}>Y</option>
-                                                <option value="N" ${member.entYn=='N'?'selected':''}>N</option>                                          
+                                                                                       
                                        </select>
                                        <div name="sendData2" style="display:none;" ><input type="hidden" name="entYn" value="N"></div>
                                        </td>

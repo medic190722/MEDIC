@@ -41,7 +41,7 @@
 		    
 		    <br>
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">리스트로</button>
-		    <c:if test="${member.empNo == 1000}">
+		    <c:if test="${m.empNo == 1000}">
 		    &nbsp;
 			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/notice/noticeUpdateView.do?nno=${notice.nno}'">수정 페이지</button>
 			</c:if>

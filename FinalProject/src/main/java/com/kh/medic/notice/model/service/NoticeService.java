@@ -49,5 +49,10 @@ public interface NoticeService {
 	 * @return
 	 */
 	int deleteNotice(int nno);
+
+	/**
+	 * 상위 5개 메인에 출력
+	 */
+	List<Notice> noticeTop5();
 	
 }

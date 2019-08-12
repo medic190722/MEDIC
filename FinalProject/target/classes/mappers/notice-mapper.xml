@@ -21,6 +21,11 @@
 		SELECT COUNT(*) FROM NOTICE
 	</select>
 	
+	<select id="noticeTop5" resultMap="noticeSelect">
+		SELECT ROWNUM RNUM, N.* FROM (SELECT N_NO, N_TITLE FROM NOTICE ORDER BY N_DATE DESC) N   
+        WHERE ROWNUM <![CDATA[<=]]> 5
+	</select>
+	
 	<select id="selectOneNotice" parameterType="_int" resultMap="noticeSelect">
 		SELECT * FROM NOTICE WHERE N_NO = #{nno}
 	</select>
@@ -39,6 +44,8 @@
 	<delete id="deleteNotice" >
 		DELETE FROM NOTICE WHERE N_NO = #{nno}
 	</delete>
+	
+	
 	
 
 </mapper>
