@@ -9,6 +9,7 @@ import javax.mail.Address;
 
 public class MailVo implements Serializable {
 
+	private int keyNum;
 	private String mailTitle;
 	private String mailContent;
 	private String mailSender;
@@ -17,12 +18,19 @@ public class MailVo implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MailVo(String mailTitle, String mailContent, String mailSender, String mailDate) {
+	public MailVo(int keyNum, String mailTitle, String mailContent, String mailSender, String mailDate) {
 		super();
+		this.keyNum = keyNum;
 		this.mailTitle = mailTitle;
 		this.mailContent = mailContent;
 		this.mailSender = mailSender;
 		this.mailDate = mailDate;
+	}
+	public int getKeyNum() {
+		return keyNum;
+	}
+	public void setKeyNum(int keyNum) {
+		this.keyNum = keyNum;
 	}
 	public String getMailTitle() {
 		return mailTitle;
@@ -50,12 +58,9 @@ public class MailVo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "MailVo [mailTitle=" + mailTitle + ", mailContent=" + mailContent + ", mailSender=" + mailSender
-				+ ", mailDate=" + mailDate + "]";
+		return "MailVo [keyNum=" + keyNum + ", mailTitle=" + mailTitle + ", mailContent=" + mailContent
+				+ ", mailSender=" + mailSender + ", mailDate=" + mailDate + "]";
 	}
-	
-	
-	
 	
 	
 	
