@@ -355,6 +355,87 @@
 		
 
 		$(function() {
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/todo/todo.do",
+				type : "get",
+				success : function(data){
+					console.log(data);
+					var $ul = $('#todo-list');
+					for(var i in data){
+						// 내용을 담을 li 태그 생성
+						var $li = $('<li>');
+						// 내용을 각각 표현할 span 태그 생성
+						var $spanTodoNo = $('<span class="text" style="display:none">').text(data[i].todoNo);
+						var $spanTodo = $('<span class="text">').text(data[i].todo);
+						var $divtools = $('<div class="tools">');
+						var $trash = $('<i class="fa fa-trash-o">');
+						
+						$divtools.append($trash);
+						$li.append($spanTodoNo).append($spanTodo).append($divtools);
+						$ul.append($li);
+					}
+					
+					// 삭제버튼누르는걸로 변경
+					$('#todo-list li div i').on('click', function(){
+						var todoNo = $(this).parents('#todo-list li').children().html();
+						console.log(todoNo);
+						$.ajax({
+							url : "${pageContext.request.contextPath}/todo/deleteTodo.do",
+							type : "get",
+							data : {
+								todoNo : todoNo
+							},
+							success : function(data){
+								console.log("삭제 성공!");
+								console.log(data);
+							}, error : function(data){
+								console.log("삭제 실패!");
+								console.log(data);
+							}
+						})
+						
+					});
+					
+				}, error : function(data) {
+					console.log("조회 실패!");
+					console.log(data);
+				}
+			});
+			
+			
+			
+				$.ajax({
+					url : "${pageContext.request.contextPath}/notice/noticeTop5.do",
+					type : "get",
+// 					async : false,
+					success : function(data){
+						console.log(data);
+						var $ul = $('#notice-list');
+						for(var i in data){
+							// 내용을 담을 li 태그 생성
+							var $li = $('<li style="cursor:pointer">');
+							// 내용을 각각 표현할 span 태그 생성
+							var $spanNNo = $('<span class="text" style="display:none">').text(data[i].nno);
+							var $spanNTitle = $('<span class="text">').text(data[i].ntitle);
+							
+							$li.append($spanNNo).append($spanNTitle);
+							$ul.append($li);
+						}
+						
+						$('#notice-list li').on('click', function(){
+							var nno = $(this).children().html();
+							console.log(nno);
+				 			location.href="${pageContext.request.contextPath}/notice/noticeView.do?nno="+nno;
+						});
+						
+					}, error : function(data) {
+						console.log("데이터 전달 실패!");
+						console.log(data);
+					}
+				});
+		
+			
 
 			/* initialize the external events
 			 -----------------------------------------------------------------*/
