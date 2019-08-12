@@ -65,7 +65,8 @@ public class DoctorController {
 			@RequestParam(value="totalDose", required=false) String totalDose,
 			@RequestParam(value="etc", required=false) String etc,
 			@RequestParam("mHistory") String mHistory,
-			@RequestParam(value="mExamination", required=false) String mExamination
+			@RequestParam(value="mExamination", required=false) String mExamination,
+			Model model
 			) {
 		
 		String[] medCodeArr = medCode.split(",");
@@ -92,7 +93,10 @@ public class DoctorController {
 		drService.medicalY(pNo);
 		drService.insertACC(medical);
 		
-		return "index";
+		model.addAttribute("msg", "진료 완료");
+		model.addAttribute("loc", "/doctor/prescription.do");
+		
+		return "common/msg";
 		
 	}
 	
