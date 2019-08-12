@@ -664,8 +664,29 @@
 				//Remove event from text input
 				$('#new-event').val('');
 			});
-
 		});
+			$('.attend').click(function(){
+				var result = confirm('출근하시겠습니까?');
+				
+				if(result){
+					location.href = "${pageContext.request.contextPath}/attendance/attendAdd.do?empNo=${m.empNo}";	
+				}else{
+					location.href = "${pageContext.request.contextPath}/index.do";
+				}
+			});
+			$('.leave').click(function(){
+				var result = confirm('퇴근하시겠습니까?');
+				
+				if(result){
+					location.href = "${pageContext.request.contextPath}/attendance/leaveAdd.do?empNo=${m.empNo}";	
+				}else{
+					location.href = "${pageContext.request.contextPath}/index.do";
+				}
+			});
+			
+		
+				
+		
 		
 	</script>
 </body>
