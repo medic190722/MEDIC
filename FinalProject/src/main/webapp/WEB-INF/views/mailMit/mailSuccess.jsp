@@ -11,7 +11,11 @@
 
 <title>Medic</title>
 <c:import url="../common/header.jsp" />
-
+<script>
+	function success() {
+		location.href ="${pageContext.request.contextPath}/mailMit/mailMitList.do"
+	}
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -79,68 +83,31 @@
 						<br> <br> <br> <br> <br> <br>
 						<div class="box box-primary" style="text-align: center;">
 							<div class="box-header with-border">
-								<h3 class="box-title">상세 메일</h3>
+								<h3 class="box-title">전송 완료</h3>
 							</div>
-
-							<div class="box-body no-padding">
-								<div>
-									<table style="margin: 30px;">
-										<tr>
-											<td><dt class="to_dt" style="display: block;">보낸 사람
-													:</dt></td>
-											<td><dd class="to_dd" style="display: block;">
-													<a href="#">&nbsp;&nbsp;&nbsp;&nbsp;${mail.mailSender}</a></td>
-										</tr>
-										<tr>
-											<td><dt class="to_dt" style="display: block;">제 목 :
-												</dt></td>
-											<td>
-												<dd class="to_dd" style="display: block;">
-													<a href="#">${mail.mailTitle}</a>
-											</td>
-
-										</tr>
-										<tr>
-											<td><dt class="to_dt" style="display: block;">날 짜 :
-												</dt></td>
-											<td>
-												<dd class="to_dd" style="display: block;">
-													<a href="#">${mail.mailDate}</a>
-											</td>
-										</tr>
-
-
-									</table>
-									<%-- <input type="text" class="form-control" style="width:80%" value="${mail.keyNum}" readonly> --%>
-								</div>
-
-								<hr>
-								<dt style="text-align: left; margin: 30px;" class="to_dt" style="display: block;">내    용 :</dt>
-								
-								${mail.mailContent}
-								<br><br><br><br><br><br><br><br><br>
-
-
-
-
-							</div>
+							<br><br><br><br><br>
+							<h2> 메일이 저장되었습니다. </h2> 
+							<h5> 보낸 메일함에서 확인하실수 있습니다.</h5><br><br><br>
+							
+							<input type="button" class="btn btn-warning" value="메인" onclick="success()">
+							
+							<br><br><br><br><br><br><br><br>
 						</div>
 					</div>
+
+
+
+
+					<!--  ================================================================================================= -->
 				</div>
+				<!-- /.row (main row) -->
 
-
-
-
-				<!--  ================================================================================================= -->
+			</section>
+			<!-- /.content -->
 		</div>
-		<!-- /.row (main row) -->
-
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
-	<c:import url="../common/footer.jsp" />
-	<c:import url="../common/sidebar.jsp" />
+		<!-- /.content-wrapper -->
+		<c:import url="../common/footer.jsp" />
+		<c:import url="../common/sidebar.jsp" />
 	</div>
 	<!-- ./wrapper -->
 	<c:import url="../common/scripts.jsp" />

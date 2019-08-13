@@ -13,19 +13,23 @@
 		
 	<select id="selectMedicineList" resultMap="medicineMap">
 		SELECT * FROM MEDICINE
+		WHERE REGEXP_LIKE(SUBSTRB(MED_CODE,1,1),'[A-Za-z]')
 	</select>
 	
 	<select id="selectMedicineListSearch" resultMap="medicineMap" parameterType="string">
 		SELECT * FROM MEDICINE
 		WHERE MED_NAME=#{medName}
+		AND REGEXP_LIKE(SUBSTRB(MED_CODE,1,1),'[A-Za-z]')
 	</select>
 	
 	<select id="selectOneMedicine" parameterType="string" resultMap="medicineMap">
-		SELECT * FROM MEDICINE WHERE MED_CODE=#{medCode}	
+		SELECT * FROM MEDICINE WHERE MED_CODE=#{medCode}
+		AND REGEXP_LIKE(SUBSTRB(MED_CODE,1,1),'[A-Za-z]')	
 	</select>
 	
 	<select id="selectMedicineTotalContents" resultType="_int">
 		SELECT COUNT(*) FROM MEDICINE
+		WHERE REGEXP_LIKE(SUBSTRB(MED_CODE,1,1),'[A-Za-z]')
 	</select>
 	
 	<insert id="insertMedicine">

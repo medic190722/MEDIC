@@ -131,6 +131,27 @@
             <li><a href="${pageContext.request.contextPath }/attendance/attendListView.do"><i class="fa fa-circle-o"></i> 출근관리</a></li>
           </ul>
         </li>
+        
+        
+        
+        
+         <li class="treeview">
+          <a href="#">
+             <i class="fa fa-envelope"></i>
+            <span>메일 관리</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${pageContext.request.contextPath }/mailCheck/mailCheck.do"><i class="fa fa-circle-o"></i> 이메일 접속</a></li>
+            
+          </ul>
+        </li>
+        
+        
+        
+        
         <li class="treeview">
           <a href="#">
              <i class="fa fa-bar-chart"></i>

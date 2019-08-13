@@ -37,18 +37,9 @@ public class MailCheck {
 		HttpSession session = request.getSession();
 		session.setAttribute("name", mailCheck);
 		
-		
-		
-		
-		
-		
-
 		authNum = RandomNum();
-
 		sendEmail(email, authNum);
-
 		model.addAttribute("email",email).addAttribute("authNum",authNum);
-
 		return "/mailCheck/mailCheck";
 	}
 
