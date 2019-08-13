@@ -18,11 +18,12 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        	Medic
+        	접수
       </h1>
       <ol class="breadcrumb">
         <li><a href="/medic/common/main.do"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Main</li>
+        <li class="active">접수</li>
       </ol>
     </section>
     <!-- Main content -->

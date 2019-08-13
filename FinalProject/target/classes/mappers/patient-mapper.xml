@@ -9,7 +9,7 @@
 	</resultMap>
 	
 	<select id="selectPatientList" parameterType="string" resultMap="resultPatient">
-		SELECT * FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%')
+		SELECT * FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%') AND (P_ACC_YN ='N' OR P_ADMISSION_YN = 'Y')
 	</select>
 		
 	<select id="selectUpdatePatient" parameterType="_int" resultMap="resultPatient">
@@ -18,7 +18,7 @@
 	
 	<select id="selectWardList" resultType="Ward">
 		SELECT W.*, COUNT(A.WARD_CODE) CUR_CAPACITY
-			FROM ADMISSION A
+			FROM (SELECT *  FROM ADMISSION WHERE DISCHARGE_YN = 'N') A
 			RIGHT JOIN WARD W ON(W.WARD_CODE = A.WARD_CODE)
 			GROUP BY A.WARD_CODE, W.WARD_CODE, W.CAPACITY
 			ORDER BY W.WARD_CODE
@@ -26,7 +26,7 @@
 	
 	<select id="selectWard" resultType="Ward">
 		SELECT W.*, W.CAPACITY-COUNT(A.WARD_CODE) AVAILABLE_CAPACITY
-			FROM ADMISSION A
+			FROM (SELECT *  FROM ADMISSION WHERE DISCHARGE_YN = 'N') A
 			RIGHT JOIN WARD W ON(W.WARD_CODE = A.WARD_CODE)
 			GROUP BY A.WARD_CODE, W.WARD_CODE, W.CAPACITY
 			ORDER BY W.WARD_CODE
@@ -36,7 +36,7 @@
 		SELECT P.*, A.ADMISSION_DATE
 			FROM PATIENT P
 			JOIN ADMISSION A ON(P.P_NO = A.P_NO)
-			WHERE A.WARD_CODE = #{ward_code}
+			WHERE A.DISCHARGE_YN = 'N' AND A.WARD_CODE = #{ward_code}
 	</select>
 	
 	<insert id="insertPatient" parameterType="Patient">

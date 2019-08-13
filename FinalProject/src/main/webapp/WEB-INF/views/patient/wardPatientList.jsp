@@ -16,11 +16,13 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>병동정보</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
 					<li class="active">Main</li>
+					<li class="active">병동조회</li>
+					<li class="active">병동정보</li>
 				</ol>
 			</section>
 			<!-- Main content -->

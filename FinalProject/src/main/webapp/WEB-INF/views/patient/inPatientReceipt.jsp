@@ -17,30 +17,33 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        	Medic
+        	입원 환자 등록
       </h1>
       <ol class="breadcrumb">
         <li><a href="/medic/common/main.do"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Main</li>
+        <li class="active">환자관리</li>
+		<li class="active">접수</li>
+		<li class="active">입원 환자 등록</li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
       <!-- Main row -->
       <div class="row">
-       	<div class="register-box-body outReceipt" style="width:500px; margin: 0 auto; margin-top:50px;">
-    <p class="login-box-msg"><b style="font-size:20px;">입원 환자 등록</b></p>
+       	<div class="outReceipt" style="width:500px; margin: 0 auto; margin-top:50px;">
+    <p class="login-box-msg">입원 환자를 등록해주세요.</p>
 
     <form action="${pageContext.request.contextPath}/patient/inPatientReceipt.do" method="post">
       <div class="form-group has-feedback">
       	<input type="hidden" name="p_no" value="${patient.p_no}" />
       	<div style="display:inline-block; width:100px; text-align:center"><label for="">이름 </label></div>     
-      	<div style="display:inline-block"><input type="text" id="p_name" name="p_name" value="${patient.p_name}"readonly></div>
+      	<div style="display:inline-block"><input type="text" id="p_name" name="p_name" value="${patient.p_name}" style="width: 200px;"readonly></div>
       </div>
     <div class="form-group has-feedback">
     	<div style="display:inline-block; width:100px; text-align:center"><label for="">성별</label></div>
     	<div style="display:inline-block">
-    		<input type="text" id="p_gender" name="p_gender" value="${patient.p_gender=='M' ? '남' : '여'}" readonly>
+    		<input type="text" id="p_gender" name="p_gender" value="${patient.p_gender=='M' ? '남' : '여'}" style="width: 200px;" readonly>
 			<!-- <input type="radio" class="form-check-input" name="p_gender" id="gender0" value="M">
 			<label for="gender0">남</label>
 			<input type="radio" class="form-check-input" name="p_gender" id="gender1" value="F">
@@ -50,7 +53,7 @@
       <div class="form-group has-feedback">
       	<div style="display:inline-block; width:100px; text-align:center"><label for="">입원실</label></div>
       	<div style="display:inline-block">
-      	    <select name="ward_code" id="ward_code" > 
+      	    <select name="ward_code" id="ward_code"  style="width: 200px;"> 
       	    	<option value=""> -------------------------- </option>   	  
       	    	<optgroup label="---------    6  인  실       --------">
       	    	<optgroup label="입원실   &nbsp;| &nbsp;수용가능인원">
