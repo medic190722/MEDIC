@@ -22,11 +22,11 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        	Medic
+        	휴가신청
       </h1>
       <ol class="breadcrumb">
         <li><a href="/medic/common/main.do"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Main</li>
+        <li class="active">휴가신청</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -40,12 +40,13 @@
 		<div id="container">
 		
 		<div class="searchPatient"
-							style="margin: 0 auto; margin-top: 20px; width: 1000px;">
+							style="margin: 0 auto; margin-top: 20px; width: 500px;">
 			<form name="MedicineFrm" action="${pageContext.request.contextPath}/vacation/vacationFormEnd.do" method="post">
-				<input type="text" class="form-control" placeholder="사번" name="empNo" id="empNo"  value="${m.empNo }" readonly>
-				<input type="date" class="form-control" placeholder="출발 날짜" name="vDate" id="vDate" required>
-				<input type="date" class="form-control" placeholder="복귀 날짜" name="vDateEnd" id="vDateEnd" required>
-				<input type="text" class="form-control" placeholder="내용" name="vContent" id="vContent" required>
+				<label for="empNo" style="margin-top:10px;">사번</label>	<input type="text" class="form-control" placeholder="사번" name="empNo" id="empNo"  value="${m.empNo }"  readonly>
+				<label for="vDate" style="margin-top:10px;">출발날짜</label><input type="date" class="form-control" placeholder="출발 날짜" name="vDate" id="vDate" required >
+				<label for="vDateEnd" style="margin-top:10px;">복귀날짜</label><input type="date" class="form-control" placeholder="복귀 날짜" name="vDateEnd" id="vDateEnd" required >
+				<textarea name="vContent" id="vContent" cols="80" rows="10" style="resize: none; margin-top:10px;"placeholder="내용입력" required></textarea>
+				
 	
 				<%-- <input type="text" class="form-control" name="boardWriter" value="${member.userId}" readonly required> --%>
 				

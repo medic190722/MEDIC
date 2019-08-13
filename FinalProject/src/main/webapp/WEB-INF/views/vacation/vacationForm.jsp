@@ -37,8 +37,10 @@
 <style>
 .kiho {
 	width: 700px;
-	align-content: center; margin : 0 auto; margin-top : 20px;
-	align-content : center;
+	align-content: center;
+	margin: 0 auto;
+	margin-top: 20px;
+	align-content: center;
 	margin: 0 auto;
 	margin: 0 auto;
 	margin-top: 20px;
@@ -71,27 +73,45 @@
 
 					<div class="kiho">
 						<div>
-							<div style="display: inline-block !important;">
-								<input type="text" class="form-control" id="name"
-									placeholder="${vacation.vCode}" readonly>
+							<div style="display: inline-block !important;" class="form-group has-feedback">
+								<div style="display: inline-block;  width:80px;">
+									<label>휴가번호</label>
+								</div>
+								<div style="display: inline-block;">
+									<input type="text" class="form-control" id="name"
+										placeholder="${vacation.vCode}" style="display: inline-block; background:#fff;"
+										readonly>
+
+								</div>
 							</div>
-							<div style="display: inline-block !important;">
+							<div class="form-group has-feedback">
+								<div style="display: inline-block; width:80px;">
+									<label for="">이름</label>
+								</div>
+								<div style="display:inline-block">
 								<input type="text" class="form-control" id="name"
-									placeholder="${vacation.empName}" readonly>
+									placeholder="${vacation.empName}" readonly style="background:#fff;">
+								</div>
 							</div>
 						</div>
-						<div style="display: inline-block !important;">
+						<div class="form-group has-feedback">
+							<div style="display: inline-block; width:80px;">
+									<label for="">휴가기간</label>
+								</div>
+							<div style="display:inline-block">
 							<input type="email" class="form-control" id="email"
-								placeholder="${vacation.vDate}" readonly>
-						</div>
+								placeholder="${vacation.vDate}" readonly style="background:#fff;">
+							</div>
+						
 						~
 						<div style="display: inline-block !important;">
 							<input type="email" class="form-control" id="email"
-								placeholder="${vacation.vDateEnd}" readonly>
+								placeholder="${vacation.vDateEnd}" readonly style="background:#fff;">
 						</div>
-						<div>
+						</div>
+						<div class="form-group has-feedback">
 							<textarea class="form-control mb-10" rows="3" name="message"
-								placeholder="${vacation.vContent}" readonly></textarea>
+								placeholder="${vacation.vContent}" style="margin-left:81px; background:#fff; resize: none; width:430px;" readonly ></textarea>
 						</div>
 					</div>
 
