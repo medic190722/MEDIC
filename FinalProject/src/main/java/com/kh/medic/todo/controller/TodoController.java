@@ -33,28 +33,33 @@ public class TodoController {
 	}
 
 	@RequestMapping("/todo/insertTodo.do")
-	public String insertTodo(@RequestParam String todo) {
+	@ResponseBody
+	public Map<String, Object> insertTodo(@RequestParam String todo) {
 
-		Map<String, String> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 
-		map.put("todo", todo);
+	    map.put("todo", todo);
 
 		todoService.insertTodo(map);
-
-		return "index";
+		System.out.println(map);
+		
+		return map;
 
 	}
 
 	@RequestMapping("/todo/deleteTodo.do")
-	public String deleteTodo(@RequestParam String todoNo) {
+	@ResponseBody
+	public int deleteTodo(@RequestParam String todoNo) {
 
-		Map<String, String> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 
 		map.put("todoNo", todoNo);
 
-		todoService.deleteTodo(map);
+		int result = todoService.deleteTodo(map);
+		System.out.println(map);
+		System.out.println(result);
 
-		return "index";
+		return result;
 	}
 
 }

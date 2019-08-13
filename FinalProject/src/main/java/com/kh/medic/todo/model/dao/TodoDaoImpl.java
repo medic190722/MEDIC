@@ -21,12 +21,12 @@ public class TodoDaoImpl implements TodoDao {
 	}
 
 	@Override
-	public int insertTodo(Map<String, String> map) {
+	public int insertTodo(Map<String, Object> map) {
 		return sqlSession.insert("todo.insertTodo", map);
 	}
 
 	@Override
-	public int deleteTodo(Map<String, String> map) {
+	public int deleteTodo(Map<String, Object> map) {
 		return sqlSession.delete("todo.deleteTodo", map);
 	}
 

@@ -21,12 +21,12 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public int insertTodo(Map<String, String> map) {
+	public int insertTodo(Map<String, Object> map) {
 		return tdao.insertTodo(map);
 	}
 
 	@Override
-	public int deleteTodo(Map<String, String> map) {
+	public int deleteTodo(Map<String, Object> map) {
 		return tdao.deleteTodo(map);
 	}
 

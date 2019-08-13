@@ -8,9 +8,13 @@
 		SELECT * FROM TODO ORDER BY TODONO DESC
 	</select>
 	
-	<insert id="insertTodo">
+	<insert id="insertTodo" parameterType="map">
 		INSERT INTO TODO VALUES
 		(SEQ_TODONO.NEXTVAL, #{todo}, DEFAULT)			
+		
+		<selectKey keyProperty="todoNo" resultType="_int" order="AFTER">
+			SELECT SEQ_TODONO.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 		
 	<delete id="deleteTodo">

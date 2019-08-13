@@ -44,7 +44,9 @@
       <div class="row">
         <section class="col-lg-12">
 				<p>총 ${totalContents}건의 게시물이 있습니다.</p>
+				<c:if test="${m.empNo == 1000 }">
 				<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="fn_goNoticeForm();"/>
+				</c:if>
 				<table id="tbl-board" class="table table-striped table-hover">
 					<tr>
 						<th>제목</th>

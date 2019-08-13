@@ -9,8 +9,8 @@ public interface TodoDao {
 
 	List<Todo> selectTodoList();
 	
-	int insertTodo(Map<String, String> map);
+	int insertTodo(Map<String, Object> map);
 	
-	int deleteTodo(Map<String, String> map);
+	int deleteTodo(Map<String, Object> map);
 	
 }

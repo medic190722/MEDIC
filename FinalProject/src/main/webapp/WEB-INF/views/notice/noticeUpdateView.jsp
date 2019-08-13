@@ -45,10 +45,10 @@
 		<div id="notice-container">
 			<form name="noticeFrm" action="${pageContext.request.contextPath}/notice/noticeUpdate.do" method="post" onsubmit="return validate();">
 				<input type="hidden" class="form-control" name="nno" value="${notice.nno}"/>
-				<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" value="${notice.ntitle}" required>
-				<input type="text" class="form-control" name="nwriter" value="${notice.nwriter}" readonly required>
+				<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" value="${notice.ntitle}" required style="width: 500px;">
+				<input type="text" class="form-control" name="nwriter" value="${notice.nwriter}" readonly required style="width: 500px;">
 				<br>
-			    <textarea class="form-control" name="ncontent" placeholder="내용" required>${notice.ncontent}</textarea>
+			    <textarea class="form-control" name="ncontent" placeholder="내용" required style="height: 300px; width: 500px;">${notice.ncontent}</textarea>
 				<br />
 				<input type="submit" class="btn btn-outline-success" value="수정 완료" /> &nbsp;
 				<input type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/notice/noticeDelete.do?nno=${notice.nno}'"/>
