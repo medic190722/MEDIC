@@ -59,7 +59,7 @@
 	
 	<insert id="insertVacation">
 		INSERT INTO VACATION 
-		VALUES(#{vCode},#{vDate},#{vDateEnd},#{vContent},#{empNo},DEFAULT)
+		VALUES(CONCAT('H',SEQ_VACATION_CODE.NEXTVAL),#{vDate},#{vDateEnd},#{vContent},#{empNo},DEFAULT)
 	</insert>
 
 

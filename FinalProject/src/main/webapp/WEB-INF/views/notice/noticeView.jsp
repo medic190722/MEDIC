@@ -33,11 +33,11 @@
       <div class="row">
         <section class="col-lg-12">
 		<div id="notice-container">
-			<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" value="${notice.ntitle}" required>
+			<input type="text" class="form-control" placeholder="제목" name="ntitle" id="ntitle" value="${notice.ntitle}" readonly required style="width: 500px;">
 			
-			<input type="text" class="form-control" name="nwriter" value="${notice.nwriter}" readonly required>
+			<input type="text" class="form-control" name="nwriter" value="${notice.nwriter}" readonly required style="width: 500px;">
 		
-		    <textarea class="form-control" name="ncontent" placeholder="내용" required>${notice.ncontent }</textarea>
+		    <textarea class="form-control" name="ncontent" placeholder="내용" readonly required style="height: 300px; width: 500px;">${notice.ncontent }</textarea>
 		    
 		    <br>
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">리스트로</button>

@@ -28,45 +28,47 @@
 						<div class="box">
 							<div class="box-header">
 								<h3 class="box-title">일반 환자 리스트</h3>
-								<div class="box-tools">
-									<div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-										<div class="input-group-btn">
-											<button type="submit" class="btn btn-default">
-												<i class="fa fa-search"></i>
-											</button>
-										</div>
-									</div>
-								</div>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-bordered">
 									<tbody>
 										<tr>
-											<th style="width:10%; text-align:center; vertical-align:middle;">진료 코드</th>
-											<th style="width:10%; text-align:center; vertical-align:middle;">환자 명</th>
-											<th style="width:10%; text-align:center; vertical-align:middle;">진료 일</th>
-											<th style="width:10%; text-align:center; vertical-align:middle;">검사 항목</th>
-											<th style="width:30%; text-align:center; vertical-align:middle;">진료 내역</th>
-											<th style="width:30%; text-align:center; vertical-align:middle;">처방 약품</th>
+											<th style="width:10%; text-align:center; vertical-align:middle;">환자 성명</th>
+											<th style="width:10%; text-align:center; vertical-align:middle;">성별</th>
+											<th style="width:10%; text-align:center; vertical-align:middle;">주민등록번호</th>
+											<th style="width:10%; text-align:center; vertical-align:middle;">전화번호</th>
+											<th style="width:10%; text-align:center; vertical-align:middle;">진료 내역</th>
 										</tr>
-										<c:forEach var="m" items="${mList}">
+										<c:forEach var="p" items="${pList}" varStatus="status">
 											<tr>
-												<td style="text-align:center; vertical-align:middle;">${m.mCode}</td>
-												<td style="text-align:center; vertical-align:middle;">${m.pName}</td>
-												<td style="text-align:center; vertical-align:middle;">${m.mDate}</td>
+												<td style="text-align:center; vertical-align:middle;">${p.p_name}</td>
 												
-												<c:if test="${!empty m.mExamination}">
+												<c:if test="${p.p_gender eq 'M'}">
+													<td style="text-align:center; vertical-align:middle;">남성</td>
+												</c:if>
+												<c:if test="${p.p_gender eq 'F'}">
+													<td style="text-align:center; vertical-align:middle;">여성</td>
+												</c:if>
+												
+												<td style="text-align:center; vertical-align:middle;">${p.p_rrn}</td>
+												
+												<td style="text-align:center; vertical-align:middle;">${p.p_phone[0]}</td>
+												
+												<%-- <c:if test="${!empty m.mExamination}">
 													<td style="text-align:center; vertical-align:middle;">${m.mExamination}</td>
 												</c:if>
 												<c:if test="${empty m.mExamination}">
 													<td style="text-align:center; vertical-align:middle;">-</td>
-												</c:if>
-												
-												<td style="text-align:center; vertical-align:middle;">${m.mHistory}</td>
+												</c:if> --%>
 												
 												<td style="text-align:center; vertical-align:middle;">
+													<button type="button" class="btn btn-default" onclick="medicalList(${p.p_no});">
+														보기
+													</button>
+												</td>
+												
+												<%-- <td style="text-align:center; vertical-align:middle;">
 													<c:set var="mMedList" value="${fn:replace(m.mMedList, '<br>', '~~')}"/>
 													<c:set var="medList" value="${fn:split(mMedList, '~~')}"/>
 													<c:forEach var="med" items="${medList}">
@@ -80,7 +82,7 @@
 															</c:if>
 														</c:forEach>
 													</c:forEach>
-												</td>
+												</td> --%>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -107,6 +109,11 @@
 	<c:import url="../common/scripts.jsp" />
 
 	<script>
+		
+		function medicalList(pNo) {
+			location.href="${ pageContext.request.contextPath }/doctor/pMedicalList.do?pNo=" + pNo;
+		}
+	
 		$(function() {
 	
 		    /* initialize the external events

@@ -154,12 +154,6 @@
 							<div class="box-body">
 								<!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
 								<ul class="todo-list" id="todo-list">
-									<li>
-										<span class="text">Design a nice theme</span> <!-- Emphasis label -->
-										<div class="tools">
-											<i class="fa fa-trash-o"></i>
-										</div>
-									</li>
 								</ul>
 							</div>
 							<!-- /.box-body -->
@@ -338,12 +332,36 @@
 			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/todo/insertTodo.do",
+// 				async : false,
 				data : {
 					todo : $('#todoVal').val()
 				},
 				success : function(data) {
 					console.log("성공");
 					console.log(data);
+					
+					var $ul = $('#todo-list');
+						// 내용을 담을 li 태그 생성
+						/*
+						var $li = $('<li>');
+						// 내용을 각각 표현할 span 태그 생성
+						var $spanTodoNo = $('<span class="text" style="display:none">').text(data.todoNo);
+						var $spanTodo = $('<span class="text">').text(data.todo);
+						var $divtools = $('<div class="tools">');
+						var $trash = $('<i class="fa fa-trash-o">');
+						
+						$divtools.append($trash);
+						$li.append($spanTodoNo).append($spanTodo).append($divtools);
+						*/
+						var $li = $ul.children('li').eq(0).clone(true);
+						$li.find('.todoNo').text(data.todoNo);
+						$li.children('span').eq(1).text(data.todo);
+						$li.removeClass('sample');
+						$ul.append($li);
+						
+					if($('.sample').length){
+						$('.sample').remove();
+					}
 				},
 				error : function(data) {
 					console.log(data);
@@ -353,12 +371,15 @@
 		});
 		
 		
+	
+		
 
 		$(function() {
 			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/todo/todo.do",
 				type : "get",
+				async : false,
 				success : function(data){
 					console.log(data);
 					var $ul = $('#todo-list');
@@ -366,7 +387,7 @@
 						// 내용을 담을 li 태그 생성
 						var $li = $('<li>');
 						// 내용을 각각 표현할 span 태그 생성
-						var $spanTodoNo = $('<span class="text" style="display:none">').text(data[i].todoNo);
+						var $spanTodoNo = $('<span class="text todoNo" style="display:none">').text(data[i].todoNo);
 						var $spanTodo = $('<span class="text">').text(data[i].todo);
 						var $divtools = $('<div class="tools">');
 						var $trash = $('<i class="fa fa-trash-o">');
@@ -376,39 +397,81 @@
 						$ul.append($li);
 					}
 					
-					// 삭제버튼누르는걸로 변경
-					$('#todo-list li div i').on('click', function(){
-						var todoNo = $(this).parents('#todo-list li').children().html();
-						console.log(todoNo);
-						$.ajax({
-							url : "${pageContext.request.contextPath}/todo/deleteTodo.do",
-							type : "get",
-							data : {
-								todoNo : todoNo
-							},
-							success : function(data){
-								console.log("삭제 성공!");
-								console.log(data);
-							}, error : function(data){
-								console.log("삭제 실패!");
-								console.log(data);
-							}
-						})
+					if(data.length == 0) {
+						// 내용을 담을 li 태그 생성
+						var $li = $('<li class="sample">');
+						// 내용을 각각 표현할 span 태그 생성
+						var $spanTodoNo = $('<span class="text todoNo" style="display:none">').text(0);
+						var $spanTodo = $('<span class="text">').text("Sample Todo - 1");
+						var $divtools = $('<div class="tools">');
+						var $trash = $('<i class="fa fa-trash-o">');
 						
-					});
+						$divtools.append($trash);
+						$li.append($spanTodoNo).append($spanTodo).append($divtools);
+						$ul.append($li);
+					}
 					
 				}, error : function(data) {
 					console.log("조회 실패!");
 					console.log(data);
 				}
 			});
-			
-			
-			
+			// 삭제버튼누르는걸로 변경
+			$('#todo-list li div i').on('click', function(){
+				var todoNo = $(this).parents('#todo-list li').children().html();
+				var obj = $(this);
+				console.log(todoNo);
+				$.ajax({
+					url : "${pageContext.request.contextPath}/todo/deleteTodo.do",
+					type : "get",
+					async : false,
+					data : {
+						todoNo : todoNo
+					},
+					success : function(data){
+						console.log("삭제 성공!");
+						console.log(data);
+						
+						var $ul = $('#todo-list');
+						
+						var sampleObj = obj.parent().parent().clone(true);
+						
+						obj.parent().parent().remove();
+						
+						if($ul.find('li').length == 0) {
+							
+							// 내용을 담을 li 태그 생성
+							var $li = sampleObj;
+							// 내용을 각각 표현할 span 태그 생성
+							$li.find('.todoNo').text(0);
+							$li.children('span').eq(1).text("Sample Todo - 1");
+							$li.addClass('sample');
+							$ul.append($li);
+							/* 
+							var $li = $('<li class="sample">');
+							var $spanTodoNo = $('<span class="text todoNo" style="display:none">').text(0);
+							var $spanTodo = $('<span class="text">').text("Sample Todo - 1");
+							var $divtools = $('<div class="tools">');
+							var $trash = $('<i class="fa fa-trash-o">');
+							
+							$divtools.append($trash);
+							$li.append($spanTodoNo).append($spanTodo).append($divtools);
+							$ul.append($li); */
+						}
+						
+					}, error : function(data){
+						console.log("삭제 실패!");
+						console.log(data);
+					}
+				});
+			});
+		});
+		
+		
+		$(function(){
 				$.ajax({
 					url : "${pageContext.request.contextPath}/notice/noticeTop5.do",
 					type : "get",
-// 					async : false,
 					success : function(data){
 						console.log(data);
 						var $ul = $('#notice-list');

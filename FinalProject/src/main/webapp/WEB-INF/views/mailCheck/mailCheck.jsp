@@ -6,12 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+
 <script>
 	function check() {
 		var form = document.authenform;
 		var authNum = ${authNum};
-		
-		console.log("이게멀까"+form);
+
+		console.log("이게멀까" + form);
 
 		if (!form.authnum.value) {
 			alert("인증번호를 입력하세요");
@@ -26,27 +28,72 @@
 			alert("인증완료");
 			//location.href = "${pageContext.request.contextPath}/mailMit/mailMitList.do";
 			return true;
-			
+
 		}
 
 	}
 </script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Medic</title>
+<c:import url="../common/header.jsp" />
 </head>
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<c:import url="../common/menubar.jsp" />
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>Medic</h1>
+				<ol class="breadcrumb">
+					<li><a href="/medic/common/main.do"><i
+							class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Main</li>
+				</ol>
+			</section>
+			<!-- Main content -->
+			<section class="content">
+				<!-- Main row -->
+				<div class="row">
 
-	<center>
-		<br> <br>
-		<h5>인증 번호 7자리를 입력하세요</h5>
+					<!-- ---------------------------------------------------------------------------------------- -->
 
-		<div class="container">
-			<form method="post" action="../mailMit/mailMitList.do" name="authenform" onSubmit="return check();">
-				<input type="text" name="authnum"><br> <br> <input
-					type="submit" class="btn btn-info" value="Submit">
-			</form>
+					<br><br><br><br><br><br><br>
+					<center>
+						<div
+							style="width: 400px; height: 300px; background-color: #D5D5E0; text-align: center;">
+							<br> <br> <br> 
+
+							<h4>인증 번호 7자리를 입력하세요</h4>
+							<Br><Br>
+
+							<div>
+								<form method="post" action="../mailMit/mailMitList.do"
+									name="authenform" onSubmit="return check();">
+									<input type="text" name="authnum" style="width:200px"><br> <br> 
+									<input type="submit" class="btn btn-info" value="Submit">
+								</form>
+							</div>
+						</div>
+					</center>
+
+
+
+
+					<!-- ---------------------------------------------------------------------------------------- -->
+
+				</div>
+				<!-- /.row (main row) -->
+
+			</section>
+			<!-- /.content -->
 		</div>
-	</center>
+		<!-- /.content-wrapper -->
+		<c:import url="../common/footer.jsp" />
+		<c:import url="../common/sidebar.jsp" />
+	</div>
+	<!-- ./wrapper -->
+	<c:import url="../common/scripts.jsp" />
+
 
 </body>
 </html>

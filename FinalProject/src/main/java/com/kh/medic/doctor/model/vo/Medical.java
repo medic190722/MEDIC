@@ -22,6 +22,17 @@ public class Medical implements Serializable {
 	
 	public Medical() {}
 	
+	public Medical(String mCode, int pNo, String pName, Date mDate, String mHistory, String mExamination,
+			String mMedList) {
+		this.mCode = mCode;
+		this.pNo = pNo;
+		this.pName = pName;
+		this.mDate = mDate;
+		this.mHistory = mHistory;
+		this.mExamination = mExamination;
+		this.mMedList = mMedList;
+	}
+
 	public Medical(String mCode, int pNo, String pName, Date mDate, int empNo, String empName, String mHistory) {
 		this.mCode = mCode;
 		this.pNo = pNo;

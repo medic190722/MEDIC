@@ -16,7 +16,7 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>환자등록</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
@@ -33,7 +33,7 @@
 					<div class=" outReceipt"
 						style="width: 500px; margin: 0 auto; margin-top: 50px;">
 						<p class="login-box-msg">
-							<b style="font-size: 20px;">환자 등록</b>
+							환자를 등록해주세요.
 						</p>
 
 						<form onsubmit="return validate();"

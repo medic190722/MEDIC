@@ -16,21 +16,23 @@
 		<c:import url="../common/menubar.jsp" />
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Medic</h1>
+				<h1>환자 정보 수정</h1>
 				<ol class="breadcrumb">
 					<li><a href="/medic/common/main.do"><i
 							class="fa fa-dashboard"></i> Home</a></li>
 					<li class="active">Main</li>
+					<li class="active">환자관리</li>
+					<li class="active">환자 정보 수정</li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
 				<!-- Main row -->
 				<div class="row">
-					<div class="register-box-body outReceipt"
+					<div class="outReceipt"
 						style="width: 500px; margin: 0 auto; margin-top: 50px;">
 						<p class="login-box-msg">
-							<b style="font-size: 20px;">환자 정보 수정</b>
+							환자 정보를 수정해주세요.
 						</p>
 
 						<form
@@ -44,7 +46,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="p_name" name="p_name"
-										value="${patient.p_name}" required>
+										value="${patient.p_name}" style="width : 300px; text-align:center" required>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -54,7 +56,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="number" id="p_age" name="p_age" min=0
-										value="${patient.p_age}" required>
+										value="${patient.p_age}" style="width : 300px; text-align:center" required>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -62,12 +64,14 @@
 									style="display: inline-block; width: 100px; text-align: center">
 									<label for="">성별</label>
 								</div>
+								<div style="display:inline-block; width:300px; text-align: center;">
 								<input type="radio" class="form-check-input" name="p_gender"
 									id="gender0" value="M" ${patient.p_gender=='M'?'checked':''}>
 								<label for="gender0">남</label> <input type="radio"
 									class="form-check-input" name="p_gender" id="gender1" value="F"
 									${patient.p_gender=='F'?'checked':''}> <label
 									for="gender1">여</label>
+								</div>
 							</div>
 							<div class="form-group has-feedback">
 								<div
@@ -76,7 +80,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" id="p_rrn" name="p_rrn"
-										class="form-check-input" value="${patient.p_rrn}" readonly />
+										class="form-check-input" value="${patient.p_rrn}" style="width : 300px; text-align:center" readonly />
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -86,7 +90,7 @@
 								</div>
 								<div style="display: inline-block">
 									<input type="text" name="p_address" id="p_address"
-										style="width: 300px;" value="${patient.p_address}">
+										style="width : 300px; text-align:center" value="${patient.p_address}" >
 								</div>
 							</div>
 							<div class="form-group has-feedback">

@@ -12,14 +12,15 @@
 		SELECT P.*, M.M_CODE, M.M_DATE 
 		FROM PATIENT P 
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO) 
-		WHERE M.P_NO IN(SELECT P_NO FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%'))
+		JOIN ACCEPTANCE A ON(M.P_NO = A.P_NO)
+		WHERE M.P_NO IN(SELECT P_NO FROM PATIENT WHERE P_NAME LIKE CONCAT(CONCAT('%',#{p_name}),'%')) AND (A.ACC_YN = 'N' OR A.ACC_UNPAID_AMOUNT != 0)
 	</select>
 		
 	<select id="selectPayPatient" parameterType="string" resultMap="resultPatient">
 		SELECT P.*, M.M_CODE, M.M_DATE, M.M_EXAMINATION
 		FROM PATIENT P
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO)
-		WHERE M.M_CODE = #{m_code}
+		WHERE M.M_CODE = #{m_code} (A.ACC_YN = 'N' OR A.ACC_UNPAID_AMOUNT != 0)
 	</select>
 	
 	<select id="selectInjection" parameterType="_int" resultType="_int">
@@ -64,6 +65,14 @@
 			P_ACC_YN = 'N',
 			P_MEDICAL_YN ='N'
 		WHERE P_NO = #{p_no}
+	</update>
+	
+	<update id="updateDischargeDate" parameterType="_int">
+		UPDATE ADMISSION SET DISCHARGE_DATE = SYSDATE , DISCHARGE_YN = 'Y' WHERE P_NO = #{p_no}
+	</update>
+	
+	<update id="updateAdmissionPatient" parameterType="_int">
+		UPDATE PATIENT SET P_ADMISSION_YN = 'N' WHERE P_NO = #{p_no}
 	</update>
 	
 </mapper>

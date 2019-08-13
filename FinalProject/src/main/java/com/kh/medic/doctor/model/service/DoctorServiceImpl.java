@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.medic.doctor.model.dao.DoctorDao;
 import com.kh.medic.doctor.model.vo.Medical;
 import com.kh.medic.medicine.model.vo.MedicineVo;
+import com.kh.medic.nurse.model.vo.Nurse;
 import com.kh.medic.patient.model.vo.Patient;
 
 @Service
@@ -87,17 +88,45 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public List<Medical> myFatientCareList(int empNo) {
+	public List<Patient> myPatientCareList(int cPage, int limit, int empNo) {
 		
-		return drDao.myFatientCareList(empNo);
+		return drDao.myPatientCareList(cPage, limit, empNo);
 		
 	}
 	
 	@Override
-	public int myFatientCount(int empNo) {
+	public int myPatientCount(int empNo) {
 		
-		return drDao.myFatientCount(empNo);
+		return drDao.myPatientCount(empNo);
 		
 	}
-
+	
+	@Override
+	public List<Medical> pMedicalList(int pNo) {
+		
+		return drDao.pMedicalList(pNo);
+		
+	}
+	
+	@Override
+	public int myAdmissionCount(int empNo) {
+		
+		return drDao.myAdmissionCount(empNo);
+		
+	}
+	
+	@Override
+	public List<Patient> myAdmissionCareList(int cPage, int limit, int empNo) {
+		
+		return drDao.myAdmissionCareList(cPage, limit, empNo);
+		
+	}
+	
+	@Override
+	public void doctorOrderSave(Nurse order) {
+		
+		drDao.doctorOrderSave(order);
+		
+	}
+	
 }

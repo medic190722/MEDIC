@@ -132,7 +132,7 @@
 													</select>
 												</td>
 												<td>
-													<textarea style="resize:none;" class="form-control" rows="1" name="etc" required="required"></textarea>
+													<textarea style="resize:none;" class="form-control" rows="1" name="etc"></textarea>
 												</td>
 											</tr>
 										</tbody>

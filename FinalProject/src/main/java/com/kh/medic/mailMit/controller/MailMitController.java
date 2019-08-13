@@ -29,7 +29,7 @@ public class MailMitController {
 
 
 	@RequestMapping(value = "/mailMit/mailSending.do")
-	public void navermailtest(HttpServletRequest request,MailMitVo mail, ModelMap mo) throws Exception {
+	public String navermailtest(HttpServletRequest request,MailMitVo mail, ModelMap mo) throws Exception {
 		HttpSession session2 = request.getSession();
 		MailCheckVo mailChecks = (MailCheckVo) session2.getAttribute("name");
 		
@@ -62,13 +62,15 @@ public class MailMitController {
 		});
 		session.setDebug(true); // for debug
 		Message mimeMessage = new MimeMessage(session);
-		mimeMessage.setFrom(new InternetAddress(mail.getEmpEmail()));
+		mimeMessage.setFrom(new InternetAddress(mailChecks.getEmailId()));
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 		mimeMessage.setSubject(subject);
 		mimeMessage.setText(body);
 		System.out.println(new Date());
 		mimeMessage.setSentDate(new Date());
 		Transport.send(mimeMessage);
+		
+		return "/mailMit/mailSuccess";
 	}
 
 }
