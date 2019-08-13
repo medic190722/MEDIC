@@ -221,8 +221,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><a href="${pageContext.request.contextPath}/doctor/myFatientCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>일반 환자 관리</a></li>
-			<li><a href="${pageContext.request.contextPath}/doctor/myFatientCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>입원 환자 관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/doctor/myPatientCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>일반 환자 관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/doctor/myAdmissionCare.do?empNo=${m.empNo}"><i class="fa fa-circle-o"></i>입원 환자 관리</a></li>
           </ul>
        </li>
   

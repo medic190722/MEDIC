@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.medic.common.util.doctorUtils;
 import com.kh.medic.doctor.model.service.DoctorService;
 import com.kh.medic.doctor.model.vo.Medical;
 import com.kh.medic.medicine.model.vo.MedicineVo;
+import com.kh.medic.nurse.model.vo.Nurse;
 import com.kh.medic.patient.model.vo.Patient;
 
 @Controller
@@ -78,11 +80,13 @@ public class DoctorController {
 		
 		String mMedList = "";
 		
-		for(int i = 0; i < etcArr.length; i++) {
-			mMedList += medCodeArr[i] + "/" + medNameArr[i] + "/" + oneDoseArr[i] + "/" + oneDayDoseArr[i]
-					+ "/" + totalDoseArr[i] + "/" + etcArr[i];
-			if(i != etcArr.length - 1) {
-				mMedList += "<br>";
+		if(etc != "") {
+			for(int i = 0; i < etcArr.length; i++) {
+				mMedList += medCodeArr[i] + "/" + medNameArr[i] + "/" + oneDoseArr[i] + "/" + oneDayDoseArr[i]
+						+ "/" + totalDoseArr[i] + "/" + etcArr[i];
+				if(i != etcArr.length - 1) {
+					mMedList += "<br>";
+				}
 			}
 		}
 		
@@ -155,29 +159,87 @@ public class DoctorController {
 		
 	}
 	
-	@RequestMapping("/doctor/myFatientCare.do")
+	@RequestMapping("/doctor/myPatientCare.do")
 	public String myFatientCare(@RequestParam("empNo") int empNo,
 			@RequestParam(value="cPage", required=false, defaultValue="1") int cPage, Model model) {
 		
-		int startPage;
-		int endPage;
-		int maxPage;
 		int limit = 10;
 		
-		int listCount = drService.myFatientCount(empNo);
+		int listCount = drService.myPatientCount(empNo);
 		
-		List<Medical> mList = drService.myFatientCareList(empNo);
+		List<Patient> pList = drService.myPatientCareList(cPage, limit, empNo);
 		
-		if(mList.size() == 0) {
+		String pageBar = doctorUtils.getPageBar(listCount, cPage, limit, "myPatientCare.do?empNo=" + empNo);
+		
+		model.addAttribute("totalContents", listCount).addAttribute("numPerPage", limit).addAttribute("pageBar", pageBar);
+		
+		if(pList.size() == 0) {
 			model.addAttribute("msg", "담당 환자가 없습니다.");
 			model.addAttribute("loc", "/index.do");
 			
 			return "common/msg";
 		} else {
-			model.addAttribute("mList", mList);
+			model.addAttribute("pList", pList);
 			
-			return "doctor/myFatientCare";
+			return "doctor/myPatientCare";
 		}
+		
+	}
+	
+	@RequestMapping("/doctor/pMedicalList.do")
+	public String pMedicalList(@RequestParam("pNo") int pNo, Model model) {
+		
+		List<Medical> mList = drService.pMedicalList(pNo);
+		
+		model.addAttribute("mList", mList);
+		
+		return "doctor/pMedicalList";
+	}
+	
+	@RequestMapping("/doctor/myAdmissionCare.do")
+	public String myAdmissionCare(@RequestParam("empNo") int empNo,
+			@RequestParam(value="cPage", required=false, defaultValue="1") int cPage, Model model) {
+		
+		int limit = 10;
+		
+		int listCount = drService.myAdmissionCount(empNo);
+		
+		List<Patient> pList = drService.myAdmissionCareList(cPage, limit, empNo);
+		
+		String pageBar = doctorUtils.getPageBar(listCount, cPage, limit, "myAdmissionCare.do?empNo=" + empNo);
+		
+		model.addAttribute("totalContents", listCount).addAttribute("numPerPage", limit).addAttribute("pageBar", pageBar);
+		
+		if(pList.size() == 0) {
+			model.addAttribute("msg", "담당 환자가 없습니다.");
+			model.addAttribute("loc", "/index.do");
+			
+			return "common/msg";
+		} else {
+			model.addAttribute("pList", pList);
+			
+			return "doctor/myAdmissionCare";
+		}
+		
+	}
+	
+	@RequestMapping("/doctor/doctorOrderSave.do")
+	public String doctorOrderSave(
+			@RequestParam("pNo") int pNo,
+			@RequestParam("wardCode") int wardCode,
+			@RequestParam("empNo") int empNo,
+			@RequestParam("orderEx") String orderExamination,
+			@RequestParam("drOrder") String doctorOrder,
+			Model model) {
+		
+		Nurse order = new Nurse(pNo, wardCode, empNo, orderExamination, doctorOrder);
+		
+		drService.doctorOrderSave(order);
+		
+		model.addAttribute("msg", "전송 완료");
+		model.addAttribute("loc", "/doctor/myAdmissionCare.do?empNo=" + empNo);
+		
+		return "common/msg";
 		
 	}
 	

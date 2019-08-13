@@ -31,7 +31,18 @@ public class Patient implements Serializable{
 	private String m_examination; //검사항목 
 	//private int acc_no; // 수납 번호
 	
+	// 입원 환자 관리
+	private int ward_code;
+	
 	public Patient() {}
+	
+	public Patient(int p_no, String p_name, String p_gender, String p_rrn, int ward_code) {
+		this.p_no = p_no;
+		this.p_name = p_name;
+		this.p_gender = p_gender;
+		this.p_rrn = p_rrn;
+		this.ward_code = ward_code;
+	}
 
 	public Patient(int p_no, String p_name, int p_age, String p_gender, String p_rrn, String p_address,
 			String[] p_phone, Date p_firstdate, Date p_lastdate, String p_acc_yn, String p_medical_yn,
@@ -186,6 +197,18 @@ public class Patient implements Serializable{
 	/*public void setAcc_no(int acc_no) {
 		this.acc_no = acc_no;
 	}*/
+
+	public int getWard_code() {
+		return ward_code;
+	}
+
+
+
+	public void setWard_code(int ward_code) {
+		this.ward_code = ward_code;
+	}
+
+
 
 	@Override
 	public String toString() {

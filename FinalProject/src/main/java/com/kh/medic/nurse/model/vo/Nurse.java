@@ -18,11 +18,20 @@ public class Nurse implements Serializable {
 	private String checkYn;
 	private String empName;
 	private String pName;
-	
+	private String pRrn;
+	private String pGender;
 	
 	public Nurse() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Nurse(int pNo, int wardCode, int empNo, String orderExamination, String doctorOrder) {
+		this.pNo = pNo;
+		this.wardCode = wardCode;
+		this.empNo = empNo;
+		this.orderExamination = orderExamination;
+		this.doctorOrder = doctorOrder;
 	}
 
 	public Nurse(int pNo, int wardCode, String orderDate, int empNo, String orderExamination, String doctorOrder,
@@ -97,11 +106,28 @@ public class Nurse implements Serializable {
 	public void setCheckYn(String checkYn) {
 		this.checkYn = checkYn;
 	}
+	
+	public String getpRrn() {
+		return pRrn;
+	}
+
+	public void setpRrn(String pRrn) {
+		this.pRrn = pRrn;
+	}
+
 	@Override
 	public String toString() {
 		return "Nurse [pNo=" + pNo + ", wardCode=" + wardCode + ", orderDate=" + orderDate + ", empNo=" + empNo
 				+ ", orderExamination=" + orderExamination + ", doctorOrder=" + doctorOrder + ", checkYn=" + checkYn
 				+ ", empName=" + empName + ", pName=" + pName + "]";
+	}
+
+	public String getpGender() {
+		return pGender;
+	}
+
+	public void setpGender(String pGender) {
+		this.pGender = pGender;
 	}
 	
 	

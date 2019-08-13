@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.medic.doctor.model.vo.Medical;
 import com.kh.medic.medicine.model.vo.MedicineVo;
+import com.kh.medic.nurse.model.vo.Nurse;
 import com.kh.medic.patient.model.vo.Patient;
 
 public interface DoctorService {
@@ -28,8 +29,16 @@ public interface DoctorService {
 
 	public List<Patient> patientSearch(String pName);
 
-	public List<Medical> myFatientCareList(int empNo);
+	public List<Patient> myPatientCareList(int cPage, int limit, int empNo);
 
-	public int myFatientCount(int empNo);
-	
+	public int myPatientCount(int empNo);
+
+	public List<Medical> pMedicalList(int pNo);
+
+	public int myAdmissionCount(int empNo);
+
+	public List<Patient> myAdmissionCareList(int cPage, int limit, int empNo);
+
+	public void doctorOrderSave(Nurse order);
+
 }
