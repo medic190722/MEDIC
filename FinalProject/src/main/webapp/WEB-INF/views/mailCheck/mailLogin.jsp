@@ -44,7 +44,7 @@
 								<br> <input type="text" name="emailId"
 									style="width: 300px; height: 30px;"
 									placeholder="이메일을 입력해주세요(abcd@naver.com)"><br>
-								<br> <input type="text" name="emailPwd"
+								<br> <input type="password" name="emailPwd"
 									style="width: 300px; height: 30px;" placeholder="비밀번호를 입력해주세요">
 								<br>
 								<br> <input class="btn btn-info" type="submit" value="로그인">

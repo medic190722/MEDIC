@@ -101,7 +101,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/empsal/empsalList.do"><i class="fa fa-circle-o"></i> 월급 인상 및 삭감</a></li>
-           <li><a href="#"><i class="fa fa-circle-o"></i> 통계</a></li>
+       
           </ul>
         </li>
         <li class="treeview">
@@ -115,7 +115,6 @@
           <ul class="treeview-menu">
            <li><a href="${pageContext.request.contextPath }/medicine/medicineList.do"><i class="fa fa-circle-o"></i> 의약품 관리</a></li>
            <li><a href="${pageContext.request.contextPath }/equipment/equipmentList.do"><i class="fa fa-circle-o"></i> 의학 장비 관리</a></li>
-           <li><a href="#"><i class="fa fa-circle-o"></i> 병원 소모품 관리</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -149,22 +148,6 @@
           </ul>
         </li>
         
-        
-        
-        
-        <li class="treeview">
-          <a href="#">
-             <i class="fa fa-bar-chart"></i>
-            <span>통계</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 병원 총 수입 및 지출 관련 통계</a></li>
-          </ul>
-        </li>
-       
       </ul>
       
       </c:if>
@@ -260,44 +243,20 @@
             <span>입원환자 업무</span>
           </a>
           </li>
-          <li>
-          <a href="#">
-             <i class="fa fa-medkit"></i>
-            <span>처방 관리</span>
-          </a>
-          </li>
-          <li>
-           <a href="#">
-             <i class="fa fa-file-text-o"></i>
-            <span>지원 업무 관리</span>
-          </a>
-          </li>
   
       </ul>
       </c:if>
       <ul class="sidebar-menu" data-widget="tree">
         <!-- 공통 -->
+
         <li>
-          <a href="#">
-             <i class="fa fa-table"></i>
-            <span>일정 관리</span>
+          <a href="${pageContext.request.contextPath}/vacation/vacationInset.do">
+             <i class="fa fa-calendar"></i>
+            <span>휴가 신청</span>
           </a>
          </li>
          
-         
-         <li class="treeview">
-          <a href="#">
-             <i class="fa fa-calendar"></i>
-            <span>근태관리</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-           <li><a href="${pageContext.request.contextPath}/vacation/vacationInset.do"><i class="fa fa-circle-o"></i> 휴가신청하기</a></li>
-           	<li><a href="#"><i class="fa fa-circle-o"></i> 출근/퇴근</a></li>
-          </ul>
-        </li>
+       
 
           <li>
           <a href="${pageContext.request.contextPath}/notice/noticeList.do">
@@ -305,13 +264,7 @@
             <span>공지사항</span>
           </a>
           </li>
-          <li>
-          <a href="#">
-             <i class="fa fa-search"></i>
-            <span>재원 환자검색</span>
-          </a>
-          </li>
-  
+
       </ul>
       
     </section>
