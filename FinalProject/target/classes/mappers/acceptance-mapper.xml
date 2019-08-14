@@ -20,7 +20,7 @@
 		SELECT P.*, M.M_CODE, M.M_DATE, M.M_EXAMINATION
 		FROM PATIENT P
 		JOIN MEDICAL M ON(P.P_NO = M.P_NO)
-		WHERE M.M_CODE = #{m_code} (A.ACC_YN = 'N' OR A.ACC_UNPAID_AMOUNT != 0)
+		WHERE M.M_CODE = #{m_code}
 	</select>
 	
 	<select id="selectInjection" parameterType="_int" resultType="_int">

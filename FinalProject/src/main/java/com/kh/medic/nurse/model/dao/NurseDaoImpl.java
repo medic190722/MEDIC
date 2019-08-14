@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.medic.nurse.model.vo.Nurse;
+
 @Repository
 public class NurseDaoImpl implements NurseDao {
 	
@@ -27,9 +29,9 @@ public class NurseDaoImpl implements NurseDao {
 	}
 
 	@Override
-	public int updateOrderYn(int pNo) {
+	public int updateOrderYn(Nurse nurse) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("nurse.updateOrderYn",pNo);
+		return sqlSession.update("nurse.updateOrderYn", nurse);
 	}
 
 }

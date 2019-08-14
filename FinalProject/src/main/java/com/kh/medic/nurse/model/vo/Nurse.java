@@ -26,6 +26,11 @@ public class Nurse implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Nurse(int pNo, String doctorOrder) {
+		this.pNo = pNo;
+		this.doctorOrder = doctorOrder;
+	}
+
 	public Nurse(int pNo, int wardCode, int empNo, String orderExamination, String doctorOrder) {
 		this.pNo = pNo;
 		this.wardCode = wardCode;

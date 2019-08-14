@@ -28,10 +28,10 @@
 		COUNT(*) FROM AD_ORDER
 	</select>
 	
-	<update id="updateOrderYn" parameterType="_int" >
+	<update id="updateOrderYn" parameterType="Nurse" >
 		UPDATE AD_ORDER SET
 		CHECK_YN = 'Y'
-		WHERE P_NO = #{pNo}
+		WHERE P_NO = #{pNo} AND DOCTOR_ORDER = #{doctorOrder}
 	</update>
  </mapper>
    

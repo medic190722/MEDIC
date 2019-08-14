@@ -69,7 +69,7 @@
 									<td>${n.orderExamination}</td>
 									<td>${n.doctorOrder}</td>
 									<td>${n.checkYn}</td>
-									<td><button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/nurse/updateOrderYn.do?pNo='+${n.pNo}">업무이행</button></td>
+									<td><button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/nurse/updateOrderYn.do?pNo=${n.pNo}&doctorOrder=${n.doctorOrder}'">업무이행</button></td>
 									
 
 								</tr>

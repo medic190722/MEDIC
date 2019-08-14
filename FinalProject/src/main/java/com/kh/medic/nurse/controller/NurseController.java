@@ -40,9 +40,12 @@ public class NurseController {
 	}
 	
 	@RequestMapping("/nurse/updateOrderYn.do")
-	public String updateOrderYn(@RequestParam int pNo,  Model model) {
+	public String updateOrderYn(@RequestParam("pNo") int pNo, @RequestParam("doctorOrder") String doctorOrder, Model model) {
+		System.out.println(pNo);
+		System.out.println(doctorOrder);
+		Nurse nurse = new Nurse(pNo, doctorOrder);
 		
-		int result = nurseService.updateOrderYn(pNo);
+		int result = nurseService.updateOrderYn(nurse);
 		// 2. 실행 결과에 따른 화면 처리
 	      String loc = "/nurse/orderList.do";
 	      String msg = "";

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.medic.nurse.model.dao.NurseDao;
+import com.kh.medic.nurse.model.vo.Nurse;
 
 @Service
 public class NurseServiceImpl implements NurseService {
@@ -27,9 +28,9 @@ public class NurseServiceImpl implements NurseService {
 	}
 
 	@Override
-	public int updateOrderYn(int pNo) {
+	public int updateOrderYn(Nurse nurse) {
 		// TODO Auto-generated method stub
-		return nurseDao.updateOrderYn(pNo);
+		return nurseDao.updateOrderYn(nurse);
 	}
 
 }
